@@ -33,6 +33,14 @@ report 50130 ItemAvailabilityReport
             {
 
             }
+            column("Gen_Prod_Posting_Group"; Gen_Prod_Posting_Group)
+            {
+
+            }
+            column(Item_Catogry; Item_Catogry_desc)
+            {
+
+            }
             column(StartDate; StartDate)
             {
 
@@ -53,16 +61,23 @@ report 50130 ItemAvailabilityReport
             {
 
             }
-            column(Stock_On_Hand; qr_allQuantity)
+            column(Stock_On_Hand; qr_StockOnHand)
             {
 
             }
 
             trigger OnAfterGetRecord()
             begin
+                qr_Cost_Amount := 0;
+                qr_StockOnHand := 0;
+                qr_PreQuantity := 0;
+                qr_InQuantity := 0;
+                qr_PostQuantity := 0;
+                Unit_Cost := 0;
                 if qr_Base.Read() then begin
                     qr_Item_No := qr_Base.Item_No_;
                     qr_Location_Code := qr_Base.Location_Code;
+                    qr_StockOnHand := qr_Base.Quantity;
 
                     //Get the Description from the "Item List" table
                     begin
@@ -81,6 +96,25 @@ report 50130 ItemAvailabilityReport
                         if UnitCostRec.Get(qr_Base.Item_No_) then
                             Unit_Cost := UnitCostRec."Unit Cost";
                     end;
+
+                    //Get the "Gen. Prod. Posting Group" from the "Item List" table
+                    begin
+                        if GenProdPGRec.Get(qr_Base.Item_No_) then
+                            Gen_Prod_Posting_Group := GenProdPGRec."Gen. Prod. Posting Group";
+                    end;
+
+                    //Get the "Item Catogry code" from the "Item List" table
+                    begin
+                        if ItemCatRec.Get(qr_Base.Item_No_) then
+                            Item_Catogry := ItemCatRec."Item Category Code";
+                    end;
+
+                    //Get the "Item Catogry Description" from the "Item Catogry" table
+                    begin
+                        if ItemCatDescRec.Get(ItemCatRec."Item Category Code") then
+                            Item_Catogry_desc := ItemCatDescRec.Description;
+                    end;
+
 
                     //creating Pre Quantity
                     qr_Pre.SetRange(qr_Pre.Item_No_, qr_Base.Item_No_);
@@ -108,13 +142,11 @@ report 50130 ItemAvailabilityReport
                     qr_Post.SetRange(qr_Post.Location_Code, qr_Base.Location_Code);
                     qr_Post.SetFilter(qr_Post.Posting_Date, '>%1', EndDate);
                     qr_Post.Open();
+
                     if qr_Post.Read() then begin
                         qr_PostQuantity := qr_Post.Quantity;
                     end;
                     qr_Post.Close();
-
-                    //Calculating the AllQuantity (Stock on hand)
-                    qr_AllQuantity := qr_PreQuantity + qr_InQuantity + qr_PostQuantity;
 
                     //if the Pre and In and Post equal to 0 then skip
                     if (qr_PreQuantity = 0) and (qr_InQuantity = 0) and (qr_PostQuantity = 0) then
@@ -226,29 +258,44 @@ report 50130 ItemAvailabilityReport
     }
 
     var
+        //Queries
         qr_Base: Query ItemAvailabilityQuery;
         qr_Pre: Query ItemAvailabilityQuery;
         qr_In: Query ItemAvailabilityQuery;
         qr_Post: Query ItemAvailabilityQuery;
+
+        //Records
         DescRec: Record Item;
         BaseUnitRec: Record Item;
+        GenProdPGRec: Record Item;
         UnitCostRec: Record Item;
+        LocationRec: Record "Location";
+        ItemCatRec: Record Item;
+        ItemCatDescRec: Record "Item Category";
+
+        //Items
         Description: Text;
         BaseUnit: Text;
         Unit_Cost: Decimal;
+        Gen_Prod_Posting_Group: Code[30];
+        Item_Catogry: Text;
+        Item_Catogry_desc: Text;
+
         counter: Integer;
+        loc: Code[20];
+        StartDate: Date;
+        EndDate: Date;
+
+        //Query items
         qr_Location_Code: Text;
         qr_Posting_Date: Date;
         qr_PreQuantity: Decimal;
         qr_InQuantity: Decimal;
         qr_PostQuantity: Decimal;
-        qr_allQuantity: Decimal;
+        qr_StockOnHand: Decimal;
         qr_Item_No: Code[30];
         qr_Cost_Amount: Decimal;
-        LocationRec: Record "Location";
-        loc: Code[20];
-        StartDate: Date;
-        EndDate: Date;
+
 
 
 }
