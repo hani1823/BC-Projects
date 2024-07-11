@@ -12,6 +12,7 @@ query 50130 ItemAvailabilityQuery
             {
                 Method = Sum;
             }
+
             column(Item_No_; "Item No.")
             {
 
@@ -20,6 +21,16 @@ query 50130 ItemAvailabilityQuery
             {
 
             }
+
+            column(Cost_Amount_Actual; "Cost Amount (Actual)")
+            {
+                Method = Sum;
+            }
+            filter(Posting_Date; "Posting Date")
+            {
+
+            }
+
         }
     }
 }

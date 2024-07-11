@@ -17,11 +17,15 @@ report 50130 ItemAvailabilityReport
             {
 
             }
-            column(Quantity; qr_Quantity)
+            column(Location_Code; qr_Location_Code)
             {
 
             }
-            column(Location_Code; qr_Location_Code)
+            column(Unit_Cost; Unit_Cost)
+            {
+
+            }
+            column(Cost_Amount; qr_Cost_Amount)
             {
 
             }
@@ -29,23 +33,92 @@ report 50130 ItemAvailabilityReport
             {
 
             }
+            column(StartDate; StartDate)
+            {
+
+            }
+            column(EndDate; EndDate)
+            {
+
+            }
+            column(PreQuantity; qr_PreQuantity)
+            {
+
+            }
+            column(InQuantity; qr_InQuantity)
+            {
+
+            }
+            column(PostQuantity; qr_PostQuantity)
+            {
+
+            }
+            column(Stock_On_Hand; qr_allQuantity)
+            {
+
+            }
 
             trigger OnAfterGetRecord()
             begin
-                if qr.Read() then begin
-                    qr_Quantity := qr.Quantity;
-                    qr_Item_No := qr.Item_No_;
-                    qr_Location_Code := qr.Location_Code;
+                if qr_Base.Read() then begin
+                    qr_Item_No := qr_Base.Item_No_;
+                    qr_Location_Code := qr_Base.Location_Code;
+
                     //Get the Description from the "Item List" table
                     begin
-                        if DescRec.Get(qr.Item_No_) then
+                        if DescRec.Get(qr_Base.Item_No_) then
                             Description := DescRec.Description;
                     end;
+
                     //Get the BaseUnit from the "Item List" table
                     begin
-                        if BaseUnitRec.Get(qr.Item_No_) then
+                        if BaseUnitRec.Get(qr_Base.Item_No_) then
                             BaseUnit := BaseUnitRec."Base Unit of Measure";
                     end;
+
+                    //Get the UnitCost from the "Item List" table
+                    begin
+                        if UnitCostRec.Get(qr_Base.Item_No_) then
+                            Unit_Cost := UnitCostRec."Unit Cost";
+                    end;
+
+                    //creating Pre Quantity
+                    qr_Pre.SetRange(qr_Pre.Item_No_, qr_Base.Item_No_);
+                    qr_Pre.SetRange(qr_Pre.Location_Code, qr_Base.Location_Code);
+                    qr_Pre.SetFilter(qr_Pre.Posting_Date, '<%1', StartDate);
+                    qr_Pre.Open();
+                    if qr_Pre.Read() then begin
+                        qr_PreQuantity := qr_Pre.Quantity;
+                    end;
+                    qr_Pre.Close();
+
+                    //creating In Quantity
+                    qr_In.SetRange(qr_In.Item_No_, qr_Base.Item_No_);
+                    qr_In.SetRange(qr_In.Location_Code, qr_Base.Location_Code);
+                    qr_In.SetRange(qr_In.Posting_Date, StartDate, EndDate);
+                    qr_In.Open();
+                    if qr_In.Read() then begin
+                        qr_InQuantity := qr_In.Quantity;
+                        qr_Cost_Amount := qr_In.Cost_Amount_Actual;
+                    end;
+                    qr_In.Close();
+
+                    //creating Post Quantity
+                    qr_Post.SetRange(qr_Post.Item_No_, qr_Base.Item_No_);
+                    qr_Post.SetRange(qr_Post.Location_Code, qr_Base.Location_Code);
+                    qr_Post.SetFilter(qr_Post.Posting_Date, '>%1', EndDate);
+                    qr_Post.Open();
+                    if qr_Post.Read() then begin
+                        qr_PostQuantity := qr_Post.Quantity;
+                    end;
+                    qr_Post.Close();
+
+                    //Calculating the AllQuantity (Stock on hand)
+                    qr_AllQuantity := qr_PreQuantity + qr_InQuantity + qr_PostQuantity;
+
+                    //if the Pre and In and Post equal to 0 then skip
+                    if (qr_PreQuantity = 0) and (qr_InQuantity = 0) and (qr_PostQuantity = 0) then
+                        CurrReport.Skip();
                 end
                 else begin
                     CurrReport.Skip();
@@ -57,30 +130,41 @@ report 50130 ItemAvailabilityReport
             trigger OnPreDataItem()
             begin
                 Counter := 0;
-                qr.SetFilter(qr.Location_Code, loc);
-                //remove all zeros Quantity
-                qr.SetFilter(qr.Quantity, '<>%1', 0);
-                qr2.Open();
-                while qr2.Read do begin
+                qr_Base.SetFilter(qr_Base.Location_Code, loc);
+
+                //filter the data of qr_In to make the range based on the entered data (The entered dates)
+                CASE TRUE OF
+                    (StartDate <> 0D) and (EndDate <> 0D):
+                        //if StartDate not equal to the default value and EndDate not equal to the default value set the range
+                        qr_In.SetRange(qr_In.Posting_Date, StartDate, EndDate);
+                    (StartDate <> 0D):
+                        qr_In.SetRange(qr_In.Posting_Date, StartDate, DMY2Date(31, 12, 9999));
+                    (EndDate <> 0D):
+                        qr_In.SetRange(qr_In.Posting_Date, 0D, EndDate);
+                END;
+
+                qr_Base.Open();
+                while qr_Base.Read do begin
                     Counter += 1;
                 end;
                 SetRange(Number, 1, Counter);
-                qr.TopNumberOfRows(Counter);
-                qr.Open();
+                qr_Base.TopNumberOfRows(Counter);
+                qr_Base.Open();
             end;
 
             trigger OnPostDataItem()
             begin
-                qr.Close();
+                qr_Base.Close();
+                qr_In.Close();
+                qr_Pre.Close();
+                qr_Post.Close();
             end;
 
         }
-
     }
     requestpage
     {
         SaveValues = true;
-
         layout
         {
 
@@ -98,6 +182,14 @@ report 50130 ItemAvailabilityReport
                             if PAGE.RunModal(PAGE::"Location List", LocationRec) = ACTION::LookupOK then
                                 loc := LocationRec.Code;
                         end;
+                    }
+                    field(StartDate; StartDate)
+                    {
+                        ApplicationArea = all;
+                    }
+                    field(EndDate; EndDate)
+                    {
+                        ApplicationArea = all;
                     }
                 }
 
@@ -134,16 +226,29 @@ report 50130 ItemAvailabilityReport
     }
 
     var
-        qr: Query ItemAvailabilityQuery;
-        qr2: Query ItemAvailabilityQuery;
+        qr_Base: Query ItemAvailabilityQuery;
+        qr_Pre: Query ItemAvailabilityQuery;
+        qr_In: Query ItemAvailabilityQuery;
+        qr_Post: Query ItemAvailabilityQuery;
         DescRec: Record Item;
         BaseUnitRec: Record Item;
+        UnitCostRec: Record Item;
         Description: Text;
         BaseUnit: Text;
+        Unit_Cost: Decimal;
         counter: Integer;
         qr_Location_Code: Text;
-        qr_Quantity: Decimal;
+        qr_Posting_Date: Date;
+        qr_PreQuantity: Decimal;
+        qr_InQuantity: Decimal;
+        qr_PostQuantity: Decimal;
+        qr_allQuantity: Decimal;
         qr_Item_No: Code[30];
+        qr_Cost_Amount: Decimal;
         LocationRec: Record "Location";
         loc: Code[20];
+        StartDate: Date;
+        EndDate: Date;
+
+
 }
