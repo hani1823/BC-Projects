@@ -49,15 +49,27 @@ report 50130 ItemAvailabilityReport
             {
 
             }
-            column(PreQuantity; qr_PreQuantity)
+            column(PreQuantity_Consumption; qr_PreQuantity_Consumption)
             {
 
             }
-            column(InQuantity; qr_InQuantity)
+            column(PreQuantity_Added; qr_PreQuantity_Release)
             {
 
             }
-            column(PostQuantity; qr_PostQuantity)
+            column(InQuantity_Consumption; qr_InQuantity_Consumption)
+            {
+
+            }
+            column(InQuantity_Added; qr_InQuantity_Release)
+            {
+
+            }
+            column(PostQuantity_Consumption; qr_PostQuantity_Consumption)
+            {
+
+            }
+            column(PostQuantity_Added; qr_PostQuantity_Release)
             {
 
             }
@@ -70,9 +82,12 @@ report 50130 ItemAvailabilityReport
             begin
                 qr_Cost_Amount := 0;
                 qr_StockOnHand := 0;
-                qr_PreQuantity := 0;
-                qr_InQuantity := 0;
-                qr_PostQuantity := 0;
+                qr_PreQuantity_Consumption := 0;
+                qr_PreQuantity_Release := 0;
+                qr_InQuantity_Consumption := 0;
+                qr_InQuantity_Release := 0;
+                qr_PostQuantity_Consumption := 0;
+                qr_PostQuantity_Release := 0;
                 Unit_Cost := 0;
                 if qr_Base.Read() then begin
                     qr_Item_No := qr_Base.Item_No_;
@@ -121,8 +136,11 @@ report 50130 ItemAvailabilityReport
                     qr_Pre.SetRange(qr_Pre.Location_Code, qr_Base.Location_Code);
                     qr_Pre.SetFilter(qr_Pre.Posting_Date, '<%1', StartDate);
                     qr_Pre.Open();
-                    if qr_Pre.Read() then begin
-                        qr_PreQuantity := qr_Pre.Quantity;
+                    while qr_Pre.Read() do begin
+                        if qr_Pre.Quantity < 0 then
+                            qr_PreQuantity_Consumption += qr_Pre.Quantity
+                        else
+                            qr_PreQuantity_Release += qr_Pre.Quantity;
                     end;
                     qr_Pre.Close();
 
@@ -131,9 +149,13 @@ report 50130 ItemAvailabilityReport
                     qr_In.SetRange(qr_In.Location_Code, qr_Base.Location_Code);
                     qr_In.SetRange(qr_In.Posting_Date, StartDate, EndDate);
                     qr_In.Open();
-                    if qr_In.Read() then begin
-                        qr_InQuantity := qr_In.Quantity;
-                        qr_Cost_Amount := qr_In.Cost_Amount_Actual;
+                    while qr_In.Read() do begin
+                        if qr_In.Quantity < 0 then
+                            qr_InQuantity_Consumption += qr_In.Quantity
+                        else
+                            qr_InQuantity_Release += qr_In.Quantity;
+                        qr_Cost_Amount += qr_In.Cost_Amount_Actual
+
                     end;
                     qr_In.Close();
 
@@ -142,14 +164,21 @@ report 50130 ItemAvailabilityReport
                     qr_Post.SetRange(qr_Post.Location_Code, qr_Base.Location_Code);
                     qr_Post.SetFilter(qr_Post.Posting_Date, '>%1', EndDate);
                     qr_Post.Open();
-
-                    if qr_Post.Read() then begin
-                        qr_PostQuantity := qr_Post.Quantity;
+                    while qr_Post.Read() do begin
+                        if qr_Post.Quantity < 0 then
+                            qr_PostQuantity_Consumption += qr_Post.Quantity
+                        else
+                            qr_PostQuantity_Release += qr_Post.Quantity;
                     end;
                     qr_Post.Close();
 
+                    // Calculate the Unit Cost based on Stock On Hand
+                    //Unit_Cost := CalculateUnitCost(qr_Base.Item_No_, qr_Location_Code, qr_StockOnHand);
+
                     //if the Pre and In and Post equal to 0 then skip
-                    if (qr_PreQuantity = 0) and (qr_InQuantity = 0) and (qr_PostQuantity = 0) then
+                    if (qr_PreQuantity_Consumption = 0) and (qr_PreQuantity_Release = 0) and
+                       (qr_InQuantity_Consumption = 0) and (qr_InQuantity_Release = 0) and
+                       (qr_PostQuantity_Consumption = 0) and (qr_PostQuantity_Release = 0) then
                         CurrReport.Skip();
                 end
                 else begin
@@ -289,13 +318,45 @@ report 50130 ItemAvailabilityReport
         //Query items
         qr_Location_Code: Text;
         qr_Posting_Date: Date;
-        qr_PreQuantity: Decimal;
-        qr_InQuantity: Decimal;
-        qr_PostQuantity: Decimal;
+        qr_PreQuantity_Consumption: Decimal;
+        qr_PreQuantity_Release: Decimal;
+        qr_InQuantity_Consumption: Decimal;
+        qr_InQuantity_Release: Decimal;
+        qr_PostQuantity_Consumption: Decimal;
+        qr_PostQuantity_Release: Decimal;
         qr_StockOnHand: Decimal;
         qr_Item_No: Code[30];
         qr_Cost_Amount: Decimal;
+        qr_Cost_Amount_Non_Invtbl: Decimal;
 
 
+    /*procedure CalculateUnitCost(ItemNo: Code[30]; LocationCode: Code[20]; StockOnHand: Decimal): Decimal
+    var
+        TempQuery: Query ItemAvailabilityQuery;
+        TempCostAmount: Decimal;
+        TempStockOnHand: Decimal;
+    begin
+        TempCostAmount := 0;
+        TempStockOnHand := StockOnHand;
 
+        TempQuery.SetRange(TempQuery.Item_No_, ItemNo);
+        TempQuery.SetRange(TempQuery.Location_Code, LocationCode);
+        TempQuery.SetRange(TempQuery.Posting_Date, 0D, DMY2Date(31, 12, 9999)); 
+        TempQuery.Open();
+        while TempQuery.Read() and (TempStockOnHand > 0) do begin
+            if TempQuery.Quantity < TempStockOnHand then begin
+                TempCostAmount += TempQuery.Cost_Amount_Actual * TempQuery.Quantity;
+                TempStockOnHand -= TempQuery.Quantity;
+            end else begin
+                TempCostAmount += TempQuery.Cost_Amount_Actual * TempStockOnHand;
+                TempStockOnHand := 0;
+            end;
+        end;
+        TempQuery.Close();
+
+        if StockOnHand > 0 then
+            exit(TempCostAmount / StockOnHand)
+        else
+            exit(0);
+    end;*/
 }

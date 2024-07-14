@@ -40,13 +40,22 @@
                   <Width>0.80404in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73555in</Width>
+                  <Width>0.98425in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.66041in</Width>
+                  <Width>0.98425in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.66055in</Width>
+                  <Width>0.98425in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.98425in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.98425in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.98425in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.68673in</Width>
@@ -407,7 +416,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Gen Prod Posting Group</Value>
+                                  <Value>Gen. Prod. Posting Group</Value>
                                   <Style>
                                     <FontFamily>Ebrima</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -457,14 +466,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox10">
+                        <Textbox Name="Textbox25">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Pre Quantity</Value>
+                                  <Value>Pre Quantity Consumption</Value>
                                   <Style>
                                     <FontFamily>Ebrima</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -476,7 +485,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <rd:DefaultName>Textbox25</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -514,14 +523,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox13">
+                        <Textbox Name="Textbox23">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>In Quantity</Value>
+                                  <Value>Pre Quantity Added</Value>
                                   <Style>
                                     <FontFamily>Ebrima</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -533,7 +542,121 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox21">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>In Quantity Consumption</Value>
+                                  <Style>
+                                    <FontFamily>Ebrima</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>In Quantity Added</Value>
+                                  <Style>
+                                    <FontFamily>Ebrima</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -578,7 +701,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Post Quantity</Value>
+                                  <Value>Post Quantity Consumption</Value>
                                   <Style>
                                     <FontFamily>Ebrima</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -591,6 +714,63 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Post Quantity Added</Value>
+                                  <Style>
+                                    <FontFamily>Ebrima</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1061,14 +1241,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="PreQuantity">
+                        <Textbox Name="PreQuantity_Consumption">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PreQuantity.Value</Value>
+                                  <Value>=Fields!PreQuantity_Consumption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1077,7 +1257,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>PreQuantity</rd:DefaultName>
+                          <rd:DefaultName>PreQuantity_Consumption</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1114,14 +1294,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Quantity">
+                        <Textbox Name="PreQuantity_Added">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Quantity.Value</Value>
+                                  <Value>=Fields!PreQuantity_Added.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1130,7 +1310,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Quantity</rd:DefaultName>
+                          <rd:DefaultName>PreQuantity_Added</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1167,14 +1347,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="PostQuantity">
+                        <Textbox Name="InQuantity_Consumption">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PostQuantity.Value</Value>
+                                  <Value>=Fields!InQuantity_Consumption.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1183,7 +1363,166 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>PostQuantity</rd:DefaultName>
+                          <rd:DefaultName>InQuantity_Consumption</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="InQuantity_Added">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!InQuantity_Added.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>InQuantity_Added</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PostQuantity_Consumption">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PostQuantity_Consumption.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PostQuantity_Consumption</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>2.25pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PostQuantity_Added">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PostQuantity_Added.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PostQuantity_Added</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1288,6 +1627,9 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1305,7 +1647,7 @@
             <Top>0.205in</Top>
             <Left>0.22374in</Left>
             <Height>1.275in</Height>
-            <Width>7.82569in</Width>
+            <Width>11.67468in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1334,7 +1676,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.3815cm</Height>
+        <Height>4.40267cm</Height>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1342,7 +1684,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>21.21088cm</Width>
+      <Width>30.56068cm</Width>
       <Page>
         <PageHeader>
           <Height>3.61837cm</Height>
@@ -1426,8 +1768,8 @@
               <Source>Embedded</Source>
               <Value>قواعدالانماء</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.23in</Top>
-              <Left>3.31334in</Left>
+              <Top>0.31334in</Top>
+              <Left>4.84667in</Left>
               <Height>0.61667in</Height>
               <Width>1.75in</Width>
               <ZIndex>2</ZIndex>
@@ -1468,7 +1810,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.11611in</Top>
-              <Left>5.89759in</Left>
+              <Left>9.2432in</Left>
               <Height>0.36667in</Height>
               <Width>2.15184in</Width>
               <ZIndex>3</ZIndex>
@@ -1514,7 +1856,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.56334in</Top>
-              <Left>5.89759in</Left>
+              <Left>9.2432in</Left>
               <Height>0.36667in</Height>
               <Width>2.15184in</Width>
               <ZIndex>4</ZIndex>
@@ -1550,10 +1892,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox17</rd:DefaultName>
-              <Top>2.6797cm</Top>
-              <Left>16.50153cm</Left>
-              <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
+              <Top>2.53861cm</Top>
+              <Left>23.47773cm</Left>
+              <Height>0.79756cm</Height>
+              <Width>5.46567cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1622,8 +1964,8 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
+        <PageHeight>42cm</PageHeight>
+        <PageWidth>32cm</PageWidth>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
@@ -1720,23 +2062,41 @@ X3G8hOeI4jjwq3ityN6jbwn77cTW8TbMefeC5piZJoJUmAU52RSOrorqcqRkfY9qfs567U/Zz12p+znr
         <Field Name="EndDate">
           <DataField>EndDate</DataField>
         </Field>
-        <Field Name="PreQuantity">
-          <DataField>PreQuantity</DataField>
+        <Field Name="PreQuantity_Consumption">
+          <DataField>PreQuantity_Consumption</DataField>
         </Field>
-        <Field Name="PreQuantityFormat">
-          <DataField>PreQuantityFormat</DataField>
+        <Field Name="PreQuantity_ConsumptionFormat">
+          <DataField>PreQuantity_ConsumptionFormat</DataField>
         </Field>
-        <Field Name="InQuantity">
-          <DataField>InQuantity</DataField>
+        <Field Name="PreQuantity_Added">
+          <DataField>PreQuantity_Added</DataField>
         </Field>
-        <Field Name="InQuantityFormat">
-          <DataField>InQuantityFormat</DataField>
+        <Field Name="PreQuantity_AddedFormat">
+          <DataField>PreQuantity_AddedFormat</DataField>
         </Field>
-        <Field Name="PostQuantity">
-          <DataField>PostQuantity</DataField>
+        <Field Name="InQuantity_Consumption">
+          <DataField>InQuantity_Consumption</DataField>
         </Field>
-        <Field Name="PostQuantityFormat">
-          <DataField>PostQuantityFormat</DataField>
+        <Field Name="InQuantity_ConsumptionFormat">
+          <DataField>InQuantity_ConsumptionFormat</DataField>
+        </Field>
+        <Field Name="InQuantity_Added">
+          <DataField>InQuantity_Added</DataField>
+        </Field>
+        <Field Name="InQuantity_AddedFormat">
+          <DataField>InQuantity_AddedFormat</DataField>
+        </Field>
+        <Field Name="PostQuantity_Consumption">
+          <DataField>PostQuantity_Consumption</DataField>
+        </Field>
+        <Field Name="PostQuantity_ConsumptionFormat">
+          <DataField>PostQuantity_ConsumptionFormat</DataField>
+        </Field>
+        <Field Name="PostQuantity_Added">
+          <DataField>PostQuantity_Added</DataField>
+        </Field>
+        <Field Name="PostQuantity_AddedFormat">
+          <DataField>PostQuantity_AddedFormat</DataField>
         </Field>
         <Field Name="Stock_On_Hand">
           <DataField>Stock_On_Hand</DataField>

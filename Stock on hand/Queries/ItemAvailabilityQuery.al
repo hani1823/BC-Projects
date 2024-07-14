@@ -26,10 +26,16 @@ query 50130 ItemAvailabilityQuery
             {
                 Method = Sum;
             }
+            column(Cost_Amount_Non_Invtbl; "Cost Amount (Non-Invtbl.)")
+            {
+                Method = Sum;
+
+            }
             filter(Posting_Date; "Posting Date")
             {
 
             }
+
 
         }
     }
