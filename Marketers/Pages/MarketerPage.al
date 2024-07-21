@@ -1,21 +1,21 @@
 page 50131 "Marketer Page"
 {
     Caption = 'Marketers';
-    PageType = Listpart;
+    PageType = ListPart;
     UsageCategory = Lists;
     SourceTable = Marketer;
 
     layout
     {
-
         area(Content)
         {
-
             repeater("Marketers List")
             {
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+
+                    // This lines generate a lookup page of the Vendors list
                     trigger OnLookup(var Text: Text): Boolean
                     begin
                         VendorRec.SetRange("Gen. Bus. Posting Group", 'Agents');
@@ -27,25 +27,42 @@ page 50131 "Marketer Page"
                 }
                 field(Name; Rec.Name)
                 {
-                    ApplicationArea = all;
+                    ApplicationArea = All;
                 }
-
+                field("Document No."; Rec."Document No.")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Editable = false;
+                    ToolTip = 'Specifies the document number.';
+                    Visible = false;
+                }
             }
         }
-
     }
 
     actions
     {
-
         area(Processing)
         {
-
         }
-
-
-
     }
+
+
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        Rec."Document No." := SalesRec."No.";
+
+    end;
+
+    procedure SetSalesHeader(SalesHeader: Record "Sales Header")
+    begin
+        SalesRec := SalesHeader;
+    end;
+
     var
         VendorRec: Record Vendor;
+        SalesRec: Record "Sales Header";
+
+
 }

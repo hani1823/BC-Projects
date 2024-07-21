@@ -1,25 +1,20 @@
-table 50131 "Marketer"
+table 50128 Land
 {
     DataClassification = ToBeClassified;
     fields
     {
-        field(1; "No."; Code[20])
+        field(1; type; Enum LandType)
         {
             DataClassification = ToBeClassified;
         }
-        field(2; Name; Text[100])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(3; "Document No."; Code[20])
+        field(2; "Land Number"; Integer)
         {
             DataClassification = ToBeClassified;
         }
     }
-
     keys
     {
-        key(PK; "No.", "Document No.")
+        key(Key1; "Land Number")
         {
             Clustered = true;
         }
@@ -27,6 +22,10 @@ table 50131 "Marketer"
 
     fieldgroups
     {
-
+        // Add changes to field groups here
     }
+
+    var
+        myInt: Integer;
+
 }
