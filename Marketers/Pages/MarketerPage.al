@@ -28,6 +28,7 @@ page 50131 "Marketer Page"
                 field(Name; Rec.Name)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Document No."; Rec."Document No.")
                 {
@@ -35,6 +36,30 @@ page 50131 "Marketer Page"
                     Editable = false;
                     ToolTip = 'Specifies the document number.';
                     Visible = false;
+                }
+                field(percentage; Rec.percentage)
+                {
+                    ApplicationArea = all;
+                    trigger OnValidate()
+                    var
+                        TotalPercentage: Decimal;
+                    begin
+                        MarketerRec.SetRange("Document No.", Rec."Document No.");
+                        if MarketerRec.FindSet() then begin
+                            repeat
+                                if MarketerRec."No." <> Rec."No." then  // Exclude the current record
+                                    TotalPercentage += MarketerRec.percentage;
+                            until MarketerRec.Next() = 0;
+                        end;
+                        TotalPercentage += Rec.percentage;
+
+                        if TotalPercentage > 1 then
+                            Error('The sum of all records percentage must be 1 or less. Your current sum = %1', TotalPercentage);
+
+                        if TotalPercentage < 0 then
+                            Error('The sum of all records percentage must be 0 or more. Your current sum = %1', TotalPercentage);
+
+                    end;
                 }
             }
         }
@@ -47,12 +72,9 @@ page 50131 "Marketer Page"
         }
     }
 
-
-
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
         Rec."Document No." := SalesRec."No.";
-
     end;
 
     procedure SetSalesHeader(SalesHeader: Record "Sales Header")
@@ -63,6 +85,8 @@ page 50131 "Marketer Page"
     var
         VendorRec: Record Vendor;
         SalesRec: Record "Sales Header";
+        MarketerRec: Record Marketer;
+
 
 
 }

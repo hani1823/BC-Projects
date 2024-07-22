@@ -15,6 +15,12 @@ table 50131 "Marketer"
         {
             DataClassification = ToBeClassified;
         }
+        field(4; percentage; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            AutoFormatType = 10;
+            AutoFormatExpression = '<precision, 2:4><standard format,0>%';
+        }
     }
 
     keys
