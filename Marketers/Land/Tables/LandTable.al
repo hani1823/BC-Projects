@@ -3,7 +3,7 @@ table 50128 Land
     DataClassification = ToBeClassified;
     fields
     {
-        field(1; "Instrument number"; BigInteger)
+        field(1; "Instrument number"; code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = item;
@@ -28,6 +28,15 @@ table 50128 Land
         {
             DataClassification = ToBeClassified;
         }
+        field(7; "Owner Name"; Text[60])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(8; "Name of Plan"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
+
     }
     keys
     {

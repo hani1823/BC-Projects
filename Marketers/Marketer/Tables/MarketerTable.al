@@ -15,7 +15,7 @@ table 50131 "Marketer"
         {
             DataClassification = ToBeClassified;
         }
-        field(4; percentage; Decimal)
+        field(4; Percentage; Decimal)
         {
             DataClassification = ToBeClassified;
             AutoFormatType = 10;

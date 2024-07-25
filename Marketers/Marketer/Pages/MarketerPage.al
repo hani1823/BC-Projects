@@ -5,6 +5,7 @@ page 50131 "Marketer Page"
     UsageCategory = Lists;
     SourceTable = Marketer;
 
+
     layout
     {
         area(Content)
@@ -40,6 +41,8 @@ page 50131 "Marketer Page"
                 field(percentage; Rec.percentage)
                 {
                     ApplicationArea = all;
+
+                    //Check section for the sum of all percentage to be between 0 and 1 
                     trigger OnValidate()
                     var
                         TotalPercentage: Decimal;
@@ -47,7 +50,7 @@ page 50131 "Marketer Page"
                         MarketerRec.SetRange("Document No.", Rec."Document No.");
                         if MarketerRec.FindSet() then begin
                             repeat
-                                if MarketerRec."No." <> Rec."No." then  // Exclude the current record
+                                if MarketerRec."No." <> Rec."No." then
                                     TotalPercentage += MarketerRec.percentage;
                             until MarketerRec.Next() = 0;
                         end;

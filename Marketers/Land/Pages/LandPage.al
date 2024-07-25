@@ -1,4 +1,4 @@
-page 50133 LandPage
+page 50133 "Land Page"
 {
     PageType = List;
     ApplicationArea = All;
@@ -31,7 +31,7 @@ page 50133 LandPage
                 {
                     ApplicationArea = All;
                 }
-                field("Total price per meter"; Rec."Total price per meter")
+                field("Price Per Meter"; Rec."Total price per meter")
                 {
                     ApplicationArea = All;
                 }

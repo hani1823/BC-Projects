@@ -6,10 +6,10 @@ pageextension 50134 SalesSubExt extends "Sales Order Subform"
         {
             trigger OnLookup(var Text: Text): Boolean
             var
-                LandPage: Page LandPage;
+                LandPage: Page "Land Page";
                 LandRec: Record Land;
             begin
-                if Page.RunModal(Page::LandPage, LandRec) = Action::LookupOK then begin
+                if Page.RunModal(Page::"Land Page", LandRec) = Action::LookupOK then begin
                     Rec."No." := Format(LandRec."Instrument number");
                     Text := Rec."No.";
                     exit(true);
@@ -25,5 +25,4 @@ pageextension 50134 SalesSubExt extends "Sales Order Subform"
     }
 
     var
-        myInt: Integer;
 }
