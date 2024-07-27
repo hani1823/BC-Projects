@@ -24,16 +24,4 @@ tableextension 50133 Tableext extends "Sales Line"
         }
     }
 
-    keys
-    {
-        // Add changes to keys here
-    }
-
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
-
-    var
-        myInt: Integer;
 }

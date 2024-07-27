@@ -8,21 +8,15 @@ pageextension 50132 "Sales Order Extension" extends "Sales Order"
             {
                 ApplicationArea = all;
                 UpdatePropagation = SubPart;
-                Visible = true;
+                Visible = ShowMarketersPart;
             }
         }
     }
 
-    /*trigger OnOpenPage()
-    var
-        CompanySetup: Record "Company Setup";
+    trigger OnOpenPage()
     begin
-        PopulateCompanySetup();
-        ShowMarketersPart := false;
-        if CompanySetup."Company Name" = COMPANYNAME then begin
-            ShowMarketersPart := CompanySetup.Visibility;
-        end;
-    end;*/
+        ShowMarketersPart := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';
+    end;
 
     trigger OnAfterGetRecord()
     begin
@@ -42,18 +36,6 @@ pageextension 50132 "Sales Order Extension" extends "Sales Order"
         MarketerRec.FilterGroup(0);
         CurrPage.MarketersPart.Page.SetTableView(MarketerRec);
     end;
-
-    /*procedure PopulateCompanySetup()
-    var
-        CompanySetup: Record "Company Setup";
-    begin
-        if not CompanySetup.Get('ALINMA FOR REAL ESTATE') then begin
-            CompanySetup.Init();
-            CompanySetup."Company Name" := 'ALINMA FOR REAL ESTATE';
-            CompanySetup.Visibility := true;
-            CompanySetup.Insert();
-        end;
-    end;*/
 
     var
         MarketerRec: Record Marketer;

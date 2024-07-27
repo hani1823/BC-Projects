@@ -8,21 +8,25 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
             {
                 ApplicationArea = all;
                 Editable = false;
+                Visible = ShowFields;
             }
             field("Total Retax"; Rec."Total Retax")
             {
                 ApplicationArea = all;
                 Editable = false;
+                Visible = ShowFields;
             }
             field("Total Commission"; Rec."Total Commission")
             {
                 ApplicationArea = all;
                 Editable = false;
+                Visible = ShowFields;
             }
             field("Total Inclusive Value"; Rec."Total Inclusive Value")
             {
                 ApplicationArea = all;
                 Editable = false;
+                Visible = ShowFields;
             }
         }
         addafter("Unit Price")
@@ -30,35 +34,32 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
             field("Price Per Meter"; Rec."Price Per Meter")
             {
                 ApplicationArea = all;
-
+                Visible = ShowFields;
                 trigger OnValidate()
                 begin
-                    CalculateTotalNetValue();
+                    CalculateTotalValues();
                 end;
             }
         }
 
     }
 
-    var
-        LandRec: Record Land;
-        TotalNetValue: Decimal;
-        Vat: Decimal;
-        WholeTotal: Decimal;
-        LandArea: Decimal;
+    trigger OnOpenPage()
+    begin
+        ShowFields := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';
+    end;
 
     trigger OnAfterGetRecord()
     begin
-        CalculateTotalNetValue();
+        CalculateTotalValues();
     end;
 
-    local procedure CalculateTotalNetValue()
+    local procedure CalculateTotalValues()
     var
         saleslie: Record "Sales Line";
     begin
         TotalNetValue := 0;
-        Vat := 0;
-        WholeTotal := 0;
+        VatOfCommission := 0;
         LandArea := 0;
         saleslie.SetRange("Document No.", rec."Document No.");
         if saleslie.FindSet() then begin
@@ -72,9 +73,16 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         Rec."Total Net Value" := TotalNetValue;
         Rec."Total Retax" := Rec."Total Net Value" * 0.05;
         Rec."Total Commission" := Rec."Total Net Value" * 0.025;
-        Vat := Rec."Total Commission" * 0.15;
-        Rec."Total Inclusive Value" := Rec."Total Net Value" + Rec."Total Retax" + Rec."Total Commission" + Vat;
+        VatOfCommission := Rec."Total Commission" * 0.15;
+        Rec."Total Inclusive Value" := Rec."Total Net Value" + Rec."Total Retax" + Rec."Total Commission" + VatOfCommission;
+        CurrPage.Update();
     end;
 
+    var
+        LandRec: Record Land;
+        TotalNetValue: Decimal;
+        VatOfCommission: Decimal;
+        LandArea: Decimal;
+        ShowFields: Boolean;
 
 }

@@ -35,6 +35,18 @@ page 50133 "Land Page"
                 {
                     ApplicationArea = All;
                 }
+                field("Type of Land"; Rec."Type of Land")
+                {
+                    ApplicationArea = All;
+                }
+                field("Plan Name"; Rec."Plan Name")
+                {
+                    ApplicationArea = all;
+                }
+                field("Owner Name"; Rec."Owner Name")
+                {
+                    ApplicationArea = all;
+                }
             }
         }
         area(Factboxes)

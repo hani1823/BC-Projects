@@ -6,7 +6,6 @@ pageextension 50134 SalesSubExt extends "Sales Order Subform"
         {
             trigger OnLookup(var Text: Text): Boolean
             var
-                LandPage: Page "Land Page";
                 LandRec: Record Land;
             begin
                 if Page.RunModal(Page::"Land Page", LandRec) = Action::LookupOK then begin
