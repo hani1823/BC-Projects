@@ -32,11 +32,11 @@ table 50128 Land
         {
             DataClassification = ToBeClassified;
         }
-        field(8; "Owner Name"; Text[60])
+        field(80; "Plan Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(9; "Plan Name"; Text[100])
+        field(9; "Owner Name"; Code[60])
         {
             DataClassification = ToBeClassified;
         }
@@ -49,13 +49,4 @@ table 50128 Land
             Clustered = true;
         }
     }
-
-    fieldgroups
-    {
-        // Add changes to field groups here
-    }
-
-    var
-        myInt: Integer;
-
 }

@@ -1,7 +1,9 @@
 pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
 {
+
     layout
     {
+
         addafter("Total Amount Incl. VAT")
         {
             field("Total Net Value"; Rec."Total Net Value")
@@ -84,5 +86,6 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         VatOfCommission: Decimal;
         LandArea: Decimal;
         ShowFields: Boolean;
+        SalesHeaderRec: Record "Sales Header";
 
 }
