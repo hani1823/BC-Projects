@@ -1,8 +1,35 @@
 pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
 {
-
     layout
     {
+
+        // Lookup No. of the Lines in Sales Order Subform
+        modify("No.")
+        {
+            
+            trigger OnLookup(var Text: Text): Boolean
+            var
+                LandRec: Record Land;
+                SalesHeader: Record "Sales Header";
+                LandPage: Page "Land Page";
+            begin
+                SalesHeader.Get(Rec."Document Type", Rec."Document No.");
+
+                LandRec.SetRange("Plan Name", SalesHeader."Plan Name");
+                LandRec.SetRange("Owner Name", SalesHeader."Owner Name");
+
+                LandPage.SetTableView(LandRec);
+                LandPage.LookupMode(true);
+
+                if LandPage.RunModal() = Action::LookupOK then begin
+                    LandPage.GetRecord(LandRec);
+                    Rec.Validate("No.", LandRec."Instrument number");
+                    Text := Rec."No.";
+                    exit(true);
+                end;
+                exit(false);
+            end;
+        }
 
         addafter("Total Amount Incl. VAT")
         {
@@ -45,7 +72,6 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         }
 
     }
-
     trigger OnOpenPage()
     begin
         ShowFields := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';
@@ -55,6 +81,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
     begin
         CalculateTotalValues();
     end;
+    
 
     local procedure CalculateTotalValues()
     var
@@ -86,6 +113,5 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         VatOfCommission: Decimal;
         LandArea: Decimal;
         ShowFields: Boolean;
-        SalesHeaderRec: Record "Sales Header";
 
 }
