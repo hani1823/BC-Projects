@@ -9,6 +9,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 ApplicationArea = all;
                 Visible = ShowFields;
                 ShowMandatory = true;
+                Editable = Rec."Sell-to Customer Name" <> '';
 
                 //run the NameLookup page and show the list and set the values of Plan Name and Plan Code
                 trigger OnLookup(var Text: Text): Boolean
@@ -19,7 +20,6 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                         Rec."Plan Code" := DimPlanRec.Code;
                         CurrPage.Update(true);
                     end;
-
                 end;
 
                 /*validation of the Plan Name field if the field is empty or not, if not empty then if the entered value is the same
@@ -68,6 +68,8 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
 
                 end;
 
+                /*validation of the Owner Name field if the field is empty or not, if not empty then if the entered value is the same
+                value as exist in the Land table or not, if not an error message appear*/
                 trigger OnValidate()
                 var
                     LandRec: Record Land;
@@ -84,17 +86,18 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 end;
             }
         }
+        //This line used to make the part of SalesLines unenabled until these three conditions be true
         modify(SalesLines)
         {
             Enabled = (ShowFields) AND (Rec."Plan Name" <> '') AND (Rec."Owner Name" <> '');
         }
     }
 
+    //show this field if the company name = 'ALINMA FOR REAL ESTATE'
     trigger OnOpenPage()
     begin
         ShowFields := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';
     end;
-
 
     var
         ShowFields: Boolean;

@@ -2,7 +2,7 @@ tableextension 50133 SalesLineExt extends "Sales Line"
 {
     fields
     {
-        field(70; "Price Per Meter"; Decimal)
+        field(24; "Price Per Meter"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
@@ -10,15 +10,19 @@ tableextension 50133 SalesLineExt extends "Sales Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(19; "Total Commission"; Decimal)
+        field(14; "Total Commission With VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(14; "Total Retax"; Decimal)
+        field(19; "Total Commission Without VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(20; "Total Inclusive Value"; Decimal)
+        field(20; "Total Retax"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(21; "Total Inclusive Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }

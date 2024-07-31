@@ -23,6 +23,9 @@ page 50135 OwnerNameLookup
         }
     }
 
+    /*Filters the OwnerQuery query to only include records with a Plan_Name that matches the value of PlanName. 
+    And then loops through each record in the query result, initializes a new record, sets the Plan Name and Owner Name fields, 
+    and inserts this record into the database.*/
     trigger OnOpenPage()
     var
         qr: Query OwnerQuery;
@@ -38,7 +41,6 @@ page 50135 OwnerNameLookup
             qr.Close();
         end;
     end;
-
 
     var
         PlanName: Text[100];

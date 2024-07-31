@@ -2,8 +2,8 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
 {
     layout
     {
-        // Lookup No. of the Lines in Sales Order Subform
-        modify("No.")
+        // these lines of modify change the page opened in the Lookup of No. of the Lines in Sales Order Subform page
+        Modify("No.")
         {
             trigger OnLookup(var Text: Text): Boolean
             var
@@ -11,14 +11,19 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 SalesHeader: Record "Sales Header";
                 LandPage: Page "Land Page";
             begin
+                /*retrieve the record from the "Sales Header" table that matches the given "Document Type" and "Document No." 
+                from the current record (Rec).*/
                 SalesHeader.Get(Rec."Document Type", Rec."Document No.");
 
+                //Set the ranges to be the same as selected "Plan Name" and "Owner Name" in the Sales Header table
                 LandRec.SetRange("Plan Name", SalesHeader."Plan Name");
                 LandRec.SetRange("Owner Name", SalesHeader."Owner Name");
 
+                //View the LandRec that filtered above in the LandPage, then make the lookupmode true.
                 LandPage.SetTableView(LandRec);
                 LandPage.LookupMode(true);
 
+                //Run lookup page, and get the records of Land in Land page
                 if LandPage.RunModal() = Action::LookupOK then begin
                     LandPage.GetRecord(LandRec);
                     Rec.Validate("No.", LandRec."Instrument number");
@@ -29,6 +34,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
             end;
         }
 
+        //Here to add after the field "Total Amount Incl. VAT" these down defined fields 
         addafter("Total Amount Incl. VAT")
         {
             field("Total Net Value"; Rec."Total Net Value")
@@ -43,11 +49,18 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 Editable = false;
                 Visible = ShowFields;
             }
-            field("Total Commission"; Rec."Total Commission")
+            field("Total Commission With VAT"; Rec."Total Commission With VAT")
+            {
+                ApplicationArea = all;
+                Caption = 'Total Commission';
+                Editable = false;
+                Visible = ShowFields;
+            }
+            field("Total Commission Without VAT"; Rec."Total Commission Without VAT")
             {
                 ApplicationArea = all;
                 Editable = false;
-                Visible = ShowFields;
+                Visible = false;
             }
             field("Total Inclusive Value"; Rec."Total Inclusive Value")
             {
@@ -56,6 +69,8 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 Visible = ShowFields;
             }
         }
+
+        //Here to add after the field "Unit Price" these down defined fields 
         addafter("Unit Price")
         {
             field("Price Per Meter"; Rec."Price Per Meter")
@@ -65,6 +80,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 trigger OnValidate()
                 begin
                     CalculateTotalValues();
+                    CurrPage.Update();
                 end;
             }
         }
@@ -80,6 +96,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         CalculateTotalValues();
     end;
 
+    //This method to calculate the totals
     local procedure CalculateTotalValues()
     var
         saleslie: Record "Sales Line";
@@ -98,10 +115,10 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         end;
         Rec."Total Net Value" := TotalNetValue;
         Rec."Total Retax" := Rec."Total Net Value" * 0.05;
-        Rec."Total Commission" := Rec."Total Net Value" * 0.025;
-        VatOfCommission := Rec."Total Commission" * 0.15;
-        Rec."Total Inclusive Value" := Rec."Total Net Value" + Rec."Total Retax" + Rec."Total Commission" + VatOfCommission;
-        CurrPage.Update();
+        Rec."Total Commission Without VAT" := Rec."Total Net Value" * 0.025;
+        VatOfCommission := Rec."Total Commission Without VAT" * 0.15;
+        Rec."Total Commission With VAT" := Rec."Total Commission Without VAT" + VatOfCommission;
+        Rec."Total Inclusive Value" := Rec."Total Net Value" + Rec."Total Retax" + Rec."Total Commission With VAT";
     end;
 
     var
