@@ -1,7 +1,7 @@
 {
   "id": "515e1a7a-5881-4b50-9222-7a825b4d100b",
   "name": "Marketers",
-  "publisher": "Default Publisher",
+  "publisher": "Alinma",
   "version": "1.0.0.0",
   "brief": "",
   "description": "",
@@ -25,7 +25,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "10.0",
+  "runtime": "13.0",
   "features": [
     "NoImplicitWith"
   ]
