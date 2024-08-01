@@ -21,6 +21,10 @@ table 50131 "Marketer"
             AutoFormatType = 10;
             AutoFormatExpression = '<precision, 2:4><standard format,0>%';
         }
+        field(5; Commission; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

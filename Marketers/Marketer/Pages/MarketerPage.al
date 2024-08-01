@@ -46,6 +46,8 @@ page 50131 "Marketer Page"
                     trigger OnValidate()
                     var
                         TotalPercentage: Decimal;
+                        salesLineRec: Record "Sales Line";
+                        TotalCommissionWithoutVAT: Decimal;
                     begin
                         MarketerRec.SetRange("Document No.", Rec."Document No.");
                         if MarketerRec.FindSet() then begin
@@ -62,16 +64,20 @@ page 50131 "Marketer Page"
                         if TotalPercentage < 0 then
                             Error('The sum of all records percentage must be 0 or more. Your current sum = %1', TotalPercentage);
 
+                        SalesLineRec.SetRange("Document No.", Rec."Document No.");
+                        SalesLineRec.SetFilter("Total Commission Without VAT", '>0');
+                        if SalesLineRec.FindFirst() then
+                            TotalCommissionWithoutVAT := SalesLineRec."Total Commission Without VAT";
+
+                        Rec.Commission := TotalCommissionWithoutVAT * Rec.Percentage;
                     end;
                 }
+                field(Commission; Rec.Commission)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
             }
-        }
-    }
-
-    actions
-    {
-        area(Processing)
-        {
         }
     }
 
@@ -85,11 +91,14 @@ page 50131 "Marketer Page"
         SalesRec := SalesHeader;
     end;
 
+    procedure SetCommission(Commission: Decimal)
+    begin
+        Comm := Commission;
+    end;
+
     var
         VendorRec: Record Vendor;
         SalesRec: Record "Sales Header";
         MarketerRec: Record Marketer;
-
-
-
+        Comm: Decimal;
 }

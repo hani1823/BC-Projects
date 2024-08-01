@@ -104,7 +104,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         TotalNetValue := 0;
         VatOfCommission := 0;
         LandArea := 0;
-        saleslie.SetRange("Document No.", rec."Document No.");
+        saleslie.SetRange("Document No.", Rec."Document No.");
         if saleslie.FindSet() then begin
             repeat
                 LandRec.SetRange("Instrument number", saleslie."No.");
@@ -119,6 +119,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         VatOfCommission := Rec."Total Commission Without VAT" * 0.15;
         Rec."Total Commission With VAT" := Rec."Total Commission Without VAT" + VatOfCommission;
         Rec."Total Inclusive Value" := Rec."Total Net Value" + Rec."Total Retax" + Rec."Total Commission With VAT";
+        Rec.Modify();
     end;
 
     var
