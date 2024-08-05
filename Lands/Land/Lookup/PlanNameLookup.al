@@ -1,4 +1,4 @@
-page 50128 NameLookup
+page 50128 "Plan Name Lookup"
 {
     PageType = List;
     SourceTable = "Dimension Value";

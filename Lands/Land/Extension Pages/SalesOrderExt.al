@@ -15,7 +15,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 trigger OnLookup(var Text: Text): Boolean
                 begin
                     DimPlanRec.Reset();
-                    if Page.RunModal(Page::NameLookup, DimPlanRec) = Action::LookupOK then begin
+                    if Page.RunModal(Page::"Plan Name Lookup", DimPlanRec) = Action::LookupOK then begin
                         Rec."Plan Name" := DimPlanRec.Name;
                         Rec."Plan Code" := DimPlanRec.Code;
                         CurrPage.Update(true);
@@ -51,7 +51,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 trigger OnLookup(var Text: Text): Boolean
                 var
                     OwnerQueryRec: Record TempTableForOwnerQuery;
-                    OwnerNameLookup: Page OwnerNameLookup;
+                    OwnerNameLookup: Page "Owner Name Lookup";
                 begin
                     OwnerQueryRec.Reset();
                     OwnerQueryRec.SetRange("Plan Name", Rec."Plan Name");

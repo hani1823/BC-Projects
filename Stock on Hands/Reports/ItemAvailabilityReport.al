@@ -25,7 +25,7 @@ report 50130 ItemAvailabilityReport
             {
 
             }
-            column(Stock_On_Hand; qr_StockOnHand)
+            column(Stock_On_Hand; StockOnHand)
             {
 
             }
@@ -69,21 +69,43 @@ report 50130 ItemAvailabilityReport
             {
 
             }
+            /*column(Type; qr_Type)
+            {
 
+            }*/
 
+            trigger OnPreDataItem()
+            begin
+                Counter := 0;
+
+                //if the location code given set the filter else all records will be given
+                IF loc <> '' THEN
+                    qr_Base.SetFilter(qr_Base.Location_Code, loc);
+                qr_Base.SetFilter(qr_Base.Item_Type, 'Inventory');
+
+                qr_Base.Open();
+                while qr_Base.Read do begin
+                    Counter += 1;
+                end;
+                SetRange(Number, 1, Counter);
+                qr_Base.TopNumberOfRows(Counter);
+                qr_Base.Open();
+            end;
 
             trigger OnAfterGetRecord()
             begin
                 qr_Cost_Amount := 0;
-                qr_StockOnHand := 0;
+                StockOnHand := 0;
                 qr_InQuantity_Consumed := 0;
                 qr_InQuantity_Purchases := 0;
                 qr_Consumption := 0;
                 qr_Purchases := 0;
                 Unit_Cost := 0;
+
                 if qr_Base.Read() then begin
                     qr_Item_No := qr_Base.Item_No_;
                     qr_Location_Code := qr_Base.Location_Code;
+                    //qr_Type := qr_Base.Item_Type;
 
                     //Get the Description from the "Item List" table
                     begin
@@ -121,6 +143,14 @@ report 50130 ItemAvailabilityReport
                             Item_Catogry_desc := ItemCatDescRec.Description;
                     end;
 
+                    //getting Current Stock On Hand from the Query Stock On Hand
+                    qr_StockOnHand.SetRange(qr_StockOnHand.Item_No_, qr_Base.Item_No_);
+                    qr_StockOnHand.Open();
+                    if qr_StockOnHand.Read() then begin
+                        StockOnHand := qr_StockOnHand.Quantity;
+                    end;
+                    qr_StockOnHand.Close();
+
                     //creating In Quantity
                     qr_In.SetRange(qr_In.Item_No_, qr_Base.Item_No_);
                     qr_In.SetRange(qr_In.Location_Code, qr_Base.Location_Code);
@@ -138,15 +168,15 @@ report 50130 ItemAvailabilityReport
                             qr_In.SetRange(qr_In.Posting_Date, 0D, DMY2Date(31, 12, 9999));
                     END;
 
+                    //Getting In Range Quantity from the Query
                     qr_In.Open();
                     while qr_In.Read() do begin
-                        qr_StockOnHand += qr_In.Quantity;
                         if qr_In.Quantity < 0 then
                             qr_InQuantity_Consumed += qr_In.Quantity
                         else
                             qr_InQuantity_Purchases += qr_In.Quantity;
 
-                        qr_Cost_Amount := Unit_Cost * qr_StockOnHand;
+                        qr_Cost_Amount := Unit_Cost * StockOnHand;
                         qr_Consumption := Unit_Cost * qr_InQuantity_Consumed;
                         qr_Purchases := Unit_Cost * qr_InQuantity_Purchases;
 
@@ -162,29 +192,11 @@ report 50130 ItemAvailabilityReport
                 end;
             end;
 
-
-
-            trigger OnPreDataItem()
-            begin
-                Counter := 0;
-
-                //if the location code given set the filter else all records will be given
-                IF loc <> '' THEN
-                    qr_Base.SetFilter(qr_Base.Location_Code, loc);
-
-                qr_Base.Open();
-                while qr_Base.Read do begin
-                    Counter += 1;
-                end;
-                SetRange(Number, 1, Counter);
-                qr_Base.TopNumberOfRows(Counter);
-                qr_Base.Open();
-            end;
-
             trigger OnPostDataItem()
             begin
                 qr_Base.Close();
                 qr_In.Close();
+                qr_StockOnHand.Close();
             end;
 
         }
@@ -256,6 +268,7 @@ report 50130 ItemAvailabilityReport
         //Queries
         qr_Base: Query ItemAvailabilityQuery;
         qr_In: Query ItemAvailabilityQuery;
+        qr_StockOnHand: Query StockOnHandQuery;
 
         //Records
         DescRec: Record Item;
@@ -281,9 +294,10 @@ report 50130 ItemAvailabilityReport
 
         //Query items
         qr_Location_Code: Text;
+        qr_Type: Enum "Item Type";
         qr_InQuantity_Consumed: Decimal;
         qr_InQuantity_Purchases: Decimal;
-        qr_StockOnHand: Decimal;
+        StockOnHand: Decimal;
         qr_Consumption: Decimal;
         qr_Purchases: Decimal;
         qr_Item_No: Code[30];

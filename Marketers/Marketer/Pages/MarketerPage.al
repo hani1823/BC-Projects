@@ -5,7 +5,6 @@ page 50131 "Marketer Page"
     UsageCategory = Lists;
     SourceTable = Marketer;
 
-
     layout
     {
         area(Content)
@@ -91,14 +90,8 @@ page 50131 "Marketer Page"
         SalesRec := SalesHeader;
     end;
 
-    procedure SetCommission(Commission: Decimal)
-    begin
-        Comm := Commission;
-    end;
-
     var
         VendorRec: Record Vendor;
         SalesRec: Record "Sales Header";
         MarketerRec: Record Marketer;
-        Comm: Decimal;
 }

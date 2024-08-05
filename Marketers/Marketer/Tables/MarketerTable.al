@@ -34,9 +34,4 @@ table 50131 "Marketer"
             Clustered = true;
         }
     }
-
-    fieldgroups
-    {
-
-    }
 }

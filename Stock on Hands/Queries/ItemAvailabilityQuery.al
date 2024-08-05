@@ -29,8 +29,13 @@ query 50130 ItemAvailabilityQuery
             {
 
             }
-
-
+            dataitem(Item; Item)
+            {
+                DataItemLink = "No." = Item_Ledger_Entry."Item No.";
+                column(Item_Type; Type)
+                {
+                }
+            }
         }
     }
 }

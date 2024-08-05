@@ -1,4 +1,4 @@
-page 50135 OwnerNameLookup
+page 50135 "Owner Name Lookup"
 {
     PageType = List;
     SourceTable = TempTableForOwnerQuery;

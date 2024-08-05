@@ -6,7 +6,6 @@ query 50132 OwnerQuery
     {
         dataitem(Land; Land)
         {
-
             column(Plan_Name; "Plan Name")
             {
 
@@ -19,11 +18,6 @@ query 50132 OwnerQuery
             {
                 Method = Sum;
             }
-
-
         }
-
     }
-
-
 }
