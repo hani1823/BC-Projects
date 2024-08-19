@@ -2809,15 +2809,15 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>3.42901cm</Height>
+          <Height>3.85234cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Rectangle Name="Rectangle1">
               <ReportItems>
                 <Line Name="Line1">
-                  <Left>10.01681cm</Left>
-                  <Height>2.79634cm</Height>
+                  <Left>9.59348cm</Left>
+                  <Height>3.13501cm</Height>
                   <Width>0cm</Width>
                   <Style>
                     <Border>
@@ -2874,7 +2874,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>،)4650206786) الرقم الموحد (7005783647), سجل تجاري رقم</Value>
+                          <Value>،)4650206786) الرقم الموحد (7005783647)، سجل تجاري رقم</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                             <FontWeight>Normal</FontWeight>
@@ -2889,7 +2889,22 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>،)1200000339) الرقم الضريبي (300623759710003) رخصة فال ،)qacc.com.sa) :هاتف: 0148481313, الموقع الإلكتروني</Value>
+                          <Value>،)1200000339) الرقم الضريبي (300623759710003)، رخصة فال</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <Color>Gray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>،)qacc.com.sa) :هاتف: 0148481313، الموقع الإلكتروني</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                             <FontWeight>Normal</FontWeight>
@@ -2933,9 +2948,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox66</rd:DefaultName>
-                  <Left>10.01681cm</Left>
-                  <Height>2.79634cm</Height>
-                  <Width>9.17417cm</Width>
+                  <Left>9.59348cm</Left>
+                  <Height>3.13501cm</Height>
+                  <Width>9.5975cm</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -2949,9 +2964,9 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.31633cm</Top>
+              <Top>0.35867cm</Top>
               <Left>0.82254cm</Left>
-              <Height>2.79634cm</Height>
+              <Height>3.13501cm</Height>
               <Width>19.19099cm</Width>
               <Style>
                 <Border>
@@ -3063,10 +3078,10 @@ National Address: Medina - Qurban District 42316-3053,</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox67</rd:DefaultName>
-              <Top>0.31633cm</Top>
+              <Top>0.35867cm</Top>
               <Left>0.82254cm</Left>
-              <Height>2.79634cm</Height>
-              <Width>10.01681cm</Width>
+              <Height>3.13501cm</Height>
+              <Width>9.59348cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
