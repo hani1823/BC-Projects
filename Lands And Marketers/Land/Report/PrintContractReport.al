@@ -1,6 +1,6 @@
-report 50106 PrintQuotationReport
+report 50107 PrintContractReport
 {
-    DefaultRenderingLayout = PrintQuotationArabic;
+    DefaultRenderingLayout = PrintContractArabic;
     dataset
     {
         dataitem("Sales Header"; "Sales Header")
@@ -11,12 +11,19 @@ report 50106 PrintQuotationReport
             {
 
             }
-
             column(Sell_to_Customer_No_; "Sell-to Customer No.")
             {
 
             }
             column(Sell_to_Customer_Name; "Sell-to Customer Name")
+            {
+
+            }
+            column(Customer_ID; "Customer ID")
+            {
+
+            }
+            column(Date_of_Birth; "Date of Birth")
             {
 
             }
@@ -84,7 +91,34 @@ report 50106 PrintQuotationReport
             {
 
             }
+            column(Payment_Method; "Payment Method")
+            {
 
+            }
+            column(Bank_Type; "Bank Type")
+            {
+
+            }
+            column(Sale_Source; "Sale Source")
+            {
+
+            }
+            column(Conveyance_Agent; "Conveyance Agent")
+            {
+
+            }
+            column(Cheque_Number; "Cheque Number")
+            {
+
+            }
+            column(Conveyance_Date; "Conveyance Date")
+            {
+
+            }
+            column(Conveyance_Bank; "Conveyance Bank")
+            {
+
+            }
             dataitem(Line; "Sales Line")
             {
                 DataItemLink = "Document No." = field("No.");
@@ -93,8 +127,8 @@ report 50106 PrintQuotationReport
 
                 column(Price_Per_Meter; "Price Per Meter")
                 {
-                }
 
+                }
                 column(Commission_With_VAT; "Commission With VAT")
                 {
 
@@ -129,7 +163,6 @@ report 50106 PrintQuotationReport
                 }
                 column(Total_Retax; "Total Retax")
                 {
-
                 }
                 column(Total_Vat_of_Commission; "Total Vat of Commission")
                 {
@@ -178,6 +211,7 @@ report 50106 PrintQuotationReport
                     salesLineRec: Record "Sales Line";
                     SalesHeaderRec: Record "Sales Header";
                     itemRec: Record item;
+                    CustRec: Record Customer;
                 begin
                     salesLineRec.SetRange("Document No.", "Sales Header"."No.");
                     if salesLineRec.FindSet() then begin
@@ -197,9 +231,17 @@ report 50106 PrintQuotationReport
                             end;
                         until salesLineRec.Next() = 0;
                     end;
+                    //Getting Land Code
                     ItemRec.SetRange("No.", "No.");
                     if ItemRec.FindFirst() then begin
                         "Land Code" := ItemRec."No. 2";
+                    end;
+
+                    //Getting Cust ID AND Date of Birth
+                    CustRec.SetRange("No.", "Sales Header"."Sell-to Customer No.");
+                    if CustRec.FindFirst() then begin
+                        "Customer ID" := CustRec."Customer ID";
+                        "Date of Birth" := CustRec."Date of Birth";
                     end;
                 end;
             }
@@ -228,17 +270,18 @@ report 50106 PrintQuotationReport
             }
         }
     }
+
     rendering
     {
-        layout(PrintQuotationEnglish)
+        layout(PrintContractEnglish)
         {
             Type = RDLC;
-            LayoutFile = 'Land/Layouts/PrintQuotationRDLC English.rdl';
+            LayoutFile = 'Land/Layouts/PrintContractRDLC English.rdl';
         }
-        layout(PrintQuotationArabic)
+        layout(PrintContractArabic)
         {
             Type = RDLC;
-            LayoutFile = 'Land/Layouts/PrintQuotationRDLC Arabic.rdl';
+            LayoutFile = 'Land/Layouts/PrintContractRDLC Arabic.rdl';
         }
     }
     trigger OnInitReport()
@@ -256,4 +299,7 @@ report 50106 PrintQuotationReport
         Piece_number: Integer;
         CompanyInfo: Record "Company Information";
         "Land Code": Code[20];
+        "Customer ID": Code[10];
+        "Date of Birth": Date;
+
 }

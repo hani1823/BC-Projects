@@ -39,6 +39,10 @@ page 50133 "Land Page"
                 {
                     ApplicationArea = All;
                 }
+                field("Using of Land"; Rec."Using of Land")
+                {
+                    ApplicationArea = All;
+                }
                 field("Plan Name"; Rec."Plan Name")
                 {
                     ApplicationArea = all;

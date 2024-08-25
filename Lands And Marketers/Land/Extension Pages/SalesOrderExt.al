@@ -91,6 +91,93 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         {
             Enabled = (NOT ShowFields) OR ((Rec."Plan Name" <> '') AND (Rec."Owner Name" <> ''));
         }
+        addafter("Sell-to Customer Name")
+        {
+            field("Customer ID"; "Customer ID")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+                trigger OnValidate()
+                var
+                    CustRec: Record Customer;
+                begin
+                    if "Customer ID" <> '' then begin
+                        CustRec.Reset();
+                        CustRec.SetRange("No.", Rec."Sell-to Customer No.");
+                        if CustRec.FindFirst() then begin
+                            CustRec."Customer ID" := "Customer ID";
+                            CustRec.Modify();
+                        end;
+                    end;
+                end;
+            }
+            field("Date of Birth"; "Date of Birth")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+                trigger OnValidate()
+                var
+                    DOBRec: Record Customer;
+                begin
+                    if "Date of Birth" <> 0D then begin
+                        DOBRec.Reset();
+                        DOBRec.SetRange("No.", Rec."Sell-to Customer No.");
+                        if DOBRec.FindFirst() then begin
+                            DOBRec."Date of Birth" := "Date of Birth";
+                            DOBRec.Modify();
+                        end;
+                    end;
+                end;
+            }
+        }
+        addbefore(Status)
+        {
+            field("Payment Method"; Rec."Payment Method")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+                trigger OnValidate()
+                begin
+                    ShowBankType();
+                    CurrPage.Update();
+                end;
+            }
+            field("Bank Type"; Rec."Bank Type")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+                Editable = BankTypeCheck;
+                trigger OnValidate()
+                begin
+                    CurrPage.Update();
+                end;
+            }
+            field("Sale Source"; Rec."Sale Source")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+            field("Conveyance Agent"; Rec."Conveyance Agent")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+            field("Cheque Number"; Rec."Cheque Number")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+            field("Conveyance Date"; Rec."Conveyance Date")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+            field("Conveyance Bank"; Rec."Conveyance Bank")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+        }
     }
 
     actions
@@ -111,6 +198,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                     Report.Run(Report::SalesOrderReport, true, false, SalesHeader);
                 end;
             }
+
         }
         addbefore("Sales Order")
         {
@@ -129,31 +217,64 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 end;
             }
         }
-        /*addafter("Create Purchase Document")
+        addafter("Sales Order")
         {
-            action("Make Order")
+            action("Print Contract")
             {
                 ApplicationArea = All;
-                Image = MakeOrder;
+                Image = Print;
                 trigger OnAction()
                 var
-                    SalesLineRec: Record "Sales Line";
-                    SO_Lines_ToBe_inserted: Record "Sales Line";
-                    SI_Lines_ToBe_inserted: Record "Sales Line";
+                    SalesHeader: Record "Sales Header";
                 begin
-                    if Rec.
+                    SalesHeader.Reset();
+                    SalesHeader.SetRange("Document Type", Rec."Document Type");
+                    SalesHeader.SetRange("No.", Rec."No.");
+                    Report.Run(Report::PrintContractReport, true, false, SalesHeader);
                 end;
-            }*/
+            }
+        }
+
     }
 
 
     trigger OnOpenPage()
     begin
         ShowFields := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';
+        ShowBankType();
     end;
+
+    trigger OnAfterGetRecord()
+    var
+        CustRec: Record Customer;
+    begin
+        CustRec.Reset();
+        CustRec.SetRange("No.", Rec."Sell-to Customer No.");
+        if CustRec.FindFirst() then begin
+            "Customer ID" := CustRec."Customer ID";
+            "Date of Birth" := CustRec."Date of Birth";
+        end;
+    end;
+
+    local procedure ShowBankType()
+    Begin
+        if Rec."Payment Method" = Rec."Payment Method"::"بنك" then begin
+            BankTypeCheck := true;
+            CurrPage.Update();
+        end
+        else begin
+            BankTypeCheck := false;
+            Rec."Bank Type" := Rec."Bank Type"::" ";
+            CurrPage.Update();
+        end;
+    End;
 
     var
         ShowFields: Boolean;
+        BankTypeCheck: Boolean;
+        SaleSourceCheck: Boolean;
         DimPlanRec: Record "Dimension Value";
+        "Customer ID": Code[10];
+        "Date of Birth": Date;
 
 }

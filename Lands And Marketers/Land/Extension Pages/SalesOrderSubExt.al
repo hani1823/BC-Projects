@@ -6,6 +6,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         Modify("No.")
         {
             Visible = ShowFields;
+            ShowMandatory = true;
             trigger OnLookup(var Text: Text): Boolean
             var
                 LandRec: Record Land;
@@ -114,6 +115,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
             {
                 ApplicationArea = all;
                 Visible = ShowFields;
+                ShowMandatory = true;
                 trigger OnValidate()
                 begin
                     CalculateValues();

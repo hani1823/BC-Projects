@@ -32,11 +32,15 @@ table 50128 Land
         {
             DataClassification = ToBeClassified;
         }
-        field(8; "Plan Name"; Text[100])
+        field(8; "Using of Land"; Text[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(9; "Owner Name"; Code[100])
+        field(9; "Plan Name"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(10; "Owner Name"; Code[100])
         {
             DataClassification = ToBeClassified;
         }

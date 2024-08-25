@@ -11,12 +11,19 @@ report 50105 SalesOrderReport
             {
 
             }
-
             column(Sell_to_Customer_No_; "Sell-to Customer No.")
             {
 
             }
             column(Sell_to_Customer_Name; "Sell-to Customer Name")
+            {
+
+            }
+            column(Customer_ID; "Customer ID")
+            {
+
+            }
+            column(Date_of_Birth; "Date of Birth")
             {
 
             }
@@ -84,7 +91,34 @@ report 50105 SalesOrderReport
             {
 
             }
+            column(Payment_Method; "Payment Method")
+            {
 
+            }
+            column(Bank_Type; "Bank Type")
+            {
+
+            }
+            column(Sale_Source; "Sale Source")
+            {
+
+            }
+            column(Conveyance_Agent; "Conveyance Agent")
+            {
+
+            }
+            column(Cheque_Number; "Cheque Number")
+            {
+
+            }
+            column(Conveyance_Date; "Conveyance Date")
+            {
+
+            }
+            column(Conveyance_Bank; "Conveyance Bank")
+            {
+
+            }
             dataitem(Line; "Sales Line")
             {
                 DataItemLink = "Document No." = field("No.");
@@ -93,8 +127,8 @@ report 50105 SalesOrderReport
 
                 column(Price_Per_Meter; "Price Per Meter")
                 {
-                }
 
+                }
                 column(Commission_With_VAT; "Commission With VAT")
                 {
 
@@ -147,6 +181,10 @@ report 50105 SalesOrderReport
                 {
 
                 }
+                column(Using_of_Land; Using_of_Land)
+                {
+
+                }
                 column(Type_of_Land; Type_of_Land)
                 {
 
@@ -173,6 +211,7 @@ report 50105 SalesOrderReport
                     salesLineRec: Record "Sales Line";
                     SalesHeaderRec: Record "Sales Header";
                     itemRec: Record item;
+                    CustRec: Record Customer;
                 begin
                     salesLineRec.SetRange("Document No.", "Sales Header"."No.");
                     if salesLineRec.FindSet() then begin
@@ -184,6 +223,7 @@ report 50105 SalesOrderReport
                             if LandRec.FindSet() then begin
                                 Instrument_number := LandRec."Instrument number";
                                 AreaRec := LandRec."Area";
+                                Using_of_Land := LandRec."Using of Land";
                                 Type_of_Land := LandRec."Type of Land";
                                 Street := LandRec.Street;
                                 Block_number := LandRec."Block number";
@@ -191,9 +231,17 @@ report 50105 SalesOrderReport
                             end;
                         until salesLineRec.Next() = 0;
                     end;
+                    //Getting Land Code
                     ItemRec.SetRange("No.", "No.");
                     if ItemRec.FindFirst() then begin
                         "Land Code" := ItemRec."No. 2";
+                    end;
+
+                    //Getting Cust ID AND Date of Birth
+                    CustRec.SetRange("No.", "Sales Header"."Sell-to Customer No.");
+                    if CustRec.FindFirst() then begin
+                        "Customer ID" := CustRec."Customer ID";
+                        "Date of Birth" := CustRec."Date of Birth";
                     end;
                 end;
             }
@@ -243,10 +291,13 @@ report 50105 SalesOrderReport
     var
         Instrument_number: Code[20];
         AreaRec: Decimal;
+        Using_of_Land: Text[30];
         Type_of_Land: Text[30];
         Street: Text[150];
         Block_number: Integer;
         Piece_number: Integer;
         CompanyInfo: Record "Company Information";
         "Land Code": Code[20];
+        "Customer ID": Code[10];
+        "Date of Birth": Date;
 }
