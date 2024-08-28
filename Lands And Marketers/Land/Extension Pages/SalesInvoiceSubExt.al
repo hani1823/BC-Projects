@@ -44,11 +44,11 @@ pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
         }
         addafter("Line Amount")
         {
-            field(Status; Rec.Status)
+            /*field(Status; Rec.Status)
             {
                 ApplicationArea = All;
                 Visible = ShowFields;
-            }
+            }*/
             field(IsVerfied; Rec.IsVerfied)
             {
                 ApplicationArea = All;

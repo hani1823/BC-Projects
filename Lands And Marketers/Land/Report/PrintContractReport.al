@@ -125,7 +125,8 @@ report 50107 PrintContractReport
                 DataItemLinkReference = "Sales Header";
                 DataItemTableView = sorting("Document No.", "Line No.");
 
-                column(Price_Per_Meter; "Price Per Meter")
+                column(Price_Per_Meter;
+                "Price Per Meter")
                 {
 
                 }
@@ -135,6 +136,7 @@ report 50107 PrintContractReport
                 }
                 column(Total_Commission_With_VAT; "Total Commission With VAT")
                 {
+
                 }
                 column(Commission_Without_VAT; "Commission Without VAT")
                 {
@@ -205,13 +207,35 @@ report 50107 PrintContractReport
                 {
 
                 }
+                column(Owner_ID; Owner_ID)
+                {
+
+                }
+                column(Owner_Nationality; Owner_Nationality)
+                {
+
+                }
+                column(Owner_Mobile; Owner_Mobile)
+                {
+
+                }
+                column(Owner_Email; Owner_Email)
+                {
+
+                }
+                column(Owner_Address; Owner_Address)
+                {
+
+                }
                 trigger OnAfterGetRecord()
                 var
                     LandRec: Record Land;
                     salesLineRec: Record "Sales Line";
                     SalesHeaderRec: Record "Sales Header";
+                    SalesHeadRec: Record "Sales Header";
                     itemRec: Record item;
                     CustRec: Record Customer;
+                    OwnersRec: Record Owners;
                 begin
                     salesLineRec.SetRange("Document No.", "Sales Header"."No.");
                     if salesLineRec.FindSet() then begin
@@ -231,6 +255,7 @@ report 50107 PrintContractReport
                             end;
                         until salesLineRec.Next() = 0;
                     end;
+
                     //Getting Land Code
                     ItemRec.SetRange("No.", "No.");
                     if ItemRec.FindFirst() then begin
@@ -242,6 +267,16 @@ report 50107 PrintContractReport
                     if CustRec.FindFirst() then begin
                         "Customer ID" := CustRec."Customer ID";
                         "Date of Birth" := CustRec."Date of Birth";
+                    end;
+
+                    //Owners
+                    OwnersRec.SetRange(Name, "Sales Header"."Owner Name");
+                    if OwnersRec.FindFirst() then begin
+                        Owner_ID := OwnersRec."ID Number";
+                        Owner_Nationality := OwnersRec.Nationality;
+                        Owner_Email := OwnersRec.Email;
+                        Owner_Mobile := OwnersRec."Mobile No.";
+                        Owner_Address := OwnersRec.Address;
                     end;
                 end;
             }
@@ -268,16 +303,12 @@ report 50107 PrintContractReport
                 }
 
             }
+
         }
     }
 
     rendering
     {
-        layout(PrintContractEnglish)
-        {
-            Type = RDLC;
-            LayoutFile = 'Land/Layouts/PrintContractRDLC English.rdl';
-        }
         layout(PrintContractArabic)
         {
             Type = RDLC;
@@ -301,5 +332,12 @@ report 50107 PrintContractReport
         "Land Code": Code[20];
         "Customer ID": Code[10];
         "Date of Birth": Date;
+
+        //Owners
+        "Owner_ID": Integer;
+        Owner_Nationality: Text[50];
+        Owner_Email: Code[50];
+        Owner_Mobile: Code[20];
+        Owner_Address: Code[150];
 
 }

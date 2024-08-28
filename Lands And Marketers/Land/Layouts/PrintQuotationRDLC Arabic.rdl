@@ -272,7 +272,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Valid until</Label>
-                                  <Value>=Format(DateAdd("d", 14, Today()), "dd/MM/yyyy")</Value>
+                                  <Value>=Format(DateAdd("d", 7, Today()), "dd/MM/yyyy")</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style />
                                 </TextRun>
@@ -2055,6 +2055,14 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
+                                  <Value>ء</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>ريال سعودي</Value>
                                   <Style>
                                     <Format>#,0.00;(#,0.00)</Format>
@@ -2139,6 +2147,14 @@
                                   <Value>=Fields!Total_Vat_of_Commission.Value</Value>
                                   <Style>
                                     <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>ء</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
@@ -2231,6 +2247,15 @@
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>ء</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                                 <TextRun>

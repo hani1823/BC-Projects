@@ -56,7 +56,8 @@ tableextension 50133 SalesLineExt extends "Sales Line"
         }
         field(47; Status; Enum LandStatus)
         {
-            DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = lookup(Land.Status where("Instrument number" = field("No.")));
         }
 
     }

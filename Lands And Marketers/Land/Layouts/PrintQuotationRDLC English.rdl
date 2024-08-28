@@ -584,7 +584,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Valid until</Label>
-                                  <Value>=Format(DateAdd("d", 14, Today()), "dd/MM/yyyy")</Value>
+                                  <Value>=Format(DateAdd("d", 7, Today()), "dd/MM/yyyy")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2219,7 +2219,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>8.65577cm</Top>
             <Left>0.7961cm</Left>
-            <Height>2.64666cm</Height>
+            <Height>2.64667cm</Height>
             <Width>10.87572cm</Width>
             <ZIndex>4</ZIndex>
             <Style>

@@ -43,6 +43,14 @@ page 50133 "Land Page"
                 {
                     ApplicationArea = All;
                 }
+                field(Status; Rec.Status)
+                {
+                    ApplicationArea = All;
+                }
+                field(IsOwnedByQuaedAlinma; Rec.IsOwnedByQuaedAlinma)
+                {
+                    ApplicationArea = All;
+                }
                 field("Plan Name"; Rec."Plan Name")
                 {
                     ApplicationArea = all;

@@ -86,17 +86,21 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 end;
             }
         }
+
         //This line used to make the part of SalesLines unenabled until these three conditions be true
         modify(SalesLines)
         {
             Enabled = (NOT ShowFields) OR ((Rec."Plan Name" <> '') AND (Rec."Owner Name" <> ''));
         }
+
         addafter("Sell-to Customer Name")
         {
             field("Customer ID"; "Customer ID")
             {
                 ApplicationArea = all;
                 Visible = ShowFields;
+
+                // make the edit able in the customer table 
                 trigger OnValidate()
                 var
                     CustRec: Record Customer;
@@ -115,6 +119,8 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = all;
                 Visible = ShowFields;
+
+                //allow the changing in customer table
                 trigger OnValidate()
                 var
                     DOBRec: Record Customer;
@@ -247,6 +253,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
     trigger OnAfterGetRecord()
     var
         CustRec: Record Customer;
+        OwnerRec: Record Owners;
     begin
         CustRec.Reset();
         CustRec.SetRange("No.", Rec."Sell-to Customer No.");
@@ -276,5 +283,6 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         DimPlanRec: Record "Dimension Value";
         "Customer ID": Code[10];
         "Date of Birth": Date;
+        "Owner_ID": Integer;
 
 }

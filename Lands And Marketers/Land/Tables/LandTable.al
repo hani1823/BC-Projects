@@ -44,6 +44,14 @@ table 50128 Land
         {
             DataClassification = ToBeClassified;
         }
+        field(11; Status; Enum LandStatus)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(12; "IsOwnedByQuaedAlinma"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
 
     }
     keys
