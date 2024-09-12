@@ -1,4 +1,4 @@
-tableextension 50133 SalesLineExt extends "Sales Line"
+tableextension 50133 SalesLinesExt extends "Sales Line"
 {
     fields
     {
@@ -47,10 +47,6 @@ tableextension 50133 SalesLineExt extends "Sales Line"
             DataClassification = ToBeClassified;
         }
         field(44; "Total Inclusive Value"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(46; "IsVerfied"; Boolean)
         {
             DataClassification = ToBeClassified;
         }

@@ -6,6 +6,16 @@ table 50131 "Marketer"
         field(1; "No."; Code[20])
         {
             DataClassification = ToBeClassified;
+            trigger OnValidate()
+            var
+                VendorRec: Record Vendor;
+            begin
+                VendorRec.SetRange("No.", Rec."No.");
+                VendorRec.SetRange("Gen. Bus. Posting Group", 'Agents');
+                if VendorRec.FindFirst() then begin
+                    Rec.Name := VendorRec.Name;
+                end;
+            end;
         }
         field(2; Name; Text[100])
         {

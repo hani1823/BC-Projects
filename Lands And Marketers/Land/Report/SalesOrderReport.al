@@ -294,8 +294,8 @@ report 50105 SalesOrderReport
         Using_of_Land: Text[30];
         Type_of_Land: Text[30];
         Street: Text[150];
-        Block_number: Integer;
-        Piece_number: Integer;
+        Block_number: code[20];
+        Piece_number: code[20];
         CompanyInfo: Record "Company Information";
         "Land Code": Code[20];
         "Customer ID": Code[10];

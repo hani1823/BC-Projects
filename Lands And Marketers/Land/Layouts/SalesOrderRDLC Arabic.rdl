@@ -827,7 +827,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>طريقة الدفع</Value>
+                                  <Value>نوع البيع</Value>
                                   <Style>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -901,7 +901,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Label>Payment Method</Label>
+                                  <Label>Type of Sale</Label>
                                   <Value>=First(Fields!Payment_Method.Value, "DataSet_Result") &amp; " " &amp; First(Fields!Bank_Type.Value, "DataSet_Result")</Value>
                                   <Style />
                                 </TextRun>
@@ -2925,21 +2925,21 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.85849cm</Width>
+                  <Width>3.60897cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.85849cm</Width>
+                  <Width>2.67447cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.85849cm</Width>
+                  <Width>4.54347cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.60506cm</Width>
+                  <Width>3.35554cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.95983cm</Height>
+                  <Height>0.94572cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2986,7 +2986,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.99119cm</Height>
+                  <Height>0.97708cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3147,7 +3147,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.67056cm</Height>
+                  <Height>0.65645cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3306,10 +3306,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>15.58346cm</Top>
-            <Left>8.79574cm</Left>
-            <Height>2.62158cm</Height>
-            <Width>11.18053cm</Width>
+            <Top>15.62579cm</Top>
+            <Left>5.79381cm</Left>
+            <Height>2.57925cm</Height>
+            <Width>14.18246cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>

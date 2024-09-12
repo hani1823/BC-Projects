@@ -14,7 +14,6 @@ page 50131 "Marketer Page"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
-
                     // This lines generate a lookup page of the Vendors list
                     trigger OnLookup(var Text: Text): Boolean
                     begin

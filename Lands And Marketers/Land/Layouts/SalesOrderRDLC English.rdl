@@ -816,16 +816,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.88886cm</Width>
+                  <Width>3.6244cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.88886cm</Width>
+                  <Width>3.6244cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.88886cm</Width>
+                  <Width>3.6244cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.88886cm</Width>
+                  <Width>3.6244cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1198,7 +1198,7 @@
             <Top>15.40287cm</Top>
             <Left>0.75348cm</Left>
             <Height>2.60042cm</Height>
-            <Width>11.55544cm</Width>
+            <Width>14.49761cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1532,7 +1532,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Payment Method</Value>
+                                  <Value>Type of Sale</Value>
                                   <Style>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1614,7 +1614,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Label>Payment Method</Label>
+                                  <Label>Type of Sale</Label>
                                   <Value>=First(Fields!Payment_Method.Value, "DataSet_Result") &amp; " " &amp; First(Fields!Bank_Type.Value, "DataSet_Result")</Value>
                                   <Style />
                                 </TextRun>

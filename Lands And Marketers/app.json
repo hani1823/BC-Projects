@@ -11,6 +11,18 @@
   "url": "",
   "logo": "",
   "dependencies": [
+    {
+    "name": "Service Declaration",
+    "id": "e2ae191d-8829-44c3-a373-3749a2742d4d",
+    "publisher": "Microsoft", 
+    "version": "24.4.22295.22576"
+  },
+  {
+    "id": "13404415-0bff-4105-aad1-c0d01a6eb3d7",
+    "name": "BC-Zatca",
+    "publisher": "HA Consultancy",
+    "version": "24.20240904.0.0"
+  }
     ],
   "screenshots": [],
   "platform": "1.0.0.0",

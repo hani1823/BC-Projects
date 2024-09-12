@@ -15,6 +15,10 @@ page 50133 "Land Page"
                 {
                     ApplicationArea = All;
                 }
+                field("Land Code"; Rec."Land Code")
+                {
+                    ApplicationArea = All;
+                }
                 field("Piece number"; Rec."Piece number")
                 {
                     ApplicationArea = All;

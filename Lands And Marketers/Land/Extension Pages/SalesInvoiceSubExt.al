@@ -1,4 +1,4 @@
-pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
+/*pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
 {
 
     layout
@@ -12,8 +12,8 @@ pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
                 SalesHeader: Record "Sales Header";
                 LandPage: Page "Land Page";
             begin
-                /*retrieve the record from the "Sales Header" table that matches the given "Document Type" and "Document No." 
-                from the current record (Rec).*/
+                //retrieve the record from the "Sales Header" table that matches the given "Document Type" and "Document No." 
+                //from the current record (Rec).
                 SalesHeader.Get(Rec."Document Type", Rec."Document No.");
 
                 //Set the ranges to be the same as selected "Plan Name" and "Owner Name" in the Sales Header table
@@ -42,19 +42,6 @@ pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
                 Visible = ShowFields;
             }
         }
-        addafter("Line Amount")
-        {
-            /*field(Status; Rec.Status)
-            {
-                ApplicationArea = All;
-                Visible = ShowFields;
-            }*/
-            field(IsVerfied; Rec.IsVerfied)
-            {
-                ApplicationArea = All;
-                Visible = ShowFields;
-            }
-        }
         modify("Unit Price")
         {
             Visible = ShowFields;
@@ -67,4 +54,4 @@ pageextension 50137 SalesInvoiceSubExt extends "Sales Invoice Subform"
 
     var
         ShowFields: Boolean;
-}
+}*/

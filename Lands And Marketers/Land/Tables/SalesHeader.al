@@ -16,31 +16,32 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
         }
         field(145; "Payment Method"; Enum PaymentMethod)
         {
-
+            Caption = 'Type of Sale';
+            DataClassification = ToBeClassified;
         }
         field(146; "Bank Type"; Enum BankType)
         {
-
+            DataClassification = ToBeClassified;
         }
         field(147; "Sale Source"; Enum SaleSourceEnum)
         {
-
+            DataClassification = ToBeClassified;
         }
         field(149; "Conveyance Agent"; Enum ConveyanceAgentEnum)
         {
-
+            DataClassification = ToBeClassified;
         }
         field(150; "Cheque Number"; Code[10])
         {
-
+            DataClassification = ToBeClassified;
         }
         field(156; "Conveyance Date"; Date)
         {
-
+            DataClassification = ToBeClassified;
         }
         field(157; "Conveyance Bank"; Enum BankType)
         {
-
+            DataClassification = ToBeClassified;
         }
     }
 }

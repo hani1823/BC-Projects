@@ -11,235 +11,6 @@
       <rd:DataSourceID>ca4b7b23-2b30-4159-a38d-55885b4020c4</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Order_No">
-          <DataField>Order_No</DataField>
-        </Field>
-        <Field Name="Sell_to_Customer_No_">
-          <DataField>Sell_to_Customer_No_</DataField>
-        </Field>
-        <Field Name="Sell_to_Customer_Name">
-          <DataField>Sell_to_Customer_Name</DataField>
-        </Field>
-        <Field Name="Customer_ID">
-          <DataField>Customer_ID</DataField>
-        </Field>
-        <Field Name="Date_of_Birth">
-          <DataField>Date_of_Birth</DataField>
-        </Field>
-        <Field Name="Sell_to_Address">
-          <DataField>Sell_to_Address</DataField>
-        </Field>
-        <Field Name="Sell_to_Post_Code">
-          <DataField>Sell_to_Post_Code</DataField>
-        </Field>
-        <Field Name="Sell_to_City">
-          <DataField>Sell_to_City</DataField>
-        </Field>
-        <Field Name="Sell_to_County">
-          <DataField>Sell_to_County</DataField>
-        </Field>
-        <Field Name="Sell_to_Country_Region_Code">
-          <DataField>Sell_to_Country_Region_Code</DataField>
-        </Field>
-        <Field Name="Sell_to_E_Mail">
-          <DataField>Sell_to_E_Mail</DataField>
-        </Field>
-        <Field Name="Sell_to_Phone_No_">
-          <DataField>Sell_to_Phone_No_</DataField>
-        </Field>
-        <Field Name="Company_Name">
-          <DataField>Company_Name</DataField>
-        </Field>
-        <Field Name="Company_Address">
-          <DataField>Company_Address</DataField>
-        </Field>
-        <Field Name="Company_Address2">
-          <DataField>Company_Address2</DataField>
-        </Field>
-        <Field Name="Company_Post_Code">
-          <DataField>Company_Post_Code</DataField>
-        </Field>
-        <Field Name="Company_City">
-          <DataField>Company_City</DataField>
-        </Field>
-        <Field Name="Company_Region">
-          <DataField>Company_Region</DataField>
-        </Field>
-        <Field Name="Plan_Name">
-          <DataField>Plan_Name</DataField>
-        </Field>
-        <Field Name="Plan_Code">
-          <DataField>Plan_Code</DataField>
-        </Field>
-        <Field Name="Owner_Name">
-          <DataField>Owner_Name</DataField>
-        </Field>
-        <Field Name="Payment_Method">
-          <DataField>Payment_Method</DataField>
-        </Field>
-        <Field Name="Bank_Type">
-          <DataField>Bank_Type</DataField>
-        </Field>
-        <Field Name="Sale_Source">
-          <DataField>Sale_Source</DataField>
-        </Field>
-        <Field Name="Conveyance_Agent">
-          <DataField>Conveyance_Agent</DataField>
-        </Field>
-        <Field Name="Cheque_Number">
-          <DataField>Cheque_Number</DataField>
-        </Field>
-        <Field Name="Conveyance_Date">
-          <DataField>Conveyance_Date</DataField>
-        </Field>
-        <Field Name="Conveyance_Bank">
-          <DataField>Conveyance_Bank</DataField>
-        </Field>
-        <Field Name="Price_Per_Meter">
-          <DataField>Price_Per_Meter</DataField>
-        </Field>
-        <Field Name="Price_Per_MeterFormat">
-          <DataField>Price_Per_MeterFormat</DataField>
-        </Field>
-        <Field Name="Commission_With_VAT">
-          <DataField>Commission_With_VAT</DataField>
-        </Field>
-        <Field Name="Commission_With_VATFormat">
-          <DataField>Commission_With_VATFormat</DataField>
-        </Field>
-        <Field Name="Total_Commission_With_VAT">
-          <DataField>Total_Commission_With_VAT</DataField>
-        </Field>
-        <Field Name="Total_Commission_With_VATFormat">
-          <DataField>Total_Commission_With_VATFormat</DataField>
-        </Field>
-        <Field Name="Commission_Without_VAT">
-          <DataField>Commission_Without_VAT</DataField>
-        </Field>
-        <Field Name="Commission_Without_VATFormat">
-          <DataField>Commission_Without_VATFormat</DataField>
-        </Field>
-        <Field Name="Total_Commission_Without_VAT">
-          <DataField>Total_Commission_Without_VAT</DataField>
-        </Field>
-        <Field Name="Total_Commission_Without_VATFormat">
-          <DataField>Total_Commission_Without_VATFormat</DataField>
-        </Field>
-        <Field Name="Inclusive_Value">
-          <DataField>Inclusive_Value</DataField>
-        </Field>
-        <Field Name="Inclusive_ValueFormat">
-          <DataField>Inclusive_ValueFormat</DataField>
-        </Field>
-        <Field Name="Total_Inclusive_Value">
-          <DataField>Total_Inclusive_Value</DataField>
-        </Field>
-        <Field Name="Total_Inclusive_ValueFormat">
-          <DataField>Total_Inclusive_ValueFormat</DataField>
-        </Field>
-        <Field Name="Net_Value">
-          <DataField>Net_Value</DataField>
-        </Field>
-        <Field Name="Net_ValueFormat">
-          <DataField>Net_ValueFormat</DataField>
-        </Field>
-        <Field Name="Total_Net_Value">
-          <DataField>Total_Net_Value</DataField>
-        </Field>
-        <Field Name="Total_Net_ValueFormat">
-          <DataField>Total_Net_ValueFormat</DataField>
-        </Field>
-        <Field Name="Retax_Value">
-          <DataField>Retax_Value</DataField>
-        </Field>
-        <Field Name="Retax_ValueFormat">
-          <DataField>Retax_ValueFormat</DataField>
-        </Field>
-        <Field Name="Total_Retax">
-          <DataField>Total_Retax</DataField>
-        </Field>
-        <Field Name="Total_RetaxFormat">
-          <DataField>Total_RetaxFormat</DataField>
-        </Field>
-        <Field Name="Total_Vat_of_Commission">
-          <DataField>Total_Vat_of_Commission</DataField>
-        </Field>
-        <Field Name="Total_Vat_of_CommissionFormat">
-          <DataField>Total_Vat_of_CommissionFormat</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="Instrument_number">
-          <DataField>Instrument_number</DataField>
-        </Field>
-        <Field Name="Area">
-          <DataField>Area</DataField>
-        </Field>
-        <Field Name="AreaFormat">
-          <DataField>AreaFormat</DataField>
-        </Field>
-        <Field Name="Using_of_Land">
-          <DataField>Using_of_Land</DataField>
-        </Field>
-        <Field Name="Type_of_Land">
-          <DataField>Type_of_Land</DataField>
-        </Field>
-        <Field Name="Street">
-          <DataField>Street</DataField>
-        </Field>
-        <Field Name="Block_number">
-          <DataField>Block_number</DataField>
-        </Field>
-        <Field Name="Piece_number">
-          <DataField>Piece_number</DataField>
-        </Field>
-        <Field Name="Land_Code">
-          <DataField>Land_Code</DataField>
-        </Field>
-        <Field Name="Owner_ID">
-          <DataField>Owner_ID</DataField>
-        </Field>
-        <Field Name="Owner_Nationality">
-          <DataField>Owner_Nationality</DataField>
-        </Field>
-        <Field Name="Owner_Mobile">
-          <DataField>Owner_Mobile</DataField>
-        </Field>
-        <Field Name="Owner_Email">
-          <DataField>Owner_Email</DataField>
-        </Field>
-        <Field Name="Owner_Address">
-          <DataField>Owner_Address</DataField>
-        </Field>
-        <Field Name="Marketer_No">
-          <DataField>Marketer_No</DataField>
-        </Field>
-        <Field Name="Name">
-          <DataField>Name</DataField>
-        </Field>
-        <Field Name="Percentage">
-          <DataField>Percentage</DataField>
-        </Field>
-        <Field Name="PercentageFormat">
-          <DataField>PercentageFormat</DataField>
-        </Field>
-        <Field Name="Commission">
-          <DataField>Commission</DataField>
-        </Field>
-        <Field Name="CommissionFormat">
-          <DataField>CommissionFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -299,10 +70,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.00078cm</Width>
+                  <Width>3.61978cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.99446cm</Width>
+                  <Width>4.37546cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.86596cm</Width>
@@ -826,7 +597,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -868,7 +639,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -907,7 +678,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -2797,7 +2568,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -2836,7 +2607,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3503,6 +3274,7 @@
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
+            <FixedRowHeaders>true</FixedRowHeaders>
             <Top>23.78286cm</Top>
             <Left>0.956cm</Left>
             <Height>9.12451cm</Height>
@@ -3572,7 +3344,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3614,7 +3386,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3653,7 +3425,7 @@
                             <Border>
                               <Style>None</Style>
                             </Border>
-                            <BackgroundColor>#726139</BackgroundColor>
+                            <BackgroundColor>#7c6b43</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -6088,12 +5860,6 @@ National Address: Medina - Qurban District 42316-3053,</Value>
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -6590,4 +6356,233 @@ PAzH5hibaDS2TvM4GkeJ0IpE8Ro5kAgl5SGlqVh/S95CdVSer5G/EO5TELBUDqPR2BdNOBpHS4Sv1pg0
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Order_No">
+          <DataField>Order_No</DataField>
+        </Field>
+        <Field Name="Sell_to_Customer_No_">
+          <DataField>Sell_to_Customer_No_</DataField>
+        </Field>
+        <Field Name="Sell_to_Customer_Name">
+          <DataField>Sell_to_Customer_Name</DataField>
+        </Field>
+        <Field Name="Customer_ID">
+          <DataField>Customer_ID</DataField>
+        </Field>
+        <Field Name="Date_of_Birth">
+          <DataField>Date_of_Birth</DataField>
+        </Field>
+        <Field Name="Sell_to_Address">
+          <DataField>Sell_to_Address</DataField>
+        </Field>
+        <Field Name="Sell_to_Post_Code">
+          <DataField>Sell_to_Post_Code</DataField>
+        </Field>
+        <Field Name="Sell_to_City">
+          <DataField>Sell_to_City</DataField>
+        </Field>
+        <Field Name="Sell_to_County">
+          <DataField>Sell_to_County</DataField>
+        </Field>
+        <Field Name="Sell_to_Country_Region_Code">
+          <DataField>Sell_to_Country_Region_Code</DataField>
+        </Field>
+        <Field Name="Sell_to_E_Mail">
+          <DataField>Sell_to_E_Mail</DataField>
+        </Field>
+        <Field Name="Sell_to_Phone_No_">
+          <DataField>Sell_to_Phone_No_</DataField>
+        </Field>
+        <Field Name="Company_Name">
+          <DataField>Company_Name</DataField>
+        </Field>
+        <Field Name="Company_Address">
+          <DataField>Company_Address</DataField>
+        </Field>
+        <Field Name="Company_Address2">
+          <DataField>Company_Address2</DataField>
+        </Field>
+        <Field Name="Company_Post_Code">
+          <DataField>Company_Post_Code</DataField>
+        </Field>
+        <Field Name="Company_City">
+          <DataField>Company_City</DataField>
+        </Field>
+        <Field Name="Company_Region">
+          <DataField>Company_Region</DataField>
+        </Field>
+        <Field Name="Plan_Name">
+          <DataField>Plan_Name</DataField>
+        </Field>
+        <Field Name="Plan_Code">
+          <DataField>Plan_Code</DataField>
+        </Field>
+        <Field Name="Owner_Name">
+          <DataField>Owner_Name</DataField>
+        </Field>
+        <Field Name="Payment_Method">
+          <DataField>Payment_Method</DataField>
+        </Field>
+        <Field Name="Bank_Type">
+          <DataField>Bank_Type</DataField>
+        </Field>
+        <Field Name="Sale_Source">
+          <DataField>Sale_Source</DataField>
+        </Field>
+        <Field Name="Conveyance_Agent">
+          <DataField>Conveyance_Agent</DataField>
+        </Field>
+        <Field Name="Cheque_Number">
+          <DataField>Cheque_Number</DataField>
+        </Field>
+        <Field Name="Conveyance_Date">
+          <DataField>Conveyance_Date</DataField>
+        </Field>
+        <Field Name="Conveyance_Bank">
+          <DataField>Conveyance_Bank</DataField>
+        </Field>
+        <Field Name="Price_Per_Meter">
+          <DataField>Price_Per_Meter</DataField>
+        </Field>
+        <Field Name="Price_Per_MeterFormat">
+          <DataField>Price_Per_MeterFormat</DataField>
+        </Field>
+        <Field Name="Commission_With_VAT">
+          <DataField>Commission_With_VAT</DataField>
+        </Field>
+        <Field Name="Commission_With_VATFormat">
+          <DataField>Commission_With_VATFormat</DataField>
+        </Field>
+        <Field Name="Total_Commission_With_VAT">
+          <DataField>Total_Commission_With_VAT</DataField>
+        </Field>
+        <Field Name="Total_Commission_With_VATFormat">
+          <DataField>Total_Commission_With_VATFormat</DataField>
+        </Field>
+        <Field Name="Commission_Without_VAT">
+          <DataField>Commission_Without_VAT</DataField>
+        </Field>
+        <Field Name="Commission_Without_VATFormat">
+          <DataField>Commission_Without_VATFormat</DataField>
+        </Field>
+        <Field Name="Total_Commission_Without_VAT">
+          <DataField>Total_Commission_Without_VAT</DataField>
+        </Field>
+        <Field Name="Total_Commission_Without_VATFormat">
+          <DataField>Total_Commission_Without_VATFormat</DataField>
+        </Field>
+        <Field Name="Inclusive_Value">
+          <DataField>Inclusive_Value</DataField>
+        </Field>
+        <Field Name="Inclusive_ValueFormat">
+          <DataField>Inclusive_ValueFormat</DataField>
+        </Field>
+        <Field Name="Total_Inclusive_Value">
+          <DataField>Total_Inclusive_Value</DataField>
+        </Field>
+        <Field Name="Total_Inclusive_ValueFormat">
+          <DataField>Total_Inclusive_ValueFormat</DataField>
+        </Field>
+        <Field Name="Net_Value">
+          <DataField>Net_Value</DataField>
+        </Field>
+        <Field Name="Net_ValueFormat">
+          <DataField>Net_ValueFormat</DataField>
+        </Field>
+        <Field Name="Total_Net_Value">
+          <DataField>Total_Net_Value</DataField>
+        </Field>
+        <Field Name="Total_Net_ValueFormat">
+          <DataField>Total_Net_ValueFormat</DataField>
+        </Field>
+        <Field Name="Retax_Value">
+          <DataField>Retax_Value</DataField>
+        </Field>
+        <Field Name="Retax_ValueFormat">
+          <DataField>Retax_ValueFormat</DataField>
+        </Field>
+        <Field Name="Total_Retax">
+          <DataField>Total_Retax</DataField>
+        </Field>
+        <Field Name="Total_RetaxFormat">
+          <DataField>Total_RetaxFormat</DataField>
+        </Field>
+        <Field Name="Total_Vat_of_Commission">
+          <DataField>Total_Vat_of_Commission</DataField>
+        </Field>
+        <Field Name="Total_Vat_of_CommissionFormat">
+          <DataField>Total_Vat_of_CommissionFormat</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Instrument_number">
+          <DataField>Instrument_number</DataField>
+        </Field>
+        <Field Name="Area">
+          <DataField>Area</DataField>
+        </Field>
+        <Field Name="AreaFormat">
+          <DataField>AreaFormat</DataField>
+        </Field>
+        <Field Name="Using_of_Land">
+          <DataField>Using_of_Land</DataField>
+        </Field>
+        <Field Name="Type_of_Land">
+          <DataField>Type_of_Land</DataField>
+        </Field>
+        <Field Name="Street">
+          <DataField>Street</DataField>
+        </Field>
+        <Field Name="Block_number">
+          <DataField>Block_number</DataField>
+        </Field>
+        <Field Name="Piece_number">
+          <DataField>Piece_number</DataField>
+        </Field>
+        <Field Name="Land_Code">
+          <DataField>Land_Code</DataField>
+        </Field>
+        <Field Name="Owner_ID">
+          <DataField>Owner_ID</DataField>
+        </Field>
+        <Field Name="Owner_Nationality">
+          <DataField>Owner_Nationality</DataField>
+        </Field>
+        <Field Name="Owner_Mobile">
+          <DataField>Owner_Mobile</DataField>
+        </Field>
+        <Field Name="Owner_Email">
+          <DataField>Owner_Email</DataField>
+        </Field>
+        <Field Name="Owner_Address">
+          <DataField>Owner_Address</DataField>
+        </Field>
+        <Field Name="Marketer_No">
+          <DataField>Marketer_No</DataField>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Percentage">
+          <DataField>Percentage</DataField>
+        </Field>
+        <Field Name="PercentageFormat">
+          <DataField>PercentageFormat</DataField>
+        </Field>
+        <Field Name="Commission">
+          <DataField>Commission</DataField>
+        </Field>
+        <Field Name="CommissionFormat">
+          <DataField>CommissionFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

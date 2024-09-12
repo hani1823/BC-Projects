@@ -132,11 +132,6 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 ApplicationArea = All;
                 Visible = ShowFields;
             }
-            field(IsVerfied; Rec.IsVerfied)
-            {
-                ApplicationArea = All;
-                Visible = ShowFields;
-            }
         }
         addafter("No.")
         {
@@ -147,7 +142,84 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 Visible = ShowFields;
             }
         }
+        modify("Location Code")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Qty. to Assemble to Order")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Reserved Quantity")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Line Discount %")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Line Amount")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Quantity Shipped")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Quantity Invoiced")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Qty. to Assign")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Item Charge Qty. to Handle")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Qty. Assigned")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Planned Delivery Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Planned Shipment Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Shipment Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Zatca Expemt Reason")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Applicable For Serv. Decl.")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify(Control45)
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Total Amount Excl. VAT")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Total Amount Incl. VAT")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Total VAT Amount")
+        {
+            Visible = (NOT ShowFields);
+        }
     }
+
     trigger OnOpenPage()
     begin
         ShowFields := Database.CompanyName() = 'ALINMA FOR REAL ESTATE';

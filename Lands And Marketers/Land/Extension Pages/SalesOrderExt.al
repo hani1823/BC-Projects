@@ -92,7 +92,98 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         {
             Enabled = (NOT ShowFields) OR ((Rec."Plan Name" <> '') AND (Rec."Owner Name" <> ''));
         }
-
+        modify("Sell-to Contact")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to Address")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to Address 2")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to City")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to Post Code")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to Country/Region Code")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Sell-to Contact No.")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify(SellToMobilePhoneNo)
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("No. of Archived Versions")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Promised Delivery Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Your Reference")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Salesperson Code")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Campaign No.")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Opportunity No.")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Responsibility Center")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Assigned User ID")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Work Description")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Document Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("VAT Reporting Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Order Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Due Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("Requested Delivery Date")
+        {
+            Visible = (NOT ShowFields);
+        }
+        modify("External Document No.")
+        {
+            Visible = (NOT ShowFields);
+        }
         addafter("Sell-to Customer Name")
         {
             field("Customer ID"; "Customer ID")
@@ -119,7 +210,6 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = all;
                 Visible = ShowFields;
-
                 //allow the changing in customer table
                 trigger OnValidate()
                 var
@@ -141,6 +231,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             field("Payment Method"; Rec."Payment Method")
             {
                 ApplicationArea = all;
+                Caption = 'Type of Sale';
                 Visible = ShowFields;
                 trigger OnValidate()
                 begin
@@ -194,6 +285,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = All;
                 Image = Print;
+                Visible = ShowFields;
                 trigger OnAction()
                 var
                     SalesHeader: Record "Sales Header";
@@ -212,6 +304,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = All;
                 Image = Print;
+                Visible = ShowFields;
                 trigger OnAction()
                 var
                     SalesHeader: Record "Sales Header";
@@ -229,6 +322,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = All;
                 Image = Print;
+                Visible = ShowFields;
                 trigger OnAction()
                 var
                     SalesHeader: Record "Sales Header";

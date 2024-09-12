@@ -6,49 +6,52 @@ table 50128 Land
         field(1; "Instrument number"; code[20])
         {
             DataClassification = ToBeClassified;
-            TableRelation = item;
         }
-        field(2; "Piece number"; Integer)
+        field(2; "Land Code"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(3; "Block number"; Integer)
+        field(3; "Piece number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(4; "Street"; Text[150])
+        field(4; "Block number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(5; "Area"; Decimal)
+        field(5; "Street"; Text[150])
         {
             DataClassification = ToBeClassified;
         }
-        field(6; "Total price per meter"; Decimal)
+        field(6; "Area"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(7; "Type of Land"; Text[30])
+        field(7; "Total price per meter"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(8; "Using of Land"; Text[30])
+        field(8; "Type of Land"; Text[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(9; "Plan Name"; Text[100])
+        field(9; "Using of Land"; Text[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(10; "Owner Name"; Code[100])
+        field(10; "Plan Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(11; Status; Enum LandStatus)
+        field(11; "Owner Name"; Code[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(12; "IsOwnedByQuaedAlinma"; Boolean)
+        field(12; Status; Enum LandStatus)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(13; "IsOwnedByQuaedAlinma"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
