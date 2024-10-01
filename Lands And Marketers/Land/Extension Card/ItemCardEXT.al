@@ -6,7 +6,7 @@ pageextension 50115 ItemCardEXT extends "Item Card"
         {
             field("No. 2"; Rec."No. 2")
             {
-                Caption = 'Land Code';
+                Caption = 'Property Code';
                 ApplicationArea = All;
                 Visible = ShowFields;
                 Editable = false;
@@ -51,5 +51,4 @@ pageextension 50115 ItemCardEXT extends "Item Card"
 
     var
         ShowFields: Boolean;
-
 }

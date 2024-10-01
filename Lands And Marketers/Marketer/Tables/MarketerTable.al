@@ -3,7 +3,7 @@ table 50131 "Marketer"
     DataClassification = ToBeClassified;
     fields
     {
-        field(1; "No."; Code[20])
+        field(50001; "No."; Code[20])
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -17,21 +17,25 @@ table 50131 "Marketer"
                 end;
             end;
         }
-        field(2; Name; Text[100])
+        field(50002; Name; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(3; "Document No."; Code[20])
+        field(50003; "Document No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(4; Percentage; Decimal)
+        field(50004; Percentage; Decimal)
         {
             DataClassification = ToBeClassified;
             AutoFormatType = 10;
             AutoFormatExpression = '<precision, 2:4><standard format,0>%';
         }
-        field(5; Commission; Decimal)
+        field(50005; Commission; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50006; IsManual; Boolean)
         {
             DataClassification = ToBeClassified;
         }

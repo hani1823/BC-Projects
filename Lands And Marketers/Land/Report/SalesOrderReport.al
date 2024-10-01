@@ -228,14 +228,15 @@ report 50105 SalesOrderReport
                                 Street := LandRec.Street;
                                 Block_number := LandRec."Block number";
                                 Piece_number := LandRec."Piece number";
+                                "Land Code" := LandRec."Land Code";
                             end;
                         until salesLineRec.Next() = 0;
                     end;
                     //Getting Land Code
-                    ItemRec.SetRange("No.", "No.");
+                    /*ItemRec.SetRange("No.", "No.");
                     if ItemRec.FindFirst() then begin
                         "Land Code" := ItemRec."No. 2";
-                    end;
+                    end;*/
 
                     //Getting Cust ID AND Date of Birth
                     CustRec.SetRange("No.", "Sales Header"."Sell-to Customer No.");

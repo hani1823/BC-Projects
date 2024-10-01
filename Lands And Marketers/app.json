@@ -2,7 +2,7 @@
   "id": "0cb83cd9-c5dd-4a2d-833b-830fa6d307a0",
   "name": "Lands And Marketers",
   "publisher": "Alinma",
-  "version": "1.0.0.4",
+  "version": "1.0.0.6",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -16,12 +16,6 @@
     "id": "e2ae191d-8829-44c3-a373-3749a2742d4d",
     "publisher": "Microsoft", 
     "version": "24.4.22295.22576"
-  },
-  {
-    "id": "13404415-0bff-4105-aad1-c0d01a6eb3d7",
-    "name": "BC-Zatca",
-    "publisher": "HA Consultancy",
-    "version": "24.20240904.0.0"
   }
     ],
   "screenshots": [],
@@ -30,7 +24,7 @@
   "idRanges": [
     {
       "from": 50100,
-      "to": 50149
+      "to": 99999
     }
   ],
   "resourceExposurePolicy": {

@@ -18,6 +18,7 @@ page 50133 "Land Page"
                 field("Land Code"; Rec."Land Code")
                 {
                     ApplicationArea = All;
+                    Caption = 'Property Code';
                 }
                 field("Piece number"; Rec."Piece number")
                 {
@@ -42,10 +43,12 @@ page 50133 "Land Page"
                 field("Type of Land"; Rec."Type of Land")
                 {
                     ApplicationArea = All;
+                    Caption = 'Type of Property';
                 }
                 field("Using of Land"; Rec."Using of Land")
                 {
                     ApplicationArea = All;
+                    Caption = 'Using of Property';
                 }
                 field(Status; Rec.Status)
                 {

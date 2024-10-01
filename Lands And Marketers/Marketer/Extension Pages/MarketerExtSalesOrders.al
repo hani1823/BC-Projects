@@ -8,7 +8,8 @@ pageextension 50132 "Sales Order Extension" extends "Sales Order"
             part(MarketersPart; "Marketer Page")
             {
                 ApplicationArea = all;
-                UpdatePropagation = SubPart;
+                UpdatePropagation = Both;
+                SubPageLink = "Document No." = FIELD("No.");
                 Visible = ShowMarketersPart;
             }
         }

@@ -1198,7 +1198,7 @@
             <Top>15.40287cm</Top>
             <Left>0.75348cm</Left>
             <Height>2.60042cm</Height>
-            <Width>14.49761cm</Width>
+            <Width>14.4976cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -2828,7 +2828,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Price Per Meter</Value>
+                                  <Value>Net Price Per Meter</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>

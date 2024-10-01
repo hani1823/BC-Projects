@@ -1444,7 +1444,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>سعر المتر</Value>
+                                  <Value>سعر المتر الصافي</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -3309,7 +3309,7 @@
             <Top>15.62579cm</Top>
             <Left>5.79381cm</Left>
             <Height>2.57925cm</Height>
-            <Width>14.18246cm</Width>
+            <Width>14.18245cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>

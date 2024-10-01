@@ -797,16 +797,16 @@
                   <Width>2.63154cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.70896cm</Width>
+                  <Width>2.63722cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.63154cm</Width>
+                  <Width>2.5963cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.37789cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.81168cm</Width>
+                  <Width>1.9539cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.40529cm</Width>
@@ -815,7 +815,7 @@
                   <Width>4.92842cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69571cm</Width>
+                  <Width>0.66047cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -872,7 +872,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.81167cm</Height>
+                  <Height>1.00217cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1039,7 +1039,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>سعر المتر</Value>
+                                  <Value>سعر المتر الصافي</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1819,7 +1819,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>6.10081cm</Top>
             <Left>0.84549cm</Left>
-            <Height>2.82334cm</Height>
+            <Height>3.01384cm</Height>
             <Width>19.19103cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -1904,47 +1904,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>.في حال كان الشراء عن طريق البنك</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>،</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> فإنه يجب إتمام الإفراغ خلال مدة لا تزيد عن </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>٢١ </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>يوم من تاريخ الحجز *</Value>
+                    <Value>.في حال كان الشراء عن طريق البنك، فإنه يجب إتمام الإفراغ خلال مدة لا تزيد عن ٢١ يوم من تاريخ الحجز *</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontSize>11pt</FontSize>
