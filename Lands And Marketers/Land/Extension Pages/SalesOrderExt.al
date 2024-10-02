@@ -253,6 +253,22 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = all;
                 Visible = ShowFields;
+
+                trigger OnValidate()
+                var
+                    MarketerPage: Page "Marketer Page";
+                    MarketerRec: Record Marketer;
+                begin
+                    MarketerRec.SetRange("Document No.", Rec."No.");
+                    if MarketerRec.FindSet() then begin
+                        repeat
+                            ResetValues2();
+                            MarketerPage.IsMarketerDomestic();
+                            MarketerPage.setCommission();
+                        until MarketerRec.Next() = 0;
+                    end;
+                    CurrPage.Update(true);
+                end;
             }
             field("Conveyance Agent"; Rec."Conveyance Agent")
             {
@@ -334,7 +350,54 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 end;
             }
         }
+        addafter("Print Contract")
+        {
+            action("Set Commission Manually")
+            {
+                ApplicationArea = All;
+                Visible = ShowFields;
+                trigger OnAction()
+                var
+                    MarketerRec: Record Marketer;
+                begin
+                    MarketerRec.Reset();
+                    MarketerRec.SetRange("Document No.", Rec."No.");
 
+                    if MarketerRec.FindSet() then begin
+                        repeat
+                            MarketerRec.Percentage := 0.0;
+                            MarketerRec.Commission := 0.0;
+                            MarketerRec.IsManual := true;
+                            MarketerRec.Modify();
+                        until MarketerRec.Next() = 0;
+                    end;
+                    CurrPage.Update();
+                end;
+            }
+            action("Set Commission Automatically")
+            {
+                ApplicationArea = All;
+                Visible = ShowFields;
+                trigger OnAction()
+                var
+                    MarketerRec: Record Marketer;
+                    marketerPage: page "Marketer Page";
+                begin
+                    MarketerRec.Reset();
+                    MarketerRec.SetRange("Document No.", Rec."No.");
+
+                    if MarketerRec.FindSet() then begin
+                        repeat
+                            MarketerRec.IsManual := false;
+                            MarketerRec.Modify();
+                            MarketerPage.IsMarketerDomestic();
+                            MarketerPage.SetCommission();
+                        until MarketerRec.Next() = 0;
+                    end;
+                    CurrPage.Update();
+                end;
+            }
+        }
     }
 
 
@@ -370,13 +433,25 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         end;
     End;
 
+    local procedure ResetValues2()
+    var
+        MarketerRec: Record Marketer;
+    begin
+        MarketerRec.SetRange("Document No.", Rec."No.");
+        if MarketerRec.FindSet() then begin
+            repeat
+                MarketerRec.Percentage := 0.0;
+                MarketerRec.Commission := 0.0;
+                MarketerRec.Modify();
+            until MarketerRec.Next() = 0;
+        end;
+    end;
+
     var
         ShowFields: Boolean;
         BankTypeCheck: Boolean;
-        SaleSourceCheck: Boolean;
         DimPlanRec: Record "Dimension Value";
         "Customer ID": Code[10];
         "Date of Birth": Date;
-        "Owner_ID": Integer;
 
 }

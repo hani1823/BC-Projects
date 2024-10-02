@@ -4,11 +4,11 @@ table 50109 TempTableForOwnerQuery
     TableType = Temporary;
     fields
     {
-        field(1; "Plan Name"; Text[100])
+        field(50001; "Plan Name"; Text[100])
         {
             DataClassification = CustomerContent;
         }
-        field(2; "Owner Name"; Code[100])
+        field(50002; "Owner Name"; Code[100])
         {
             DataClassification = CustomerContent;
         }

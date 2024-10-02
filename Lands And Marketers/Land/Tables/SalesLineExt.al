@@ -2,55 +2,55 @@ tableextension 50133 SalesLinesExt extends "Sales Line"
 {
     fields
     {
-        field(24; "Price Per Meter"; Decimal)
+        field(50024; "Price Per Meter"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(9; "Net Value"; Decimal)
+        field(50009; "Net Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(14; "Total Net Value"; Decimal)
+        field(50014; "Total Net Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(19; "Commission With VAT"; Decimal)
+        field(50019; "Commission With VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(20; "Total Commission With VAT"; Decimal)
+        field(50020; "Total Commission With VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(21; "Commission Without VAT"; Decimal)
+        field(50021; "Commission Without VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(26; "Total Commission Without VAT"; Decimal)
+        field(50026; "Total Commission Without VAT"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(31; "Retax Value"; Decimal)
+        field(50031; "Retax Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(33; "Total Retax"; Decimal)
+        field(50033; "Total Retax"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(39; "Total Vat of Commission"; Decimal)
+        field(50039; "Total Vat of Commission"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(43; "Inclusive Value"; Decimal)
+        field(50043; "Inclusive Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(44; "Total Inclusive Value"; Decimal)
+        field(50044; "Total Inclusive Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(47; Status; Enum LandStatus)
+        field(50047; Status; Enum LandStatus)
         {
             FieldClass = FlowField;
             CalcFormula = lookup(Land.Status where("Instrument number" = field("No.")));

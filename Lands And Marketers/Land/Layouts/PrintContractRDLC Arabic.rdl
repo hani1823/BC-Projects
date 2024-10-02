@@ -4962,7 +4962,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.854cm</Height>
+                  <Height>1.02333cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -5121,7 +5121,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Price Per Meter:</Value>
+                                  <Value>Net Price Per Meter:</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -5159,6 +5159,20 @@
                                     <Format>#,0.00;(#,0.00)</Format>
                                   </Style>
                                 </TextRun>
+                                <TextRun>
+                                  <Value>ء</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Color>WhiteSmoke</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>ريال سعودي</Value>
+                                  <Style>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
@@ -5189,7 +5203,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>:سعر المتر</Value>
+                                  <Value>: سعر المتر الصافي</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -5519,7 +5533,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>4.38573cm</Top>
             <Left>0.94183cm</Left>
-            <Height>8.76073cm</Height>
+            <Height>8.93006cm</Height>
             <Width>19.06403cm</Width>
             <ZIndex>5</ZIndex>
             <Style>

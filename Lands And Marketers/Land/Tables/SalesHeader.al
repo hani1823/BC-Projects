@@ -2,44 +2,44 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
 {
     fields
     {
-        field(141; "Owner Name"; Code[100])
+        field(50141; "Owner Name"; Code[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(143; "Plan Name"; Text[100])
+        field(50143; "Plan Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(144; "Plan Code"; Code[30])
+        field(50144; "Plan Code"; Code[30])
         {
             DataClassification = ToBeClassified;
         }
-        field(145; "Payment Method"; Enum PaymentMethod)
+        field(50145; "Payment Method"; Enum PaymentMethod)
         {
             Caption = 'Type of Sale';
             DataClassification = ToBeClassified;
         }
-        field(146; "Bank Type"; Enum BankType)
+        field(50146; "Bank Type"; Enum BankType)
         {
             DataClassification = ToBeClassified;
         }
-        field(147; "Sale Source"; Enum SaleSourceEnum)
+        field(50147; "Sale Source"; Enum SaleSourceEnum)
         {
             DataClassification = ToBeClassified;
         }
-        field(149; "Conveyance Agent"; Enum ConveyanceAgentEnum)
+        field(50149; "Conveyance Agent"; Enum ConveyanceAgentEnum)
         {
             DataClassification = ToBeClassified;
         }
-        field(150; "Cheque Number"; Code[10])
+        field(50150; "Cheque Number"; Code[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(156; "Conveyance Date"; Date)
+        field(50156; "Conveyance Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(157; "Conveyance Bank"; Enum BankType)
+        field(50157; "Conveyance Bank"; Enum BankType)
         {
             DataClassification = ToBeClassified;
         }

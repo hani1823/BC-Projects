@@ -140,6 +140,7 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
                 ApplicationArea = All;
                 Editable = false;
                 Visible = ShowFields;
+                Caption = 'Property Code';
             }
         }
         modify("Location Code")
@@ -194,10 +195,6 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
         {
             Visible = (NOT ShowFields);
         }
-        modify("Zatca Expemt Reason")
-        {
-            Visible = (NOT ShowFields);
-        }
         modify("Applicable For Serv. Decl.")
         {
             Visible = (NOT ShowFields);
@@ -227,11 +224,11 @@ pageextension 50136 SalesOrderSubExt extends "Sales Order Subform"
 
     trigger OnAfterGetRecord()
     var
-        ItemRec: Record Item;
+        LandRec: Record Land;
     begin
-        ItemRec.SetRange("No.", Rec."No.");
-        if ItemRec.FindFirst() then begin
-            "Land Code" := ItemRec."No. 2";
+        LandRec.SetRange("Instrument number", Rec."No.");
+        if LandRec.FindFirst() then begin
+            "Land Code" := LandRec."Land Code";
         end;
         CalculateValues();
         CalculateTotalValues();
