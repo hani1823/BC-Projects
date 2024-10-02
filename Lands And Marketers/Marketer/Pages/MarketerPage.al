@@ -90,7 +90,6 @@ page 50131 "Marketer Page"
                     ApplicationArea = All;
                     Editable = false;
                     Visible = false;
-                    ToolTip = 'Indicates if the commission is manually entered.';
                 }
             }
         }
@@ -160,7 +159,7 @@ page 50131 "Marketer Page"
         if SalesRec."Sale Source" = SaleSourceEnum::"المالك" then begin
             if IsOutside = true then begin
                 ResetValues();
-                SonsComm := 0.2350; // Set only if not manually changed
+                SonsComm := 0.2350;
                 OutsideMarketerComm := 0.50;
                 SupervisorComm := 0.005;
                 SuleimanComm := 0.01;
@@ -343,9 +342,13 @@ page 50131 "Marketer Page"
         if MarketerRec.Get(Rec."No.", Rec."Document No.") then begin
             if Rec."No." = OutsideMarketer then begin
                 IsOutside := false;
+                MarketerRec.Delete();
                 setCommission();
+                CurrPage.Update();
+                exit(true);
             end;
         End;
+        exit(false);
     end;
 
     procedure ResetValues()
