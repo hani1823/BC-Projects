@@ -356,6 +356,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = All;
                 Visible = ShowFields;
+                Image = PostingEntries;
                 trigger OnAction()
                 var
                     MarketerRec: Record Marketer;
@@ -378,6 +379,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             {
                 ApplicationArea = All;
                 Visible = ShowFields;
+                Image = SelectEntries;
                 trigger OnAction()
                 var
                     MarketerRec: Record Marketer;

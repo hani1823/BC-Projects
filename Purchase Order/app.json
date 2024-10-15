@@ -1,0 +1,71 @@
+{
+  "id": "fb2b339c-63aa-45f3-9310-4b9ae6d72bf0",
+  "name": "Purchase Order",
+  "publisher": "Alinma",
+  
+  "version": "1.2.0.4",
+
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      {
+
+        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
+
+        "publisher":  "LS Retail",
+
+        "name":  "LS Central",
+
+        "version":  "21.5.0.0"
+
+      }],
+
+  "screenshots": [],
+
+  "platform": "21.0.0.0",
+
+  "application": "21.5.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": true,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}
