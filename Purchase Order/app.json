@@ -3,7 +3,7 @@
   "name": "Purchase Order",
   "publisher": "Alinma",
   
-  "version": "1.2.0.4",
+  "version": "1.2.0.5",
 
   "brief": "",
 
@@ -61,7 +61,7 @@
 
   },
 
-  "runtime": "10.0",
+  "runtime": "13.0",
 
   "features": [
 

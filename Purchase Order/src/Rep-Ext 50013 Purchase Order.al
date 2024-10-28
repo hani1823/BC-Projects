@@ -110,10 +110,46 @@ reportextension 50013 "Purchase Order Ext" extends "Standard Purchase - Order"
                         dimValue.SetRange(Code, "Shortcut Dimension 2 Code");
                         if dimValue.FindSet() then Shortcut_Dimension_2 := dimValue.Name;
 
+                    end else
+                        if CompanyName = 'Wafer Co.' then begin
+                            ////******* 1st app *******\\\
+                            AppEntry.SetRange("Document Type", Enum::"Approval Document Type"::Order);
+                            AppEntry.SetRange("Document No.", "No.");
+                            AppEntry.SetRange("Approver ID", 'NABILSABRA77');
+                            AppEntry.SetFilter(Status, 'Approved');
+                            //AppEntry.SetAscending("Last Date-Time Modified", false);
+                            if AppEntry.FindSet() then begin
+                                ApproverStatus[1] := Format(AppEntry.Status);
+                            end;
+
+                            ////******* 2nd app *******\\\
+                            AppEntry.Reset();
+                            AppEntry.SetRange("Document Type", Enum::"Approval Document Type"::Order);
+                            AppEntry.SetRange("Document No.", "No.");
+                            AppEntry.SetRange("Approver ID", 'ABED KHAWAJA');
+                            AppEntry.SetFilter(Status, 'Approved');
+                            // AppEntry.SetAscending("Last Date-Time Modified", false);
+                            if AppEntry.FindSet() then begin
+                                ApproverStatus[2] := Format(AppEntry.Status);
+                            end;
 
 
-                    end;
-
+                            ////******* 3rd app *******\\\
+                            AppEntry.Reset();
+                            AppEntry.SetRange("Document Type", Enum::"Approval Document Type"::Order);
+                            AppEntry.SetRange("Document No.", "No.");
+                            AppEntry.SetRange("Approver ID", 'MALSUBAIHI');
+                            AppEntry.SetFilter(Status, 'Approved');
+                            //  AppEntry.SetAscending("Last Date-Time Modified", false);
+                            if AppEntry.FindSet() then begin
+                                ApproverStatus[3] := Format(AppEntry.Status);
+                            end;
+                            /////////********** dimensions
+                            dimValue.Reset();
+                            dimValue.SetRange("Dimension Code", 'PROJECTS');
+                            dimValue.SetRange(Code, "Shortcut Dimension 2 Code");
+                            if dimValue.FindSet() then Shortcut_Dimension_2 := dimValue.Name;
+                        end;
             end;
         }
 

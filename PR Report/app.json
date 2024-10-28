@@ -1,0 +1,70 @@
+{
+  "id": "2fd6558d-83a6-4d81-b5f9-fb66441106ee",
+  "name": "PR Report",
+  "publisher": "Alinma",
+  "version": "1.0.0.9",
+  
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      {
+
+        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
+
+        "publisher":  "LS Retail",
+
+        "name":  "LS Central",
+
+        "version":  "22.0.0.0"
+
+      }],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 52149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}
