@@ -1,0 +1,42 @@
+{
+  "id": "285f0c11-9fc0-4b8d-b74f-441398f25fa1",
+  "name": "Lands  & website API",
+  "publisher": "Alinma",
+  "version": "1.0.0.24",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [{
+    "id": "10cb69d9-bc8a-4d27-970a-9e110e9db2a5",
+    "name": "_Exclude_APIV2_",
+    "publisher": "Microsoft",
+    "version": "22.0.0.0"
+  },{
+    "id": "0cb83cd9-c5dd-4a2d-833b-830fa6d307a0",
+    "name": "Lands And Marketers",
+    "publisher": "Alinma",
+    "version": "1.0.0.6"
+  }],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 99149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "12.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
