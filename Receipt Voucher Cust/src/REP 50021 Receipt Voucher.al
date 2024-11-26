@@ -20,6 +20,16 @@ report 50021 "Receipt Voucher"
             column(entryNo; "Entry No.") { }
             column(DocNo; "Document No.") { }
             column(payMethCod; "Payment Method Code") { }
+            column(Assigned_User_ID; Assigned_User_ID) { }
+            trigger OnAfterGetRecord()
+            var
+                users: Record User;
+            begin
+                users.SetRange("User Name", UserId);
+                if users.FindSet() then begin
+                    Assigned_User_ID := users."Full Name";
+                end;
+            end;
         }
     }
     rendering
@@ -84,4 +94,6 @@ report 50021 "Receipt Voucher"
 
     var
         DefaultRenderingLayout: Text;
+        Assigned_User_ID: Text[100];
+
 }

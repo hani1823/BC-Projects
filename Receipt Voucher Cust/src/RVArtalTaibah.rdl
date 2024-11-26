@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-11-23T10:37:51.3618619Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-11-25T08:30:40.4114965Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1502,7 +1502,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=User!UserID</Value>
+                                  <Value>=Fields!Assigned_User_ID.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1781,6 +1781,9 @@ a32Nxj57oRqGOHgXTmDbDP3298P1TbB6W6xqnNZSPc6qpeoJx7+bLB3Yvk4/TFuh1anOc32J6nbvn/Xu
         </Field>
         <Field Name="payMethCod">
           <DataField>payMethCod</DataField>
+        </Field>
+        <Field Name="Assigned_User_ID">
+          <DataField>Assigned_User_ID</DataField>
         </Field>
       </Fields>
       <Query>
