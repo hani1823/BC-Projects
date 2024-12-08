@@ -2,7 +2,7 @@
   "id": "1bec5b61-8eaf-4a73-8d7a-1d3b9d695749",
   "name": "Store Requisition",
   "publisher": "Alinma",
-  "version": "1.0.0.9",
+  "version": "1.0.0.10",
   "brief": "",
 
   "description": "",
@@ -27,15 +27,15 @@
 
         "name":  "LS Central",
 
-        "version":  "21.5.0.0"
+        "version":  "23.0.0.0"
 
       }],
 
   "screenshots": [],
 
-  "platform": "21.0.0.0",
+  "platform": "23.0.0.0",
 
-  "application": "21.5.0.0",
+  "application": "23.0.0.0",
 
   "idRanges": [
 
@@ -59,7 +59,7 @@
 
   },
 
-  "runtime": "10.0",
+  "runtime": "13.0",
 
   "features": [
 

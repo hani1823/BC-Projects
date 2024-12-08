@@ -4,7 +4,6 @@ pageextension 50060 "EXT Blanket Sales Order" extends "Blanket Sales Order"
 
     layout
     {
-
         modify("Sell-to Customer No.")
         {
             Visible = false;
@@ -144,7 +143,21 @@ pageextension 50060 "EXT Blanket Sales Order" extends "Blanket Sales Order"
 
     actions
     {
-
+        modify(SendApprovalRequest)
+        {
+            Enabled = (not OpenApprovalEntriesExist) and (CanRequestApprovalForFlow) and (Rec.Status <> Rec.Status::Released);
+        }
+        modify(CancelApprovalRequest)
+        {
+            Enabled = (CanCancelApprovalForRecord) or (CanCancelApprovalForFlow);
+            trigger OnBeforeAction()
+            var
+                WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
+            begin
+                WorkflowWebhookMgt.FindAndCancel(Rec.RecordId);
+                Message('The approval request for the record has been canceled.');
+            end;
+        }
         addlast("F&unctions")
         {
 
@@ -152,7 +165,6 @@ pageextension 50060 "EXT Blanket Sales Order" extends "Blanket Sales Order"
             {
                 ApplicationArea = All;
                 Caption = 'Make Neg. Adjustm';
-
 
                 trigger OnAction()
                 var
@@ -162,9 +174,6 @@ pageextension 50060 "EXT Blanket Sales Order" extends "Blanket Sales Order"
                     MyQuery: Query "Batch List in SR";
                     itemSR: Record Item;
                     itemUOM: Record "Item Unit of Measure";
-
-
-
                 begin
 
                     if Rec.Status = Rec.Status::Released then begin
@@ -224,41 +233,59 @@ pageextension 50060 "EXT Blanket Sales Order" extends "Blanket Sales Order"
                                             Error('Item in SR Line Not Found');
                                         ;
 
-
-
-
-
                                     until SR_LineToBeInserted.Next() = 0;
                                 end else
                                     Error('SR Line Not Found');
                                 ;
-
-
                             end;
                         end;
                         Commit();
                     end;
-
                 end;
-
             }
-
         }
-
     }
 
 
     trigger OnOpenPage()
     var
     begin
+        CheckShowBackgrValidationNotification();
         hide := true;
         if (Rec.Status = rec.Status::"Pending Approval") OR (Rec.Status = rec.Status::Released) then begin
             hide := false;
-
         end;
     end;
 
+    local procedure SetControlAppearance()
     var
-        [InDataSet]
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+        WorkflowWebhookMgt: Codeunit "Workflow Webhook Management";
+    begin
+        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
+        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
+        WorkflowWebhookMgt.GetCanRequestAndCanCancel(Rec.RecordId(), CanRequestApprovalForFlow, CanCancelApprovalForFlow);
+    end;
+
+
+    trigger OnAfterGetCurrRecord()
+    begin
+        SetControlAppearance();
+    end;
+
+    local procedure CheckShowBackgrValidationNotification()
+    var
+        DocumentErrorsMgt: Codeunit "Document Errors Mgt.";
+    begin
+        if DocumentErrorsMgt.CheckShowEnableBackgrValidationNotification() then
+            SetControlAppearance();
+    end;
+
+    var
+        //[InDataSet]
         hide: boolean;
+        OpenApprovalEntriesExist: Boolean;
+        CanCancelApprovalForRecord: Boolean;
+        CanRequestApprovalForFlow: Boolean;
+        CanCancelApprovalForFlow: Boolean;
 }

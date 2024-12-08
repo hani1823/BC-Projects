@@ -5,8 +5,6 @@ page 51110 Test
     UsageCategory = Administration;
     Caption = 'SR Creation';
 
-
-
     actions
     {
         area(Processing)

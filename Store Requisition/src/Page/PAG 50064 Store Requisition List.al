@@ -122,9 +122,6 @@ page 50064 "Store Requisition List"
     end;
 
     var
-
-        [InDataSet]
+        //[InDataSet]
         StatusStyleTxt: Text;
-
-
 }

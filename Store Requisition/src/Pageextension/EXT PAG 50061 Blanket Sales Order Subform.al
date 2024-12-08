@@ -100,8 +100,8 @@ pageextension 50061 "EXT Blkt Sales Order Subform" extends "Blanket Sales Order 
     {
 
         modify("&Line") { Visible = false; }
-        modify("Get &Price") { Visible = false; }
-        modify("Get Li&ne Discount") { Visible = false; }
+        //modify("Get &Price") { Visible = false; }
+        //modify("Get Li&ne Discount") { Visible = false; }
         modify("GetPrice") { Visible = false; }
         modify("GetLineDiscount") { Visible = false; }
         modify("E&xplode BOM") { Visible = false; }

@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-11-21T07:24:53.7636404Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-12-02T12:18:54.0828138Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2107,6 +2107,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                           </Style>
                         </Textbox>
                         <ColSpan>5</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2266,6 +2267,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                             <PaddingRight>5pt</PaddingRight>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2529,6 +2531,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                           </Style>
                         </Textbox>
                         <ColSpan>2</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2681,11 +2684,12 @@ Cstr(Fields!DocumentDateCaption.Value)
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.56445cm</Height>
+                  <Height>0.6cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox158">
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2704,16 +2708,13 @@ Cstr(Fields!DocumentDateCaption.Value)
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>textbox158</rd:DefaultName>
-                          <ZIndex>10</ZIndex>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Color>Black</Color>
                               <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </TopBorder>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingRight>5pt</PaddingRight>
@@ -2728,7 +2729,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox28">
+                        <Textbox Name="Textbox23">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2749,7 +2750,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox28</rd:DefaultName>
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -2767,13 +2768,14 @@ Cstr(Fields!DocumentDateCaption.Value)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox45">
+                        <Textbox Name="Textbox47">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Label>Sum Amount</Label>
                                   <Value>=Sum(Fields!Amount.Value)</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
@@ -2807,7 +2809,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="Textbox31">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2827,7 +2829,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>Textbox31</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -2845,7 +2847,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox15">
+                        <Textbox Name="Textbox36">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2865,7 +2867,7 @@ Cstr(Fields!DocumentDateCaption.Value)
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <rd:DefaultName>Textbox36</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -2914,55 +2916,45 @@ Cstr(Fields!DocumentDateCaption.Value)
                   <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="table3_Group1">
+                  <Group Name="table3_Group2">
                     <GroupExpressions>
-                      <GroupExpression>=1</GroupExpression>
+                      <GroupExpression>=Fields!LineNo_SalesLine.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="table3_Group2">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!LineNo_SalesLine.Value</GroupExpression>
-                        </GroupExpressions>
+                      <Visibility>
+                        <Hidden>=IIF(Fields!SalesLineTypeInt.Value = 0,False,True)</Hidden>
+                      </Visibility>
+                      <KeepWithGroup>After</KeepWithGroup>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=IIF(Fields!SalesLineTypeInt.Value &gt; 0,False,True)</Hidden>
+                      </Visibility>
+                      <KeepWithGroup>After</KeepWithGroup>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="table3_Details_Group">
+                        <DataElementName>Detail</DataElementName>
                       </Group>
                       <TablixMembers>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIF(Fields!SalesLineTypeInt.Value = 0,False,True)</Hidden>
+                            <Hidden>=IIF(Fields!LineDimensionsCaption.Value = "",True,False)</Hidden>
                           </Visibility>
-                          <KeepWithGroup>After</KeepWithGroup>
-                          <KeepTogether>true</KeepTogether>
-                        </TablixMember>
-                        <TablixMember>
-                          <Visibility>
-                            <Hidden>=IIF(Fields!SalesLineTypeInt.Value &gt; 0,False,True)</Hidden>
-                          </Visibility>
-                          <KeepWithGroup>After</KeepWithGroup>
-                          <KeepTogether>true</KeepTogether>
-                        </TablixMember>
-                        <TablixMember>
-                          <Group Name="table3_Details_Group">
-                            <DataElementName>Detail</DataElementName>
-                          </Group>
-                          <TablixMembers>
-                            <TablixMember>
-                              <Visibility>
-                                <Hidden>=IIF(Fields!LineDimensionsCaption.Value = "",True,False)</Hidden>
-                              </Visibility>
-                            </TablixMember>
-                          </TablixMembers>
-                          <DataElementName>Detail_Collection</DataElementName>
-                          <DataElementOutput>Output</DataElementOutput>
-                          <KeepTogether>true</KeepTogether>
                         </TablixMember>
                       </TablixMembers>
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
+                      <DataElementName>Detail_Collection</DataElementName>
+                      <DataElementOutput>Output</DataElementOutput>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                   </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
@@ -2978,7 +2970,7 @@ Cstr(Fields!DocumentDateCaption.Value)
             </Filters>
             <Top>1.06898cm</Top>
             <Left>0.00352in</Left>
-            <Height>2.61937cm</Height>
+            <Height>2.65492cm</Height>
             <Width>19.67307cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
