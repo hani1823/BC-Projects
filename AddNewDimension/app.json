@@ -1,0 +1,32 @@
+{
+  "id": "e13d3c5d-c5a7-44b9-b889-0bb0cc33f831",
+  "name": "AddNewDimension",
+  "publisher": "Alinma",
+  "version": "1.0.0.3",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "24.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50199
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "13.1",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

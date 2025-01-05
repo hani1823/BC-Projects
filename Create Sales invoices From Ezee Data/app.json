@@ -1,0 +1,80 @@
+{
+  "id": "93e8400a-f700-46cb-be50-f523bbc75aeb",
+  "name": "Create Sales invoices From Ezee Data",
+  "publisher": "Alinma",
+  "version": "1.0.0.13",
+   
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      {
+
+        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
+
+        "publisher":  "LS Retail",
+
+        "name":  "LS Central",
+
+        "version":  "22.0.0.0"
+
+      },{
+
+        "id":  "6b55dc4c-ec05-4f9e-a864-81bbf48663c4",
+
+        "publisher":  "Alinma",
+
+        "name":  "Alinma",
+
+        "version":  "1.3.0.0"
+
+      }],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 99149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}
