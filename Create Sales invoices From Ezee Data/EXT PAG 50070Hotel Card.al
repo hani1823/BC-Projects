@@ -237,7 +237,20 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
                                                 SalesLine.Insert(True);
                                             end;
-
+                                        'Late Checkout Charges':
+                                            begin
+                                                Clear(SalesLine);
+                                                SalesLine.Reset();
+                                                SalesLine.Init();
+                                                SalesLine."Document Type" := SalesLine."Document Type"::Invoice;
+                                                SalesLine."Document No." := SalesHeader."No.";
+                                                SalesLine.Type := SalesLine.Type::Item;
+                                                SalesLine."Line No." := 110000;
+                                                SalesLine.Validate("No.", 'EZE-RE-10008');
+                                                SalesLine.Validate(Quantity, 1);
+                                                SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine.Insert(True);
+                                            end;
 
                                     end;
 
@@ -394,6 +407,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                         eZeeRevenueLine."Slab Tax Ref. Id" := GetJsonToken(lJsonObjectLine, 'sub_ref6_id').AsValue().AsText();
                                         eZeeRevenueLine."Slab Tax Ref. Value" := GetJsonToken(lJsonObjectLine, 'sub_ref6_value').AsValue().AsText();
                                         eZeeRevenueLine."Source Ref. Id" := GetJsonToken(lJsonObjectLine, 'sub_ref7_id').AsValue().AsText();
+
                                         eZeeRevenueLine."Source Ref. Value" := GetJsonToken(lJsonObjectLine, 'sub_ref7_value').AsValue().AsText();
                                         eZeeRevenueLine."Market Code Ref. Id" := GetJsonToken(lJsonObjectLine, 'sub_ref8_id').AsValue().AsText();
                                         eZeeRevenueLine."Market Code Ref. Value" := GetJsonToken(lJsonObjectLine, 'sub_ref8_value').AsValue().AsText();
