@@ -34,10 +34,10 @@ pageextension 50070 MyExtension extends "Hotel Card"
                     CurrPage.GetRecord(hotel);
 
                     EzeeRevenueHeader.SetRange("Hotel Code", hotel.Code);
-                    EzeeRevenueHeader.SetRange("Check Out Date", getdate.GetDate());
+                    //EzeeRevenueHeader.SetRange("Check Out Date", getdate.GetDate());
 
                     // looking for headers
-                    MyQuery.SetRange(MyQuery.Check_Out_Date, getdate.GetDate());
+                    //MyQuery.SetRange(MyQuery.Check_Out_Date, getdate.GetDate());
                     MyQuery.SetRange(MyQuery.Hotel_Code, hotel.Code);
                     MyQuery.SetFilter(MyQuery.Bill_No____Invoice_No_, '<>%1', '');
                     MyQuery.SetFilter(MyQuery.Total_Amount, '<>%1', 0);
@@ -237,6 +237,8 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
                                                 SalesLine.Insert(True);
                                             end;
+
+                                        /////Late Checkout Charges
                                         'Late Checkout Charges':
                                             begin
                                                 Clear(SalesLine);
@@ -251,33 +253,15 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
                                                 SalesLine.Insert(True);
                                             end;
-
                                     end;
-
-
                                 end;
                             end;
-
-
                             //calculate header totals
                             SalesHeader.CalcFields(Amount, "Amount Including VAT");
-
                         end;
                     end;
-
-
-
-
-
-
-
-
-
                     Message(' %1 invoices has been created', counter1);
-
-
                 end;
-
             }
 
             action(getEzeeData)
@@ -302,7 +286,12 @@ pageextension 50070 MyExtension extends "Hotel Card"
                     i, j, lArrayHeaderCount : Integer;
 
                     datefilter: text[20];
+
+                //Counter2: Integer;
+                //Counter3: Integer;
                 begin
+                    //Counter2 := 0;
+                    //Counter3 := 0;
                     CurrPage.GetRecord(Hotel);
                     Clear(OutStreamRequest);
                     Clear(OutStreamResponse);
@@ -331,10 +320,11 @@ pageextension 50070 MyExtension extends "Hotel Card"
                         eZeeRevenueLine.DeleteAll();
                         lArrayHeaderCount := lJsonArrayHeader.Count;
                         for i := 0 to lJsonArrayHeader.Count - 1 do begin
-
+                            //Counter2 := Counter2 + 1;
                             lJsonArrayHeader.Get(i, lJsonToken);
                             lJsonObjectHeader := lJsonToken.AsObject();
                             if not eZeeRevenueHeader.Get(Hotel.Code, GetJsonToken(lJsonObjectHeader, 'record_id').AsValue().AsText()) then begin
+                                //Counter3 := Counter3 + 1;
 
                                 eZeeRevenueHeader.Reset();
                                 eZeeRevenueHeader.Init();
@@ -435,6 +425,8 @@ pageextension 50070 MyExtension extends "Hotel Card"
                         HttpResponse.Content.ReadAs(lResponseText);
                         Error('Could not read data due to following API error: ' + lResponseText);
                     end;
+                    //Message(' %1 counter2, %2 counter3, %3 lJsonArrayHeader.Count ', Counter2, Counter3, lJsonArrayHeader.Count);
+
                 end;
 
 
