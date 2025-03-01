@@ -99,7 +99,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                             end;
 
 
-                                        'laundry':
+                                        'Laundry':
                                             begin
                                                 Clear(SalesLine);
                                                 SalesLine.Reset();
@@ -114,20 +114,6 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Insert(True);
                                             end;
 
-                                        'Laundry':
-                                            begin
-                                                Clear(SalesLine);
-                                                SalesLine.Reset();
-                                                SalesLine.Init();
-                                                SalesLine."Document Type" := SalesLine."Document Type"::Invoice;
-                                                SalesLine."Document No." := SalesHeader."No.";
-                                                SalesLine.Type := SalesLine.Type::Item;
-                                                SalesLine."Line No." := 35000;
-                                                SalesLine.Validate("No.", 'EZE-RE-10015');
-                                                SalesLine.Validate(Quantity, 1);
-                                                SalesLine.Validate("Unit Price", MyQueryLines.Amount);
-                                                SalesLine.Insert(True);
-                                            end;
 
                                         'Breakfast':
                                             begin

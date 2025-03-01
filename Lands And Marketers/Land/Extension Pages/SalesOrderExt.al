@@ -275,6 +275,16 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 ApplicationArea = all;
                 Visible = ShowFields;
             }
+            field("SREM No."; Rec."SREM No.")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
+            field("RETax No."; Rec."RETax No.")
+            {
+                ApplicationArea = all;
+                Visible = ShowFields;
+            }
             field("Cheque Number"; Rec."Cheque Number")
             {
                 ApplicationArea = all;

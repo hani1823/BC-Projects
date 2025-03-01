@@ -19,6 +19,7 @@ report 50140 "FA Report"
             column(Description; Description) { }
             column(FA_Posting_Type; "FA Posting Type") { }
             column(FA_Posting_Category; "FA Posting Category") { }
+            column(Posting_Date; "Posting Date") { }
             column(Amount; Amount) { }
             dataitem("Fixed Asset"; "Fixed Asset")
             {

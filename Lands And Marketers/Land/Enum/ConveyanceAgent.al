@@ -25,4 +25,8 @@ enum 50120 ConveyanceAgentEnum
     {
 
     }
+    value(6; "البورصة العقارية")
+    {
+
+    }
 }

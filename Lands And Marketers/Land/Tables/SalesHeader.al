@@ -31,6 +31,14 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(50158; "SREM No."; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50159; "RETax No."; Code[15])
+        {
+            DataClassification = ToBeClassified;
+        }
         field(50150; "Cheque Number"; Code[10])
         {
             DataClassification = ToBeClassified;
