@@ -35,9 +35,9 @@ pageextension 50157 "Vendor Card Ext" extends "Vendor Card"
                     ForceDimSet.UpdateEmployeeDimension(2158, '28263', '28270');
                 end;
             }
-            action("ForceAllEmployeeUpdate28261")
+            action("ForceAllEmployeeUpdate28253")
             {
-                Caption = 'Force All Employee Dim from 28261 to 28270';
+                Caption = 'Force All Employee Dim from 28253 to 28270';
                 ApplicationArea = All;
 
                 trigger OnAction()
@@ -46,10 +46,10 @@ pageextension 50157 "Vendor Card Ext" extends "Vendor Card"
                 begin
                     // Hard-coded example: We want to change
                     // OldEmp=28263, NewEmp=28270
-                    ForceDimSet.UpdateAllEmployeeDimensions('28261', '28270');
+                    ForceDimSet.UpdateAllEmployeeDimensions('28253', '28240');
                 end;
             }
-            action("ForceAllEmployeeUpdate28263")
+            /*action("ForceAllEmployeeUpdate28263")
             {
                 Caption = 'Force All Employee Dim from 28263 to 28270';
                 ApplicationArea = All;
@@ -104,7 +104,7 @@ pageextension 50157 "Vendor Card Ext" extends "Vendor Card"
                     // OldEmp=28263, NewEmp=28270
                     ForceDimSet.UpdateAllEmployeeDimensions('28275', '28270');
                 end;
-            }
+            }*/
         }
     }
 }

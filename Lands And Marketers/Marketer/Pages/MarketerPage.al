@@ -26,6 +26,7 @@ page 50131 "Marketer Page"
                             ResetValues();
                             UpdateOutsideMarketer(VendorRec);
                             IsMarketerDomestic();
+                            IsMarketerAgent();
                             setCommission();
                             CurrPage.Update();
                         end;
@@ -157,51 +158,112 @@ page 50131 "Marketer Page"
         end;
 
         if SalesRec."Sale Source" = SaleSourceEnum::"المالك" then begin
-            if IsOutside = true then begin
-                ResetValues();
-                SonsComm := 0.2350;
-                OutsideMarketerComm := 0.50;
-                SupervisorComm := 0.005;
-                SuleimanComm := 0.01;
+            if IsEnternal = false then begin
+                if IsOutside = true then begin
+                    ResetValues();
+                    SonsComm := 0.2350;
+                    OutsideMarketerComm := 0.50;
+                    SupervisorComm := 0.005;
+                    SuleimanComm := 0.01;
 
-                // Marketer 1 (Sons)
-                InsertMarketer('RV10099', SonsComm, TotalCommissionWithoutVAT);
+                    // Marketer 1 (Sons)
+                    InsertMarketer('RV10099', SonsComm, TotalCommissionWithoutVAT);
 
-                // Marketer 2 (Outside Marketer)
-                InsertMarketer(OutsideMarketer, OutsideMarketerComm, TotalCommissionWithoutVAT);
+                    // Marketer 2 (Outside Marketer)
+                    InsertMarketer(OutsideMarketer, OutsideMarketerComm, TotalCommissionWithoutVAT);
 
-                // Marketer 3 (Supervisor)
-                InsertMarketer('RV10079', SupervisorComm, TotalCommissionWithoutVAT);
+                    // Marketer 3 (Supervisor)
+                    InsertMarketer('RV10079', SupervisorComm, TotalCommissionWithoutVAT);
 
-                // Marketer 4 (Suleiman)
-                InsertMarketer('RV10061', SuleimanComm, TotalCommissionWithoutVAT);
+                    // Marketer 4 (Suleiman)
+                    InsertMarketer('RV10061', SuleimanComm, TotalCommissionWithoutVAT);
 
-            end
-            else begin
-                ResetValues();
-                SonsComm := 0.55;
-                SupervisorComm := 0.005;
-                SuleimanComm := 0.01;
+                end
+                else begin
+                    ResetValues();
+                    SonsComm := 0.4350;
+                    SupervisorComm := 0.005;
+                    SuleimanComm := 0.01;
 
-                // Marketer 1 (Sons)
-                InsertMarketer('RV10099', SonsComm, TotalCommissionWithoutVAT);
+                    // Marketer 1 (Sons)
+                    InsertMarketer('RV10099', SonsComm, TotalCommissionWithoutVAT);
 
-                // Marketer 2 (Supervisor)
-                InsertMarketer('RV10079', SupervisorComm, TotalCommissionWithoutVAT);
+                    // Marketer 2 (Supervisor)
+                    InsertMarketer('RV10079', SupervisorComm, TotalCommissionWithoutVAT);
 
-                // Marketer 3 (Suleiman)
-                InsertMarketer('RV10061', SuleimanComm, TotalCommissionWithoutVAT);
+                    // Marketer 3 (Suleiman)
+                    InsertMarketer('RV10061', SuleimanComm, TotalCommissionWithoutVAT);
+                end;
+            end else begin
+                if IsOutside = true then begin
+                    ResetValues();
+                    // Marketer 1 (Sons)
+                    InsertMarketer('RV10099', 0.2350, TotalCommissionWithoutVAT);
+
+                    // Marketer 2 (Outside Marketer)
+                    InsertMarketer(OutsideMarketer, 0.25, TotalCommissionWithoutVAT);
+
+                    // Marketer 3 (Supervisor)
+                    InsertMarketer('RV10079', 0.005, TotalCommissionWithoutVAT);
+
+                    // Marketer 4 (Suleiman)
+                    InsertMarketer('RV10061', 0.01, TotalCommissionWithoutVAT);
+
+                    // Marketer 5 (Sales Office)
+                    MarketerRec.SetRange("Document No.", Rec."Document No.");
+                    if MarketerRec.FindSet() then begin
+                        repeat
+                            if VendorRec.Get(MarketerRec."No.") then begin
+                                if VendorRec."Gen. Bus. Posting Group" = 'AGENTS' then begin
+                                    if (MarketerRec."No." <> 'RV10099') and
+                                       (MarketerRec."No." <> 'RV10079') and
+                                       (MarketerRec."No." <> 'RV10061') and
+                                       (MarketerRec."No." <> OutsideMarketer) then begin
+                                        InsertMarketer(MarketerRec."No.", (0.25 / Counter), TotalCommissionWithoutVAT);
+                                    end;
+                                end;
+                            end;
+                        until MarketerRec.Next() = 0;
+                    end;
+
+                end else begin
+                    ResetValues();
+                    // Marketer 1 (Sons)
+                    InsertMarketer('RV10099', 0.29, TotalCommissionWithoutVAT);
+
+                    // Marketer 2 (Supervisor)
+                    InsertMarketer('RV10079', 0.005, TotalCommissionWithoutVAT);
+
+                    // Marketer 3 (Suleiman)
+                    InsertMarketer('RV10061', 0.01, TotalCommissionWithoutVAT);
+
+                    // Marketer 4 (Sales Office)
+                    MarketerRec.SetRange("Document No.", Rec."Document No.");
+                    if MarketerRec.FindSet() then begin
+                        repeat
+                            if VendorRec.Get(MarketerRec."No.") then begin
+                                if VendorRec."Gen. Bus. Posting Group" = 'AGENTS' then begin
+                                    if (MarketerRec."No." <> 'RV10099') and
+                                        (MarketerRec."No." <> 'RV10079') and
+                                        (MarketerRec."No." <> 'RV10061') and
+                                        (MarketerRec."No." <> OutsideMarketer) then begin
+                                        InsertMarketer(MarketerRec."No.", (0.4450 / Counter), TotalCommissionWithoutVAT);
+                                    end;
+                                end;
+                            end;
+                        until MarketerRec.Next() = 0;
+                    end;
+                end;
             end;
-
 
         end else if SalesRec."Sale Source" = SaleSourceEnum::"مكتب المبيعات" then begin
             if IsOutside = true then begin
                 ResetValues();
                 // Marketer 1 (Sons)
-                InsertMarketer('RV10099', 0.2250, TotalCommissionWithoutVAT);
+                InsertMarketer('RV10099', 0.2350, TotalCommissionWithoutVAT);
 
                 // Marketer 2 (Outside Marketer)
-                InsertMarketer(OutsideMarketer, 0.26, TotalCommissionWithoutVAT);
+                InsertMarketer(OutsideMarketer, 0.25, TotalCommissionWithoutVAT);
 
                 // Marketer 3 (Supervisor)
                 InsertMarketer('RV10079', 0.005, TotalCommissionWithoutVAT);
@@ -247,7 +309,7 @@ page 50131 "Marketer Page"
                                     (MarketerRec."No." <> 'RV10079') and
                                     (MarketerRec."No." <> 'RV10061') and
                                     (MarketerRec."No." <> OutsideMarketer) then begin
-                                    InsertMarketer(MarketerRec."No.", (0.35 / Counter), TotalCommissionWithoutVAT);
+                                    InsertMarketer(MarketerRec."No.", (0.4450 / Counter), TotalCommissionWithoutVAT);
                                 end;
                             end;
                         end;
@@ -303,6 +365,28 @@ page 50131 "Marketer Page"
         end;
     end;
 
+    procedure IsMarketerAgent()
+    var
+        MarketerRec: Record Marketer;
+        VendorRec: Record Vendor;
+    begin
+        MarketerRec.SetRange("Document No.", Rec."Document No.");
+        IsEnternal := false;
+
+        if MarketerRec.FindSet() then begin
+            repeat
+                if VendorRec.Get(MarketerRec."No.") then begin
+                    if (VendorRec."Gen. Bus. Posting Group" = 'AGENTS') and (MarketerRec."No." <> 'RV10099') and
+                                    (MarketerRec."No." <> 'RV10079') and
+                                    (MarketerRec."No." <> 'RV10061') then begin
+                        IsEnternal := true;
+                        break;
+                    end;
+                end;
+            until MarketerRec.Next() = 0;
+        end;
+    end;
+
     local procedure UpdateOutsideMarketer(VendorRec: Record Vendor)
     begin
         if VendorRec."Gen. Bus. Posting Group" = 'DOMESTIC' then begin
@@ -318,6 +402,7 @@ page 50131 "Marketer Page"
     trigger OnAfterGetCurrRecord()
     Begin
         IsMarketerDomestic();
+        IsMarketerAgent();
     End;
 
     trigger OnNewRecord(BelowxRec: Boolean)
@@ -331,24 +416,18 @@ page 50131 "Marketer Page"
         if Rec.IsManual then
             exit;
         IsMarketerDomestic();
+        IsMarketerAgent();
         setCommission();
         Rec.IsManual := false;
     end;
 
     trigger OnDeleteRecord(): Boolean
-    var
-        MarketerRec: Record Marketer;
     begin
-        if MarketerRec.Get(Rec."No.", Rec."Document No.") then begin
-            if Rec."No." = OutsideMarketer then begin
-                IsOutside := false;
-                MarketerRec.Delete();
-                setCommission();
-                CurrPage.Update();
-                exit(true);
-            end;
-        End;
-        exit(false);
+        if Rec."No." = OutsideMarketer then begin
+            IsOutside := false;
+            setCommission();
+            exit(true);
+        end;
     end;
 
     procedure ResetValues()
@@ -368,6 +447,7 @@ page 50131 "Marketer Page"
     var
         SalesRec: Record "Sales Header";
         IsOutside: Boolean;
+        IsEnternal: Boolean;
         OutsideMarketer: Code[20];
         SonsComm: Decimal;
         OutsideMarketerComm: Decimal;

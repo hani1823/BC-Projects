@@ -1,0 +1,61 @@
+{
+  "id": "1c2f2391-4259-4a47-b312-71299020def1",
+  "name": "Store Statistics",
+  "publisher": "Default publisher",
+  "version": "1.2.0.6",
+  
+
+
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+],
+
+  "screenshots": [],
+
+  "platform": "21.0.0.0",
+
+  "application": "21.5.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": true,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

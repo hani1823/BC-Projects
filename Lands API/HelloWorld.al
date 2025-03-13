@@ -89,6 +89,7 @@ page 81000 Test
                     HttpClient.DefaultRequestHeaders.Add('Authorization', 'Bearer ' + AccessToken);
 
                     jsonbjet.Add('planName', 'test');
+                    jsonbjet.Add('ownerName', '');
                     jsonbjet.Add('saleType', '');
                     jsonbjet.Add('saleSource', '');
                     jsonbjet.Add('clientName', 'hani 5');

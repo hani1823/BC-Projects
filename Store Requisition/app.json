@@ -2,7 +2,7 @@
   "id": "1bec5b61-8eaf-4a73-8d7a-1d3b9d695749",
   "name": "Store Requisition",
   "publisher": "Alinma",
-  "version": "1.0.0.10",
+  "version": "1.0.0.11",
   "brief": "",
 
   "description": "",
@@ -19,17 +19,7 @@
 
   "dependencies": [
 
-      {
-
-        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
-
-        "publisher":  "LS Retail",
-
-        "name":  "LS Central",
-
-        "version":  "23.0.0.0"
-
-      }],
+      ],
 
   "screenshots": [],
 

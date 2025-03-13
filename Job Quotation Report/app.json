@@ -1,0 +1,60 @@
+{
+  "id": "dd898ba6-1d28-4f95-ba79-7dcd8b131991",
+  "name": "Job Quotation Report",
+  "publisher": "Alinma",
+  "version": "1.0.0.1",
+   
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      ],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

@@ -264,6 +264,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                         repeat
                             ResetValues2();
                             MarketerPage.IsMarketerDomestic();
+                            MarketerPage.IsMarketerAgent();
                             MarketerPage.setCommission();
                         until MarketerRec.Next() = 0;
                     end;
@@ -403,6 +404,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                             MarketerRec.IsManual := false;
                             MarketerRec.Modify();
                             MarketerPage.IsMarketerDomestic();
+                            marketerPage.IsMarketerAgent();
                             MarketerPage.SetCommission();
                         until MarketerRec.Next() = 0;
                     end;

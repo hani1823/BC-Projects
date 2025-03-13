@@ -44,6 +44,10 @@ query 70028 "APIV1 - lands"
             {
                 Caption = 'Owner Name', Locked = true;
             }
+            column(Status; Status)
+            {
+                Caption = 'Status', Locked = true;
+            }
             column(Total_price_per_meter; "Total price per meter")
             {
                 Caption = 'Total price per meter', Locked = true;

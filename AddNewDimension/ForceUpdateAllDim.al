@@ -18,7 +18,7 @@ codeunit 50158 "Force Update All DimSet"
             Error('Dimension Value %1 does not exist for the EMPLOYEE dimension.', NewEmployeeCode);
 
         // We'll store the correct "Id" field for the new employee dimension value
-        NewValueID := 305;
+        NewValueID := 301;
 
         // 2) Find all "Dimension Set Entry" records where:
         //    - Dimension Code = 'EMPLOYEE'

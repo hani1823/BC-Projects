@@ -2,7 +2,7 @@
   "id": "b07a972d-3edf-452b-8fc8-3db1e27fb1bf",
   "name": "SR Report",
   "publisher": "Hani",
-  "version": "1.0.0.1",
+  "version": "1.0.0.2",
   "brief": "",
 
   "description": "",
@@ -18,18 +18,7 @@
   "logo": "",
 
   "dependencies": [
-
-      {
-
-        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
-
-        "publisher":  "LS Retail",
-
-        "name":  "LS Central",
-
-        "version":  "21.5.0.0"
-
-      }],
+],
 
   "screenshots": [],
 

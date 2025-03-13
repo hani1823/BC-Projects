@@ -845,6 +845,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
         PurcInvLine: array[10] of Record "Purchase line";
         SalesLines: Record "Sales Line";
         marketer: Record Marketer;
+        purchRelease: Codeunit "Purchase Manual Release";
     begin
         cpt := 1;
         // create PI Header
@@ -874,6 +875,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 PurcInvLine[cpt].Description := SalesLines.Description;
                 //PurcInvLine[cpt].Validate("No.");
                 PurcInvLine[cpt].Quantity := 1;
+                PurcInvLine[cpt]."Unit of Measure Code" := SalesLines."Unit of Measure Code";
                 PurcInvLine[cpt]."Dimension Set ID" := SalesLines."Dimension Set ID";
                 PurcInvLine[cpt]."Direct Unit Cost" := SalesLines."Commission Without VAT" * Percentage;
                 PurcInvLine[cpt].Validate("Direct Unit Cost");
@@ -881,8 +883,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 cpt := cpt + 1;
             until SalesLines.Next() = 0;
         end;
-
-
+        purchRelease.Run(PurcInvHeader);
     end;
 
     ////        Create Sales Invoice for Adminstration service 

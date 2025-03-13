@@ -1,0 +1,60 @@
+{
+  "id": "147ead08-5d89-41d0-b579-1fdf983e7538",
+  "name": "Purchasing report by Departement",
+  "publisher": "Alinma",
+  
+  "version": "1.5.1.3",
+
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+],
+
+  "screenshots": [],
+
+  "platform": "21.0.0.0",
+
+  "application": "21.5.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": true,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

@@ -8,7 +8,7 @@
             "type": "al",
             "tenant": "9b540f11-2b5c-4c74-bb40-a4d22950e763",
             "environmentType": "Sandbox",
-            "applicationFamily": "LSCentral",
+            //"applicationFamily": "LSCentral",
             "environmentName": "Sandbox-01",
             "startupObjectId": 9307,
             "startupObjectType": "Page",

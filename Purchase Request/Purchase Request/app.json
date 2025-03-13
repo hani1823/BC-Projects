@@ -1,0 +1,61 @@
+{
+  "id": "2b3d25d8-90ec-4eb0-9cd9-383247095dd5",
+  "name": "Purchase Request",
+  "publisher": "Abdelhak",
+
+  "version": "1.0.2.2",
+
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      ],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

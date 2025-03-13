@@ -1,0 +1,58 @@
+{
+  "id": "07752c03-41e4-4e16-821a-3d7605cdc298",
+  "name": "Sales Invoice QR",
+  "publisher": "Alinma",
+  "version": "1.0.0.2",
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+],
+
+  "screenshots": [],
+
+  "platform": "21.0.0.0",
+
+  "application": "21.5.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 99999
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": true,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

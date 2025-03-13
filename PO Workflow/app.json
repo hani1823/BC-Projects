@@ -1,0 +1,60 @@
+{
+  "id": "abf52567-d4c0-4ef1-9653-34f7da177d4f",
+  "name": "PO Workflow",
+  "publisher": "Alinma",
+  "version": "1.0.0.4",
+  
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      ],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 50149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}

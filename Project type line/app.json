@@ -1,0 +1,60 @@
+{
+  "id": "88d8dd10-6b76-44cd-9d7c-cf6d8163b4a4",
+  "name": "Project type line",
+  "publisher": "Alinma",
+  "version": "1.0.0.1",
+  
+  "brief": "",
+
+  "description": "",
+
+  "privacyStatement": "",
+
+  "EULA": "",
+
+  "help": "",
+
+  "url": "",
+
+  "logo": "",
+
+  "dependencies": [
+
+      ],
+
+  "screenshots": [],
+
+  "platform": "22.0.0.0",
+
+  "application": "22.0.0.0",
+
+  "idRanges": [
+
+    {
+
+      "from": 50001,
+
+      "to": 99149
+
+    }
+
+  ],
+
+  "resourceExposurePolicy": {
+
+    "allowDebugging": true,
+
+    "allowDownloadingSource": false,
+
+    "includeSourceInSymbolFile": true
+
+  },
+
+  "runtime": "10.0",
+
+  "features": [
+
+    "NoImplicitWith"
+
+  ]
+}
