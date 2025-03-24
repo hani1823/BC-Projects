@@ -46,7 +46,7 @@ codeunit 50558 "ConstrcApi"
             Newcustomer."Currency Code" := 'SAR';
             Newcustomer."Payment Terms Code" := '14 DAYS';
             Newcustomer."Payment Method Code" := 'CASH';
-            Newcustomer."Zatca Customer Type" := Newcustomer."Zatca Customer Type"::Individual;
+            Newcustomer."Zatca Customer Type HAC" := Newcustomer."Zatca Customer Type HAC"::Individual;
             Newcustomer.Insert();
 
             // Create Default Dimensions for the new customer

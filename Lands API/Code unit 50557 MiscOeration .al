@@ -80,6 +80,7 @@ codeunit 50557 "MiscOperations"
     procedure CreateSalesOrderMarketerForm(
 
      planName: text;
+     ownerName: text;
      saleType: Text;
      saleSource: Text;
      clientName: Text;
@@ -143,6 +144,7 @@ codeunit 50557 "MiscOperations"
         /// find customer 
         salesHeader.Init();
         salesHeader.IDs := receiptAtt;
+
         /*      salesHeader.desc :=
           'planName: ' + planName + ' - ' +
           'saleType: ' + saleType + ' - ' +
@@ -197,7 +199,7 @@ codeunit 50557 "MiscOperations"
             newCust."Currency Code" := 'SAR';
             newCust."Payment Terms Code" := '14 DAYS';
             newCust."Payment Method Code" := 'CASH';
-            newCust."Zatca Customer Type" := newCust."Zatca Customer Type"::Individual;
+            newCust."Zatca Customer Type HAC" := newCust."Zatca Customer Type HAC"::Individual;
             newCust."Customer ID" := idNumber;
             Evaluate(newCust."Date of Birth", birthDate);
             //newCust.Validate(Name);
@@ -303,152 +305,257 @@ codeunit 50557 "MiscOperations"
         /// 
         case saleSource of
             'Owner':
-                case newMarketer of
-                    '':
-                        begin
+                begin
+                    // Parse the `marketer` string to see if we have any “other” (internal) marketers
+                    TextLine := marketer;
+                    counter := STRLEN(DELCHR(TextLine, '=', DELCHR(TextLine, '=', ',')));
 
-                            // Create Ahmed And Mohamed 
+                    // ============== CASES 1–3: NO OTHER (INTERNAL) MARKETERS ==============
+                    if counter = 0 then begin
+                        // 1) No External Marketer, No “other” Marketers
+                        if (newMarketer = '') then begin
+                            // "RV10099" = 0.4350, "RV10079" = 0.005, "RV10061" = 0.01
+
+                            // Marketer 1 (Sons)
                             MarketerNOList[1].Init();
                             MarketerNOList[1]."No." := 'RV10099';
                             vendNameFind.Reset();
                             vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[1].Name := vendNameFind.Name;
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[1].Name := vendNameFind.Name;
                             MarketerNOList[1]."Document No." := salesHeader."No.";
                             MarketerNOList[1].Percentage := 0.4350;
                             MarketerNOList[1].Insert();
-                            //Creatr Suliman
+
+                            // Marketer 2 (Suleiman)
                             MarketerNOList[2].Init();
                             MarketerNOList[2]."No." := 'RV10061';
                             vendNameFind.Reset();
                             vendNameFind.SetRange("No.", MarketerNOList[2]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[2].Name := vendNameFind.Name;
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[2].Name := vendNameFind.Name;
                             MarketerNOList[2]."Document No." := salesHeader."No.";
                             MarketerNOList[2].Percentage := 0.01;
                             MarketerNOList[2].Insert();
-                            // abdelwahab
+
+                            // Marketer 3 (Abdelwahab)
                             MarketerNOList[3].Init();
                             MarketerNOList[3]."No." := 'RV10079';
                             vendNameFind.Reset();
                             vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[3].Name := vendNameFind.Name;
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[3].Name := vendNameFind.Name;
                             MarketerNOList[3]."Document No." := salesHeader."No.";
                             MarketerNOList[3].Percentage := 0.005;
                             MarketerNOList[3].Insert();
-                            // /// Other Marketer
-                            // TextLine := marketer;
-                            // counter := STRLEN(DELCHR(TextLine, '=', DELCHR(TextLine, '=', ',')));
-                            // for I := 1 to counter do begin
-                            //     MarketerNOList[3 + I].Init();
-                            //     MarketerNOList[3 + I]."No." := SelectStr(I, TextLine);
-                            //     vendNameFind.Reset();
-                            //     vendNameFind.SetRange("No.", MarketerNOList[3 + I]."No.");
-                            //     if vendNameFind.FindFirst() then MarketerNOList[3 + I].Name := vendNameFind.Name;
-                            //     MarketerNOList[3 + I]."Document No." := salesHeader."No.";
-                            //     MarketerNOList[3 + I].Commission := 0.435 / counter;
-                            //     MarketerNOList[3 + I].Insert();
-                            // end;
-                        end;
-                    'new':
-                        begin
-                            // Create Ahmed And Mohamed 
+                        end
+                        // 2) NEW External Marketer, No “other” Marketers
+                        else if (newMarketer = 'new') then begin
+                            // "RV10099" = 0.2350, External = 0.50, "RV10079" = 0.005, "RV10061" = 0.01
+
+                            // Marketer 1 (Sons)
                             MarketerNOList[1].Init();
                             MarketerNOList[1]."No." := 'RV10099';
                             vendNameFind.Reset();
                             vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[1].Name := vendNameFind.Name;
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[1].Name := vendNameFind.Name;
                             MarketerNOList[1]."Document No." := salesHeader."No.";
                             MarketerNOList[1].Percentage := 0.235;
                             MarketerNOList[1].Insert();
-                            //Creatr Suliman
+
+                            // Marketer 2 (External)
                             MarketerNOList[2].Init();
-                            MarketerNOList[2]."No." := 'RV10061';
-                            vendNameFind.Reset();
-                            vendNameFind.SetRange("No.", MarketerNOList[2]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[2].Name := vendNameFind.Name;
+                            MarketerNOList[2]."No." := vendCreated."No.";  // newly created vendor
+                            MarketerNOList[2].Name := vendCreated.Name;
                             MarketerNOList[2]."Document No." := salesHeader."No.";
-                            MarketerNOList[2].Percentage := 0.01;
+                            MarketerNOList[2].Percentage := 0.50;
                             MarketerNOList[2].Insert();
-                            // abdelwahab
+
+                            // Marketer 3 (Abdelwahab)
                             MarketerNOList[3].Init();
                             MarketerNOList[3]."No." := 'RV10079';
                             vendNameFind.Reset();
                             vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
-                            if vendNameFind.FindFirst() then MarketerNOList[3].Name := vendNameFind.Name;
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[3].Name := vendNameFind.Name;
                             MarketerNOList[3]."Document No." := salesHeader."No.";
                             MarketerNOList[3].Percentage := 0.005;
                             MarketerNOList[3].Insert();
-                            // External Marketer Createrd
+
+                            // Marketer 4 (Suleiman)
                             MarketerNOList[4].Init();
-                            MarketerNOList[4]."No." := vendCreated."No.";
-                            MarketerNOList[4].Name := vendCreated.Name;
+                            MarketerNOList[4]."No." := 'RV10061';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[4]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[4].Name := vendNameFind.Name;
                             MarketerNOList[4]."Document No." := salesHeader."No.";
-                            MarketerNOList[4].Percentage := 0.5;
+                            MarketerNOList[4].Percentage := 0.01;
                             MarketerNOList[4].Insert();
-                            /// Other Marketer
-                            // TextLine := marketer;
-                            // counter := STRLEN(DELCHR(TextLine, '=', DELCHR(TextLine, '=', ',')));
-                            // for I := 1 to counter do begin
-                            //     MarketerNOList[4 + I].Init();
-                            //     MarketerNOList[4 + I]."No." := SelectStr(I, TextLine);
-                            //     vendNameFind.Reset();
-                            //     vendNameFind.SetRange("No.", MarketerNOList[4 + I]."No.");
-                            //     if vendNameFind.FindFirst() then MarketerNOList[4 + I].Name := vendNameFind.Name;
-                            //     MarketerNOList[4 + I]."Document No." := salesHeader."No.";
-                            //     MarketerNOList[4 + I].Commission := 0.25 / counter;
-                            //     MarketerNOList[4 + I].Insert();
-                            // end;
+                        end
+                        // 3) EXISTING External Marketer, No “other” Marketers
+                        else begin
+                            // "RV10099" = 0.2350, External = 0.50, "RV10079" = 0.005, "RV10061" = 0.01
+
+                            // Marketer 1 (Sons)
+                            MarketerNOList[1].Init();
+                            MarketerNOList[1]."No." := 'RV10099';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[1].Name := vendNameFind.Name;
+                            MarketerNOList[1]."Document No." := salesHeader."No.";
+                            MarketerNOList[1].Percentage := 0.235;
+                            MarketerNOList[1].Insert();
+
+                            // Marketer 2 (External)
+                            MarketerNOList[2].Init();
+                            MarketerNOList[2]."No." := vend2."No.";  // existing vendor
+                            MarketerNOList[2].Name := vend2.Name;
+                            MarketerNOList[2]."Document No." := salesHeader."No.";
+                            MarketerNOList[2].Percentage := 0.50;
+                            MarketerNOList[2].Insert();
+
+                            // Marketer 3 (Abdelwahab)
+                            MarketerNOList[3].Init();
+                            MarketerNOList[3]."No." := 'RV10079';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[3].Name := vendNameFind.Name;
+                            MarketerNOList[3]."Document No." := salesHeader."No.";
+                            MarketerNOList[3].Percentage := 0.005;
+                            MarketerNOList[3].Insert();
+
+                            // Marketer 4 (Suleiman)
+                            MarketerNOList[4].Init();
+                            MarketerNOList[4]."No." := 'RV10061';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[4]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[4].Name := vendNameFind.Name;
+                            MarketerNOList[4]."Document No." := salesHeader."No.";
+                            MarketerNOList[4].Percentage := 0.01;
+                            MarketerNOList[4].Insert();
                         end;
+                    end
+                    // ============== CASES 4A/4B: WE HAVE “OTHER” (INTERNAL) MARKETERS ==============
                     else begin
-                        // Create Ahmed And Mohamed 
-                        MarketerNOList[1].Init();
-                        MarketerNOList[1]."No." := 'RV10099';
-                        vendNameFind.Reset();
-                        vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
-                        if vendNameFind.FindFirst() then MarketerNOList[1].Name := vendNameFind.Name;
-                        MarketerNOList[1]."Document No." := salesHeader."No.";
-                        MarketerNOList[1].Percentage := 0.235;
-                        MarketerNOList[1].Insert();
-                        //Creatr Suliman
-                        MarketerNOList[2].Init();
-                        MarketerNOList[2]."No." := 'RV10061';
-                        vendNameFind.Reset();
-                        vendNameFind.SetRange("No.", MarketerNOList[2]."No.");
-                        if vendNameFind.FindFirst() then MarketerNOList[2].Name := vendNameFind.Name;
-                        MarketerNOList[2]."Document No." := salesHeader."No.";
-                        MarketerNOList[2].Percentage := 0.01;
-                        MarketerNOList[2].Insert();
-                        // abdelwahab
-                        MarketerNOList[3].Init();
-                        MarketerNOList[3]."No." := 'RV10079';
-                        vendNameFind.Reset();
-                        vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
-                        if vendNameFind.FindFirst() then MarketerNOList[3].Name := vendNameFind.Name;
-                        MarketerNOList[3]."Document No." := salesHeader."No.";
-                        MarketerNOList[3].Percentage := 0.005;
-                        MarketerNOList[3].Insert();
-                        // External Marketer Found
-                        MarketerNOList[4].Init();
-                        MarketerNOList[4]."No." := vend2."No.";
-                        MarketerNOList[4].Name := vend2.Name;
-                        MarketerNOList[4]."Document No." := salesHeader."No.";
-                        MarketerNOList[4].Percentage := 0.5;
-                        MarketerNOList[4].Insert();
-                        /// Other Marketer
-                        // TextLine := marketer;
-                        // counter := STRLEN(DELCHR(TextLine, '=', DELCHR(TextLine, '=', ',')));
-                        // for I := 1 to counter do begin
-                        //     MarketerNOList[4 + I].Init();
-                        //     MarketerNOList[4 + I]."No." := SelectStr(I, TextLine);
-                        //     vendNameFind.Reset();
-                        //     vendNameFind.SetRange("No.", MarketerNOList[4 + I]."No.");
-                        //     if vendNameFind.FindFirst() then MarketerNOList[4 + I].Name := vendNameFind.Name;
-                        //     MarketerNOList[4 + I]."Document No." := salesHeader."No.";
-                        //     MarketerNOList[4 + I].Commission := 0.25 / counter;
-                        //     MarketerNOList[4 + I].Insert();
-                        // end;
+                        // 4B) NO external marketer but we do have other marketers:
+                        //   "RV10099" = 0.29, "RV10079" = 0.005, "RV10061" = 0.01, leftover=0.445 shared by “other marketers”
+                        if (newMarketer = '') then begin
+                            // Marketer 1 (Sons)
+                            MarketerNOList[1].Init();
+                            MarketerNOList[1]."No." := 'RV10099';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[1].Name := vendNameFind.Name;
+                            MarketerNOList[1]."Document No." := salesHeader."No.";
+                            MarketerNOList[1].Percentage := 0.29;
+                            MarketerNOList[1].Insert();
+
+                            // Marketer 2 (Abdelwahab)
+                            MarketerNOList[2].Init();
+                            MarketerNOList[2]."No." := 'RV10079';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[2]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[2].Name := vendNameFind.Name;
+                            MarketerNOList[2]."Document No." := salesHeader."No.";
+                            MarketerNOList[2].Percentage := 0.005;
+                            MarketerNOList[2].Insert();
+
+                            // Marketer 3 (Suleiman)
+                            MarketerNOList[3].Init();
+                            MarketerNOList[3]."No." := 'RV10061';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[3].Name := vendNameFind.Name;
+                            MarketerNOList[3]."Document No." := salesHeader."No.";
+                            MarketerNOList[3].Percentage := 0.01;
+                            MarketerNOList[3].Insert();
+
+                            // “Other” Marketers share 0.445 / counter
+                            for I := 1 to counter do begin
+                                MarketerNOList[3 + I].Init();
+                                MarketerNOList[3 + I]."No." := SelectStr(I, TextLine);
+                                vendNameFind.Reset();
+                                vendNameFind.SetRange("No.", MarketerNOList[3 + I]."No.");
+                                if vendNameFind.FindFirst() then
+                                    MarketerNOList[3 + I].Name := vendNameFind.Name;
+                                MarketerNOList[3 + I]."Document No." := salesHeader."No.";
+                                MarketerNOList[3 + I].Percentage := 0.445 / counter;
+                                MarketerNOList[3 + I].Insert();
+                            end;
+                        end
+                        // 4A) WITH external marketer + “other” marketers:
+                        //   "RV10099"=0.2350, External=0.25, "RV10079"=0.005, "RV10061"=0.01, leftover=0.25 shared by “other marketers”
+                        else begin
+                            // Marketer 1 (Sons)
+                            MarketerNOList[1].Init();
+                            MarketerNOList[1]."No." := 'RV10099';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[1].Name := vendNameFind.Name;
+                            MarketerNOList[1]."Document No." := salesHeader."No.";
+                            MarketerNOList[1].Percentage := 0.235;
+                            MarketerNOList[1].Insert();
+
+                            // Marketer 2 (External)
+                            MarketerNOList[2].Init();
+                            if (newMarketer = 'new') then begin
+                                // newly created external vendor
+                                MarketerNOList[2]."No." := vendCreated."No.";
+                                MarketerNOList[2].Name := vendCreated.Name;
+                            end else begin
+                                // existing external vendor
+                                MarketerNOList[2]."No." := vend2."No.";
+                                MarketerNOList[2].Name := vend2.Name;
+                            end;
+                            MarketerNOList[2]."Document No." := salesHeader."No.";
+                            MarketerNOList[2].Percentage := 0.25;
+                            MarketerNOList[2].Insert();
+
+                            // Marketer 3 (Abdelwahab)
+                            MarketerNOList[3].Init();
+                            MarketerNOList[3]."No." := 'RV10079';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[3]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[3].Name := vendNameFind.Name;
+                            MarketerNOList[3]."Document No." := salesHeader."No.";
+                            MarketerNOList[3].Percentage := 0.005;
+                            MarketerNOList[3].Insert();
+
+                            // Marketer 4 (Suleiman)
+                            MarketerNOList[4].Init();
+                            MarketerNOList[4]."No." := 'RV10061';
+                            vendNameFind.Reset();
+                            vendNameFind.SetRange("No.", MarketerNOList[4]."No.");
+                            if vendNameFind.FindFirst() then
+                                MarketerNOList[4].Name := vendNameFind.Name;
+                            MarketerNOList[4]."Document No." := salesHeader."No.";
+                            MarketerNOList[4].Percentage := 0.01;
+                            MarketerNOList[4].Insert();
+
+                            // “Other” Marketers share 0.25 / counter
+                            for I := 1 to counter do begin
+                                MarketerNOList[4 + I].Init();
+                                MarketerNOList[4 + I]."No." := SelectStr(I, TextLine);
+                                vendNameFind.Reset();
+                                vendNameFind.SetRange("No.", MarketerNOList[4 + I]."No.");
+                                if vendNameFind.FindFirst() then
+                                    MarketerNOList[4 + I].Name := vendNameFind.Name;
+                                MarketerNOList[4 + I]."Document No." := salesHeader."No.";
+                                MarketerNOList[4 + I].Percentage := 0.25 / counter;
+                                MarketerNOList[4 + I].Insert();
+                            end;
+                        end;
                     end;
-
-
                 end;
 
             'Sales office':

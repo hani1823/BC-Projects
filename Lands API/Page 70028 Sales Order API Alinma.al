@@ -1034,10 +1034,13 @@ page 70028 "APIV2 - Sales Orders Alinma"
         incomDoc: Record "Incoming Document";
         salesHeader: Record "Sales Header";
         salesLine: Record "Sales line";
+        landRec: Record Land;
+        landRec1: Record Land;
         NoSeri: Codeunit "No. Series";
 
         Amount: Decimal;
         cpt: Integer;
+        LandCode: Code[20];
     begin
         cpt := 0;
         Amount := 0;
@@ -1045,12 +1048,16 @@ page 70028 "APIV2 - Sales Orders Alinma"
         salesHeader.SetRange("No.", SalesOrder_No);
         salesLine.SetRange("Document Type", Enum::"Sales Document Type"::Order);
         salesLine.SetRange("Document No.", SalesOrder_No);
+
         if salesLine.FindSet() then begin
             repeat
                 Amount := salesLine."Commission With VAT" + Amount;
+                landRec1.SetRange("Instrument number", salesLine."No.");
+                if landRec1.FindFirst() then begin
+                    LandCode := landRec1."Land Code"; // Assign the Land Code if found
+                end;
             until salesLine.Next() = 0;
         end;
-
         PayJournal2.SetRange("Journal Template Name", 'PAYMENT');
         PayJournal2.SetRange("Journal Batch Name", 'FORM');
         PayJournal2.SetRange("Source Code", 'PAYMENTJNL');
@@ -1073,7 +1080,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
             PayJournal.Validate("Account No.");
 
 
-            PayJournal.Description := salesHeader."Sell-to Customer Name" + ' ' + SalesOrder_No + ' ' + 'سداد امر بيع ';
+            PayJournal.Description := LandCode + ' ' + salesHeader."Sell-to Customer Name" + ' ' + SalesOrder_No + ' ' + 'سداد امر بيع ';
 
             PayJournal.Amount := Amount;
             PayJournal.Validate(Amount);
@@ -1103,7 +1110,11 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 end;
             end;
         end;
-
+        landRec.SetRange("Instrument number", salesLine."No.");
+        if landRec.FindSet() then begin
+            landRec.Status := landRec.Status::Sold;
+            landRec.Modify();
+        end;
         PayJournal.Insert();
     end;
 
