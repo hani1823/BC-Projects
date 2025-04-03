@@ -12,6 +12,7 @@ pageextension 50061 "EXT Blkt Sales Order Subform" extends "Blanket Sales Order 
         modify("Quantity Shipped") { Visible = false; }
         modify("Quantity Invoiced") { Visible = false; }
         modify("Shipment Date") { Visible = false; }
+        modify("Service Commitments") { Visible = false; }
         modify("Location Code")
         {
             trigger OnBeforeValidate()
@@ -107,7 +108,6 @@ pageextension 50061 "EXT Blkt Sales Order Subform" extends "Blanket Sales Order 
         modify("E&xplode BOM") { Visible = false; }
         modify("Insert &Ext. Texts") { Visible = false; }
         modify("Select Nonstoc&k Items") { Visible = false; }
-
 
 
     }
