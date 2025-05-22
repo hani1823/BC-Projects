@@ -29,7 +29,7 @@ report 50027 "Store Consumption Statistics"
             column(Item_Name; Names[4]) { }
             column(Valued_Quantity; -"Valued Quantity") { }
             column(Cost_Posted_to_GL; -"Cost Posted to G/L") { }
-
+  
             column(Location_Code; "Location Code") { }
             column(Item_Category_Code; Fin_Infos[1])
             {
@@ -113,4 +113,5 @@ report 50027 "Store Consumption Statistics"
         Fin_Infos: array[3] of Text[150];
         Month: Text;
         yearVar: Integer;
+        
 }

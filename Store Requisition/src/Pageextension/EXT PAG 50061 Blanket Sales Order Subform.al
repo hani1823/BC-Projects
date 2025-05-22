@@ -2,8 +2,7 @@ pageextension 50061 "EXT Blkt Sales Order Subform" extends "Blanket Sales Order 
 {
     layout
     {
-        modify(Control53)
-        { Visible = false; }
+        modify(Control53) { Visible = false; }
         // modify("Location Code") { Visible = false; }
         modify("Unit Price") { Visible = false; }
         modify("Line Discount %") { Visible = false; }
@@ -12,6 +11,9 @@ pageextension 50061 "EXT Blkt Sales Order Subform" extends "Blanket Sales Order 
         modify("Quantity Shipped") { Visible = false; }
         modify("Quantity Invoiced") { Visible = false; }
         modify("Shipment Date") { Visible = false; }
+        modify("Unit of Measure Code") { Editable = false; }
+        modify("Gen. Bus. Posting Group") { Editable = false; }
+        modify("Gen. Prod. Posting Group") { Editable = false; }
         modify("Service Commitments") { Visible = false; }
         modify("Location Code")
         {

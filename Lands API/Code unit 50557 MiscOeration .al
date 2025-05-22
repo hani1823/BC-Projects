@@ -200,6 +200,7 @@ codeunit 50557 "MiscOperations"
             newCust."Payment Terms Code" := '14 DAYS';
             newCust."Payment Method Code" := 'CASH';
             newCust."Zatca Customer Type HAC" := newCust."Zatca Customer Type HAC"::Individual;
+            newCust."Zatca Identification Type HAC" := newCust."Zatca Identification Type HAC"::CRN;
             newCust."Customer ID" := idNumber;
             Evaluate(newCust."Date of Birth", birthDate);
             //newCust.Validate(Name);

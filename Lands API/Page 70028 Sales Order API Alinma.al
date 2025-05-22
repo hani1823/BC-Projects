@@ -15,6 +15,8 @@ using Microsoft.Utilities;
 using System.Reflection;
 using Microsoft.Foundation.NoSeries;
 using System.Text;
+using System.Environment.Configuration;
+using System.Azure.Identity;
 using Microsoft.EServices.EDocument;
 using Microsoft.API.V2;
 using System.IO;
@@ -1039,10 +1041,10 @@ page 70028 "APIV2 - Sales Orders Alinma"
         NoSeri: Codeunit "No. Series";
 
         Amount: Decimal;
-        cpt: Integer;
+        //cpt: Integer;
         LandCode: Code[20];
     begin
-        cpt := 0;
+        //cpt := 0;
         Amount := 0;
         salesHeader.SetRange("Document Type", Enum::"Sales Document Type"::Order);
         salesHeader.SetRange("No.", SalesOrder_No);
@@ -1058,15 +1060,17 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 end;
             until salesLine.Next() = 0;
         end;
-        PayJournal2.SetRange("Journal Template Name", 'PAYMENT');
+        /*PayJournal2.SetRange("Journal Template Name", 'PAYMENT');
         PayJournal2.SetRange("Journal Batch Name", 'FORM');
         PayJournal2.SetRange("Source Code", 'PAYMENTJNL');
-        if PayJournal2.FindSet() then cpt := PayJournal2.Count();
+        if PayJournal2.FindSet() then cpt := PayJournal2.Count();*/
 
         if salesHeader.FindSet() then begin
             PayJournal.Init();
             PayJournal."Posting Date" := Today;
-            PayJournal."Line No." := cpt * 10000 + 10000;
+            //PayJournal."Line No." := cpt * 10000 + 10000;
+            PayJournal2.Reset();
+            PayJournal."Line No." := PayJournal2.GetNewLineNo('PAYMENT', 'FORM');
             PayJournal."Document No." := SalesOrder_No;
             PayJournal.Validate("Posting Date");
             PayJournal."Journal Template Name" := 'PAYMENT';
@@ -1091,7 +1095,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
 
             PayJournal."Payment Method Code" := 'BANK';
             PayJournal.Validate("Payment Method Code");
-
+            PayJournal.Insert();
             /// Attachemnt 
             /// 
             if salesHeader.IDs <> '' then begin
@@ -1103,10 +1107,11 @@ page 70028 "APIV2 - Sales Orders Alinma"
                     PayJournalAtt."Incoming Document Entry No." := 0;
                     PayJournalAtt.Modify();
                     incomDoc.SetRange("Entry No.", PayJournal."Incoming Document Entry No.");
-                    incomDoc.FindSet();
-                    incomDoc."Related Record ID" := PayJournal.RecordId;
-                    incomDoc.Description := 'Red Palm Sales Order ' + SalesOrder_No;
-                    incomDoc.Modify();
+                    if incomDoc.FindFirst() then begin
+                        incomDoc."Related Record ID" := PayJournal.RecordId;
+                        incomDoc.Description := 'Red Palm Sales Order ' + SalesOrder_No;
+                        incomDoc.Modify();
+                    end;
                 end;
             end;
         end;
@@ -1115,7 +1120,8 @@ page 70028 "APIV2 - Sales Orders Alinma"
             landRec.Status := landRec.Status::Sold;
             landRec.Modify();
         end;
-        PayJournal.Insert();
+        //PayJournal.Insert();
+
     end;
 
     /////
@@ -1197,13 +1203,14 @@ page 70028 "APIV2 - Sales Orders Alinma"
         PurchHeader: Record "Purchase Header";
         PurchLine: Record "Purchase Line";
         land: Record Land;
+        landRec1: Record Land;
+        LandCode: Code[20];
 
         PriceText: Text;
         CustEmailText: Text;
         piecePriceText: Text;
+
         //  parameter for Sales Invoice
-
-
         SI_HttpClient: HttpClient;
         SI_HttpHeaders: HttpHeaders;
         SI_Content: HttpContent;
@@ -1232,6 +1239,15 @@ page 70028 "APIV2 - Sales Orders Alinma"
         PI_jsonbjettext: text;
 
     begin
+        if salesLine.FindSet() then begin
+            repeat
+                landRec1.SetRange("Instrument number", salesLine."No.");
+                if landRec1.FindFirst() then begin
+                    LandCode := landRec1."Land Code"; // Assign the Land Code if found
+                end;
+            until salesLine.Next() = 0;
+        end;
+
         cpt := 0;
 
         PayJournal2.SetRange("Journal Template Name", 'PAYMENT');
@@ -1245,7 +1261,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 land.SetRange("Instrument number", salesLine."No.");
                 if land.FindSet() then begin
                     if land.IsOwnedByQuaedAlinma then begin
-                        createSaleInvoiceAS(Rec."No.");
+                        //createSaleInvoiceAS(Rec."No.");
                         cpt := cpt + 1;
                         PayJournal[cpt].ChangeCompany('ALINMA FOR CONSTRUCTION');
                         PayJournal2.ChangeCompany('ALINMA FOR CONSTRUCTION');
@@ -1300,7 +1316,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                         /// 
                         ///
                         // Obtain access token
-                        PI_AccessToken := getToken();
+                        /*PI_AccessToken := getToken();
 
                         // Set Authorization header
                         PI_HttpClient.DefaultRequestHeaders.Add('Authorization', 'Bearer ' + PI_AccessToken);
@@ -1317,7 +1333,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                         PI_HttpRequestMessage.Content := PI_Content;
                         PI_HttpRequestMessage.SetRequestUri('https://api.businesscentral.dynamics.com/v2.0/9b540f11-2b5c-4c74-bb40-a4d22950e763/PROD/ODataV4/ConstrcApi_CreatePI?company=ALINMA%20FOR%20CONSTRUCTION');
                         PI_HttpRequestMessage.Method('POST');
-                        PI_HttpClient.Send(PI_HttpRequestMessage, PI_HttpResponseMessage);
+                        PI_HttpClient.Send(PI_HttpRequestMessage, PI_HttpResponseMessage);*/
                         /// 
                         /// 
                         /// 
@@ -1341,7 +1357,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                         PayJournal[cpt]."Account No." := 'C10003';
                         // PayJournal.Validate("Account No.");
 
-                        PayJournal[cpt].Description := 'سداد امر بيع ' + Rec."No.";
+                        PayJournal[cpt].Description := LandCode + ' ' + Rec."Sell-to Customer Name" + ' ' + SalesOrder_No + ' ' + 'حوالة';
 
                         PayJournal[cpt].Amount := salesLine."Net Value";
                         PayJournal[cpt].Validate(Amount);
@@ -1366,7 +1382,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
 
     end;
 
-    /// send whats app message to customer 
+    // send whats app message to customer 
     /// 
     /// 
     /// 
@@ -1637,7 +1653,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
         actionContext.SetResultCode(WebServiceActionResultCode::Created);
     end;
 
-    [ServiceEnabled]
+    /*[ServiceEnabled]
     [Scope('Cloud')]
     procedure CreateSales_InvoicesAS(var ActionContext: WebServiceActionContext)
     var
@@ -1646,7 +1662,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
 
         createSaleInvoiceAS(rec."No.");
         actionContext.SetResultCode(WebServiceActionResultCode::Created);
-    end;
+    end;*/
 
     [ServiceEnabled]
     [Scope('Cloud')]
@@ -1658,7 +1674,6 @@ page 70028 "APIV2 - Sales Orders Alinma"
         createPaymtJnl(rec."No.");
         actionContext.SetResultCode(WebServiceActionResultCode::Created);
     end;
-
 
     [ServiceEnabled]
     [Scope('Cloud')]

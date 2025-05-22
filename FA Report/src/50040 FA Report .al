@@ -30,13 +30,12 @@ report 50040 "FA Report"
             column(FA_value; FA_value) { }
             column(FA_value_After_Dep; FA_value_After_Dep) { }
             column(Dep_Value; Dep_Value) { }
-            column(old_Dep_Valvue; old_Dep_Valvue) { }
+            column(old_Dep_Value; old_Dep_Valvue) { }
+            column(Accumulated; Accumulated) { }
 
-
-            column(BusiUnit; Dimensions[1]) { }
             column(Hotels; Dimensions[2]) { }
             column(Responsible_Employee; "Responsible Employee") { }
-
+            column(BusiUnit; Dimensions[1]) { }
             /*
                         dataitem("FA Ledger Entry"; "FA Ledger Entry")
                         {
@@ -52,6 +51,7 @@ report 50040 "FA Report"
                 FaDepBook: Record "FA Depreciation Book";
                 FA_Led_Entr: Record "FA Ledger Entry";
 
+                FA: Record "Fixed Asset";
                 DefaultDim: Record "Default Dimension";
                 dimValues: Record "Dimension Value";
             begin
@@ -125,6 +125,8 @@ report 50040 "FA Report"
                     end;
                 end;
 
+                Accumulated := Dep_Value + old_Dep_Valvue;
+
 
             end;
         }
@@ -167,6 +169,7 @@ report 50040 "FA Report"
         FA_value: Decimal;
         old_Dep_Valvue: Decimal;
         Dep_Value: Decimal;
+        Accumulated: Decimal;
         FA_value_After_Dep: Decimal;
 
 }

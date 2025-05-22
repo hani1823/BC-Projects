@@ -2,7 +2,7 @@
   "id": "a93bf982-6171-46c4-9f8c-6da2dc7addbf",
   "name": "FA Report",
   "publisher": "Alinma",
-  "version": "1.0.0.1",
+  "version": "1.0.0.4",
   
 
   "brief": "",
@@ -19,19 +19,7 @@
 
   "logo": "",
 
-  "dependencies": [
-
-      {
-
-        "id":  "5ecfc871-5d82-43f1-9c54-59685e82318d",
-
-        "publisher":  "LS Retail",
-
-        "name":  "LS Central",
-
-        "version":  "21.5.0.0"
-
-      }],
+  "dependencies": [],
 
   "screenshots": [],
 

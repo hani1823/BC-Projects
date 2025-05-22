@@ -47,6 +47,7 @@ codeunit 50558 "ConstrcApi"
             Newcustomer."Payment Terms Code" := '14 DAYS';
             Newcustomer."Payment Method Code" := 'CASH';
             Newcustomer."Zatca Customer Type HAC" := Newcustomer."Zatca Customer Type HAC"::Individual;
+            Newcustomer."Zatca Identification Type HAC" := Newcustomer."Zatca Identification Type HAC"::CRN;
             Newcustomer.Insert();
 
             // Create Default Dimensions for the new customer
@@ -119,7 +120,7 @@ codeunit 50558 "ConstrcApi"
         end;
     end;
 
-    procedure CreatePI(
+    /*procedure CreatePI(
 
             pieceNo: text;
             piecePrice: text
@@ -156,5 +157,5 @@ codeunit 50558 "ConstrcApi"
         purchLine.Insert()
 
 
-    end;
+    end;*/
 }

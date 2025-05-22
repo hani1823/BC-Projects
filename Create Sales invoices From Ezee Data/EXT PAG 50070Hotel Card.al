@@ -21,6 +21,8 @@ pageextension 50070 MyExtension extends "Hotel Card"
                     hotel: Record Hotel;
                     SalesHeader: Record "Sales Header";
                     SalesLine: Record "Sales Line";
+                    DimMgt: Codeunit DimensionManagement;
+                    TempDim: Record "Dimension Set Entry" temporary;
 
                     counter1: integer;
 
@@ -80,6 +82,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10010');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '133', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -95,6 +98,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10026');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '133', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -111,6 +115,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10015');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '121', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -127,6 +132,8 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10017');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '118', false, false);
+                                                DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '118', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -142,6 +149,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10009');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '133', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -157,6 +165,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10016');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '118', false, false);
                                                 SalesLine.Insert(True);
                                             end;
                                         'Round Off':
@@ -174,6 +183,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                     SalesLine.Validate("Unit Price", 0);
                                                 end;
                                                 SalesLine.Validate(Quantity, 1);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '133', false, false);
                                                 SalesLine.Insert(True);
                                             end;
                                         'OTHER REVENUE':
@@ -188,6 +198,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10025');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '111', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -201,9 +212,11 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine."Document No." := SalesHeader."No.";
                                                 SalesLine.Type := SalesLine.Type::Item;
                                                 SalesLine."Line No." := 90000;
+                                                //118
                                                 SalesLine.Validate("No.", 'EZE-RE-10022');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '118', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -221,6 +234,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10018');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '118', false, false);
                                                 SalesLine.Insert(True);
                                             end;
 
@@ -237,6 +251,7 @@ pageextension 50070 MyExtension extends "Hotel Card"
                                                 SalesLine.Validate("No.", 'EZE-RE-10008');
                                                 SalesLine.Validate(Quantity, 1);
                                                 SalesLine.Validate("Unit Price", MyQueryLines.Amount);
+                                                SalesLine."Dimension Set ID" := DimMgt.SetDimensionValue(SalesLine."Dimension Set ID", 'DEP.', '133', false, false);
                                                 SalesLine.Insert(True);
                                             end;
                                     end;

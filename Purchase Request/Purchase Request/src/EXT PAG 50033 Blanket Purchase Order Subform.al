@@ -6,6 +6,18 @@ pageextension 50033 "EXT Blanket PO Subform" extends "Blanket Purchase Order Sub
         {
             Visible = false;
         }
+        modify("Unit of Measure Code")
+        {
+            Editable = false;
+        }
+        modify("Gen. Bus. Posting Group")
+        {
+            Editable = false;
+        }
+        modify("Gen. Prod. Posting Group")
+        {
+            Editable = false;
+        }
         addafter("Shortcut Dimension 1 Code")
         {
             field("Vendor No."; Rec."Vendor No.")

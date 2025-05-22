@@ -1,0 +1,39 @@
+{
+  "id": "0d780870-6d19-47e7-8b02-828ec660510b",
+  "name": "Customer invoice",
+  "publisher": "Hani",
+  "version": "1.0.0.4",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "07752c03-41e4-4e16-821a-3d7605cdc298",
+      "name": "Sales Invoice QR",
+      "version": "1.0.0.2",
+      "publisher": "Alinma"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "25.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "14.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
