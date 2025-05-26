@@ -5,6 +5,7 @@ using Microsoft.Purchases.Document;
 using Microsoft.Sales.Document;
 using Microsoft.Sales.Customer;
 using Microsoft.Finance.GeneralLedger.Journal;
+using Microsoft.Purchases.Vendor;
 using Microsoft.Finance.Currency;
 using Microsoft.Foundation.PaymentTerms;
 using Microsoft.Foundation.Shipping;
@@ -844,48 +845,69 @@ page 70028 "APIV2 - Sales Orders Alinma"
     var
         cpt: Integer;
         PurcInvHeader: Record "Purchase Header";
-        PurcInvLine: array[10] of Record "Purchase line";
+        PurcInvLine: array[20] of Record "Purchase line";
         SalesLines: Record "Sales Line";
         marketer: Record Marketer;
         purchRelease: Codeunit "Purchase Manual Release";
+        vendorRec: Record Vendor;
+        LineAmt: Decimal;
+        HasLines: Boolean;
     begin
         cpt := 1;
-        // create PI Header
-        PurcInvHeader.Init();
-        PurcInvHeader."Document Type" := Enum::"Purchase Document Type"::Invoice;
-        PurcInvHeader."Posting Date" := today;
-        PurcInvHeader."Vendor Invoice No." := SO_No;
-        PurcInvHeader."Buy-from Vendor No." := Vendor_NO;
-        PurcInvHeader.Validate("Buy-from Vendor No.", Vendor_NO);
-        PurcInvHeader.InitInsert();
-        PurcInvHeader.Insert();
+        HasLines := false;
+
+        if not VendorRec.Get(Vendor_NO) then
+            Error('Vendor %1 not found.', Vendor_NO);
 
         // create PI Lines
         SalesLines.SetRange("Document Type", enum::"Sales Document Type"::Order);
         SalesLines.SetRange("Document No.", SO_No);
         if SalesLines.FindSet() then begin
             repeat
+                LineAmt := Round(SalesLines."Commission Without VAT" * Percentage, 0.01);
 
-                PurcInvLine[cpt].init();
+                if LineAmt <> 0 then begin
+                    if not HasLines then begin
+                        // create PI Header
+                        PurcInvHeader.Init();
+                        PurcInvHeader."Document Type" := Enum::"Purchase Document Type"::Invoice;
+                        PurcInvHeader."Posting Date" := today;
+                        PurcInvHeader."Vendor Invoice No." := SO_No;
+                        PurcInvHeader."Buy-from Vendor No." := Vendor_NO;
+                        PurcInvHeader.Validate("Assigned User ID", 'SULAIMAN');
+                        PurcInvHeader.Validate("Buy-from Vendor No.", Vendor_NO);
+                        PurcInvHeader."Shortcut Dimension 2 Code" := SalesLines."Shortcut Dimension 2 Code";
+                        PurcInvHeader.InitInsert();
+                        PurcInvHeader.Insert();
+                    end;
+                    HasLines := true;
 
-                PurcInvLine[cpt]."Document Type" := enum::"Purchase Document Type"::Invoice;
-                PurcInvLine[cpt]."Document No." := PurcInvHeader."No.";
-                PurcInvLine[cpt].Type := SalesLines.type;
-                PurcInvLine[cpt]."No." := SalesLines."No.";
-                PurcInvLine[cpt]."line No." := SalesLines."line No.";
+                    PurcInvLine[cpt].init();
+                    PurcInvLine[cpt]."Document Type" := enum::"Purchase Document Type"::Invoice;
+                    PurcInvLine[cpt]."Document No." := PurcInvHeader."No.";
+                    PurcInvLine[cpt].Type := SalesLines.type;
+                    //PurcInvLine[cpt]."No." := SalesLines."No.";
+                    PurcInvLine[cpt].Validate("No.", SalesLines."No.");
+                    PurcInvLine[cpt]."Line No." := SalesLines."Line No.";
+                    PurcInvLine[cpt].Description := SalesLines.Description;
+                    //PurcInvLine[cpt].Validate("No.");
+                    //PurcInvLine[cpt].Quantity := 1;
+                    PurcInvLine[cpt].Validate(Quantity, 1);
+                    PurcInvLine[cpt]."Unit of Measure Code" := SalesLines."Unit of Measure Code";
+                    PurcInvLine[cpt]."Dimension Set ID" := SalesLines."Dimension Set ID";
+                    PurcInvLine[cpt]."Direct Unit Cost" := SalesLines."Commission Without VAT" * Percentage;
 
-                PurcInvLine[cpt].Description := SalesLines.Description;
-                //PurcInvLine[cpt].Validate("No.");
-                PurcInvLine[cpt].Quantity := 1;
-                PurcInvLine[cpt]."Unit of Measure Code" := SalesLines."Unit of Measure Code";
-                PurcInvLine[cpt]."Dimension Set ID" := SalesLines."Dimension Set ID";
-                PurcInvLine[cpt]."Direct Unit Cost" := SalesLines."Commission Without VAT" * Percentage;
-                PurcInvLine[cpt].Validate("Direct Unit Cost");
-                PurcInvLine[cpt].Insert();
-                cpt := cpt + 1;
+                    PurcInvLine[cpt].Validate("Gen. Bus. Posting Group", VendorRec."Gen. Bus. Posting Group");
+                    PurcInvLine[cpt]."Shortcut Dimension 2 Code" := SalesLines."Shortcut Dimension 2 Code";
+                    PurcInvLine[cpt].Validate("Direct Unit Cost");
+                    PurcInvLine[cpt].Insert();
+                    cpt := cpt + 1;
+                end;
             until SalesLines.Next() = 0;
         end;
-        purchRelease.Run(PurcInvHeader);
+
+        if HasLines then
+            purchRelease.Run(PurcInvHeader);
     end;
 
     ////        Create Sales Invoice for Adminstration service 
@@ -979,21 +1001,23 @@ page 70028 "APIV2 - Sales Orders Alinma"
             SaleHeaderSI."Document Type" := Enum::"Sales Document Type"::Invoice;
             SaleHeaderSI."bill-to Customer No." := SaleHeaderSO."bill-to Customer No.";
             SaleHeaderSI."sell-to Customer No." := SaleHeaderSO."sell-to Customer No.";
-            SaleHeaderSI."Shortcut Dimension 2 Code" := SaleHeaderSO."Shortcut Dimension 2 Code";
             SaleHeaderSI."Shortcut Dimension 1 Code" := SaleHeaderSO."Shortcut Dimension 1 Code";
+            SaleHeaderSI."Shortcut Dimension 2 Code" := SaleHeaderSO."Shortcut Dimension 2 Code";
             SaleHeaderSI."Dimension Set ID" := SaleHeaderSO."Dimension Set ID";
             SaleHeaderSI."Posting Date" := Today;
             SaleHeaderSI.Validate("sell-to Customer No.");
             SaleHeaderSI.Validate("bill-to Customer No.");
+            SaleHeaderSI.Validate("Assigned User ID", 'SULAIMAN');
             SaleHeaderSI."External Document No." := SaleOrderNo;
             SaleHeaderSI.InitInsert();
-            SaleHeaderSI.insert();
+            SaleHeaderSI.insert(true);
 
             SaleLineSO.SetRange("Document Type", Enum::"Sales Document Type"::Order);
             SaleLineSO.SetRange("Document No.", SaleOrderNo);
             cpt := 1;
             if SaleLineSO.FindSet() then begin
                 repeat
+                    SaleLineSI[cpt].Init();
                     SaleLineSI[cpt]."Document Type" := Enum::"Sales Document Type"::Invoice;
                     SaleLineSI[cpt]."Document No." := SaleHeaderSI."No.";
 
@@ -1005,7 +1029,10 @@ page 70028 "APIV2 - Sales Orders Alinma"
                     SaleLineSI[cpt].Quantity := SaleLineSO.Quantity;
                     SaleLineSI[cpt].Validate(Quantity);
                     SaleLineSI[cpt]."Unit Price" := SaleLineSO."Commission Without VAT";
-
+                    SaleLineSI[cpt]."Unit of Measure Code" := SaleLineSO."Unit of Measure Code";
+                    SaleLineSI[cpt]."Gen. Prod. Posting Group" := SaleLineSO."Gen. Prod. Posting Group";
+                    SaleLineSI[cpt]."Shortcut Dimension 1 Code" := SaleLineSO."Shortcut Dimension 1 Code";
+                    SaleLineSI[cpt]."Shortcut Dimension 2 Code" := SaleLineSO."Shortcut Dimension 2 Code";
 
                     SaleLineSI[cpt]."VAT Bus. Posting Group" := 'DOMESTIC';
                     SaleLineSI[cpt]."VAT Prod. Posting Group" := 'STAND(15%)';
@@ -1015,7 +1042,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                     SaleLineSI[cpt].Validate("VAT Bus. Posting Group");
 
 
-                    SaleLineSI[cpt].Insert();
+                    SaleLineSI[cpt].Insert(true);
                     cpt := cpt + 1;
                 until SaleLineSO.Next() = 0;
             end;
