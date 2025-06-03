@@ -299,7 +299,4 @@ pageextension 50560 "EXT Sales Order" extends "Sales Order"
         JSONManagement.GetArrayPropertyValueAsStringByName('access_token', AccessToken);
         exit(AccessToken);
     end;
-
-    var
-        myInt: Integer;
 }

@@ -2,7 +2,7 @@
   "id": "0d780870-6d19-47e7-8b02-828ec660510b",
   "name": "Customer invoice",
   "publisher": "Hani",
-  "version": "1.0.0.4",
+  "version": "1.0.0.11",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -16,6 +16,12 @@
       "name": "Sales Invoice QR",
       "version": "1.0.0.2",
       "publisher": "Alinma"
+    },
+    {
+      "id": "19954415-0bff-4105-aad1-c0d01a6eb3d7",
+      "name": "Zatca Integration",
+      "version": "24.20241126.0.1",
+      "publisher": "Hamwi Computer Software"
     }
   ],
   "screenshots": [],

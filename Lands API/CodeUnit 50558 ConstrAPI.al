@@ -19,23 +19,21 @@ codeunit 50558 "ConstrcApi"
 
         land: Record Item;
         NoSeri: Codeunit "No. Series";
+        CustomerNo: Code[20];
     begin
 
         saleHeader.Init();
         saleHeader."Document Type" := Enum::"Sales Document Type"::Invoice;
         saleHeader."No." := NoSeri.GetNextNo('S-INV');
 
-
+        customer.Reset();
         customer.SetRange("Phone No.", custPhone);
-        if customer.FindSet() then begin
-
-            saleHeader."Bill-to Customer No." := customer."No.";
-            saleHeader."Sell-to Customer No." := customer."No.";
-
-
+        if customer.FindFirst() then begin
+            CustomerNo := customer."No.";
 
         end else begin
             /// create customer 
+            Newcustomer.Init();
             Newcustomer."No." := NoSeri.GetNextNo('CUST');
             Newcustomer.Name := custName;
             Newcustomer."Phone No." := custPhone;
@@ -52,8 +50,7 @@ codeunit 50558 "ConstrcApi"
 
             // Create Default Dimensions for the new customer
             CreateDefaultDimensionsForCustomer(Newcustomer."No.");
-            saleHeader."Bill-to Customer No." := Newcustomer."No.";
-            saleHeader."Sell-to Customer No." := Newcustomer."No.";
+            CustomerNo := Newcustomer."No.";
         end;
 
 
@@ -62,6 +59,8 @@ codeunit 50558 "ConstrcApi"
 
         saleHeader."Posting Date" := Today;
         saleHeader."Document Date" := Today;
+        saleHeader."Bill-to Customer No." := CustomerNo;
+        saleHeader."Sell-to Customer No." := CustomerNo;
         saleHeader.Validate("Sell-to Customer No.");
         saleHeader.Validate("Bill-to Customer No.");
 
@@ -85,7 +84,7 @@ codeunit 50558 "ConstrcApi"
 
         saleLine.Validate(Quantity);
         saleLine.Validate("Unit Price");
-        saleLine.Insert();
+        saleLine.Insert(true);
     end;
 
     local procedure CreateDefaultDimensionsForCustomer(CustomerNo: Code[20])

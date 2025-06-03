@@ -51,5 +51,10 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(50160; "With Commission?"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            InitValue = true;
+        }
     }
 }

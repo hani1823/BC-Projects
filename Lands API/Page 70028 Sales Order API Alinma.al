@@ -846,6 +846,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
         cpt: Integer;
         PurcInvHeader: Record "Purchase Header";
         PurcInvLine: array[20] of Record "Purchase line";
+        SalesHeader: Record "Sales Header";
         SalesLines: Record "Sales Line";
         marketer: Record Marketer;
         purchRelease: Codeunit "Purchase Manual Release";
@@ -855,6 +856,15 @@ page 70028 "APIV2 - Sales Orders Alinma"
     begin
         cpt := 1;
         HasLines := false;
+
+        SalesHeader.SetRange("Document Type", enum::"Sales Document Type"::Order);
+        SalesHeader.SetRange("No.", SO_No);
+
+        if not SalesHeader.FindFirst() then
+            Error('Sales order %1 not found.', SO_No);
+
+        if not SalesHeader."With Commission?" then
+            exit;
 
         if not VendorRec.Get(Vendor_NO) then
             Error('Vendor %1 not found.', Vendor_NO);
@@ -994,8 +1004,16 @@ page 70028 "APIV2 - Sales Orders Alinma"
         cpt: Integer;
 
     begin
+
         SaleHeaderSO.SetRange("Document Type", Enum::"Sales Document Type"::Order);
         SaleHeaderSO.SetRange("No.", SaleOrderNo);
+
+        if not SaleHeaderSO.FindFirst() then
+            Error('Sales order %1 not found.', SaleOrderNo);
+        //This is checking for if the customer have a commission or not
+        if not SaleHeaderSO."With Commission?" then
+            exit;
+
         if SaleHeaderSO.FindSet() then begin
             SaleHeaderSI.Init();
             SaleHeaderSI."Document Type" := Enum::"Sales Document Type"::Invoice;
@@ -1091,6 +1109,12 @@ page 70028 "APIV2 - Sales Orders Alinma"
         PayJournal2.SetRange("Journal Batch Name", 'FORM');
         PayJournal2.SetRange("Source Code", 'PAYMENTJNL');
         if PayJournal2.FindSet() then cpt := PayJournal2.Count();*/
+
+        if not salesHeader.FindFirst() then
+            Error('Sales order %1 not found.', SalesOrder_No);
+        //This is checking for if the customer have a commission or not
+        if not salesHeader."With Commission?" then
+            exit;
 
         if salesHeader.FindSet() then begin
             PayJournal.Init();
@@ -1297,8 +1321,12 @@ page 70028 "APIV2 - Sales Orders Alinma"
                         PurchLine.ChangeCompany('ALINMA FOR CONSTRUCTION');
 
 
-                        cust2.SetRange("No.", rec."Sell-to Customer No.");
-                        if cust2.FindSet() then CustEmailText := cust2."E-Mail";
+                        cust2.SetRange("No.", Rec."Sell-to Customer No.");
+                        if cust2.FindSet() then begin
+                            CustEmailText := cust2."E-Mail";
+
+                        end;
+
 
 
 

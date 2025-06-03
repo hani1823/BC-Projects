@@ -88,20 +88,112 @@ report 50126 "Customer Invoice Report"
     trigger OnPreReport()
     var
         SalesInvLine: Record "Sales Invoice Line";
+        CustomerLedEnt: Record "Cust. Ledger Entry";
         companyRec: Record "Company Information";
         CustomerRec: Record Customer;
         KeyTxt: Text[250];
+        ValueEntry: Record "Value Entry";
+        ItemLedgEntry: Record "Item Ledger Entry";
+        Qty: Decimal;
+        SalesAmt: Decimal;
+        UnitPriceDec: Decimal;
+        VATRate: Decimal;
+        Item: Record Item;
     begin
-        //-- فحص التاريخ
+        VATRate := 0.15;
+        if CustomerFilter <> '' then begin
+            CustomerRec.Get(CustomerFilter);
+            "Customer Name" := CustomerRec.Name;
+            "Customer VAT" := CustomerRec."VAT Registration No.";
+            if CustomerRec."Outside Scope Of Tax HAC" then
+                VATRate := 0
+            else
+                VATRate := 0.15;
+        end;
+
+        if (FromDate > ToDate) and (ToDate <> 0D) then
+            Error('From-Date must be earlier than To-Date.');
+
+        TmpSummary.DeleteAll();
+        Summary.DeleteAll();
+        TotalExclVAT := 0;
+        TotalInclVAT := 0;
+        TotalVatAmount := 0;
+
+        // إعداد فلاتر Value Entry
+        ValueEntry.Reset();
+        ValueEntry.SetRange("Source Type", ValueEntry."Source Type"::Customer);
+        ValueEntry.SetRange("Item Charge No.", '');
+        ValueEntry.SetRange("Expected Cost", false);
+        ValueEntry.SetRange(Adjustment, false);
+        if CustomerFilter <> '' then
+            ValueEntry.SetRange("Source No.", CustomerFilter);
+        if (FromDate <> 0D) or (ToDate <> 0D) then
+            ValueEntry.SetRange("Posting Date", FromDate, ToDate);
+
+        if ValueEntry.FindSet() then
+            repeat
+                ItemLedgEntry.Get(ValueEntry."Item Ledger Entry No.");
+                // تحويل السالب إلى موجب
+                Qty := -ValueEntry."Invoiced Quantity";
+                if Qty <> 0 then begin
+                    SalesAmt := ValueEntry."Sales Amount (Actual)";
+                    Clear(Item);
+                    if Item.Get(ValueEntry."Item No.") then;
+                    //UnitPriceDec := Round(SalesAmt / Qty, 0.01);
+                    //KeyTxt := StrSubstNo('%1|%2', ValueEntry."Item No.", Format(UnitPriceDec));
+                    KeyTxt := StrSubstNo(ValueEntry."Item No.");
+                    if not TmpSummary.Get(KeyTxt) then begin
+                        TmpSummary.Init();
+                        TmpSummary."Key" := KeyTxt;
+                        TmpSummary."Item No." := ValueEntry."Item No.";
+                        TmpSummary.Description := Item.Description;
+                        //TmpSummary."Unit Price" := UnitPriceDec;
+                        TmpSummary."Unit of Measure Code" := Item."Base Unit of Measure";
+                        TmpSummary.QuantityAgg := Qty;
+                        TmpSummary.LineAmtExclVAT := SalesAmt;
+                        TmpSummary.LineAmtInclVAT := SalesAmt * (1 + VATRate);
+                        TmpSummary.Insert();
+                    end else begin
+                        TmpSummary.QuantityAgg += Qty;
+                        TmpSummary.LineAmtExclVAT += SalesAmt;
+                        TmpSummary.LineAmtInclVAT += SalesAmt * (1 + VATRate);
+                        TmpSummary.Modify();
+                    end;
+                    TotalExclVAT += SalesAmt;
+                end;
+            until ValueEntry.Next() = 0;
+
+        TotalVatAmount := Round(TotalExclVAT * VATRate, 0.01);
+        TotalInclVAT := TotalExclVAT + TotalVatAmount;
+
+        if TmpSummary.FindSet() then
+            repeat
+                Summary := TmpSummary;
+                Summary.Insert();
+            until TmpSummary.Next() = 0;
+
+        if companyRec.FindFirst() then begin
+            CompanyName := companyRec.Name;
+            CompanyCity := companyRec.City;
+            CompanyAddr := companyRec.Address;
+            CompanyVat := companyRec."VAT Registration No.";
+        end;
+
+
+        /*//-- فحص التاريخ
         if (FromDate > ToDate) and (ToDate <> 0D) then
             Error('From-Date must be earlier than To-Date.');
 
         //-- فلاتر سطور الفواتير
         SalesInvLine.Reset();
+
         if CustomerFilter <> '' then
             SalesInvLine.SetRange("Sell-to Customer No.", CustomerFilter);
+            CustomerLedEnt.SetRange("Customer No.",CustomerFilter);
         if (FromDate <> 0D) or (ToDate <> 0D) then
             SalesInvLine.SetRange("Posting Date", FromDate, ToDate);
+            CustomerLedEnt.SetRange("Posting Date", FromDate, ToDate);
 
         //-- جهّز جداولنا المؤقّتة
         TmpSummary.DeleteAll();
@@ -153,7 +245,7 @@ report 50126 "Customer Invoice Report"
         if CustomerRec.FindSet() then begin
             "Customer Name" := CustomerRec.Name;
             "Customer VAT" := CustomerRec."VAT Registration No.";
-        end;
+        end;*/
     end;
     //──────────────────── VARIABLES ────────────────────
     var

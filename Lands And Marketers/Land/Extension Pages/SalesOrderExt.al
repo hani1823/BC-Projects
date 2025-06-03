@@ -301,6 +301,13 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
                 ApplicationArea = all;
                 Visible = ShowFields;
             }
+            field("with Commission?"; Rec."with Commission?")
+            {
+                ShowMandatory = true;
+                ApplicationArea = all;
+                Visible = ShowFields;
+
+            }
         }
     }
 

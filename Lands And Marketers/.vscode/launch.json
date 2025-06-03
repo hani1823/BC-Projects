@@ -11,6 +11,7 @@
             "environmentName": "Sandbox-02",
             "startupObjectId": 9305,
             "startupObjectType": "Page",
+            "startupCompany": "ALINMA FOR REAL ESTATE",
             "breakOnError": "All",
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
