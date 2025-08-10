@@ -67,6 +67,8 @@ codeunit 50558 "ConstrcApi"
 
         saleHeader.Validate("Posting Date");
         saleHeader.Validate("Document Date");
+        saleHeader.Validate("No. Series", 'S-INV');
+        saleHeader.Validate("Posting No. Series", 'S-INV+');
         saleHeader.Insert();
 
         // create sale lien

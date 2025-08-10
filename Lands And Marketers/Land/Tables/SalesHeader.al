@@ -14,6 +14,10 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(50142; "Property Code"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
         field(50145; "Payment Method"; Enum PaymentMethod)
         {
             Caption = 'Type of Sale';
@@ -57,4 +61,29 @@ tableextension 50135 "Sales Header Ext" extends "Sales Header"
             InitValue = true;
         }
     }
+    trigger OnAfterModify()
+    begin
+        setPropertyCode();
+    end;
+
+    trigger OnAfterInsert()
+    begin
+        setPropertyCode();
+    end;
+
+
+
+    procedure setPropertyCode()
+    var
+        LandRec: Record Land;
+        salesLine: Record "Sales Line";
+    begin
+        salesLine.SetRange("Document No.", Rec."No.");
+        if salesLine.FindSet() then begin
+            LandRec.SetRange("Instrument number", salesLine."No.");
+            if LandRec.FindFirst() then begin
+                "Property Code" := LandRec."Land Code";
+            end;
+        end;
+    end;
 }

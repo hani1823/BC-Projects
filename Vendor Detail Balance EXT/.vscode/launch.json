@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Microsoft cloud sandbox",
+            "request": "launch",
+            "type": "al",
+            "tenant": "9b540f11-2b5c-4c74-bb40-a4d22950e763",
+            "environmentType": "Sandbox",
+            "environmentName": "Sandbox-01",
+            "startupObjectId": 304,
+            "startupObjectType": "Report",
+            "startupCompany": "ALINMA FOR CONSTRUCTION",
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "schemaUpdateMode": "ForceSync"
+        }
+    ]
+}

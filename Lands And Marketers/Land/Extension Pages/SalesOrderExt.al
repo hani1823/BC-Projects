@@ -428,6 +428,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         ShowBankType();
     end;
 
+
     trigger OnAfterGetRecord()
     var
         CustRec: Record Customer;
@@ -440,6 +441,7 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
             "Date of Birth" := CustRec."Date of Birth";
         end;
     end;
+
 
     local procedure ShowBankType()
     Begin
@@ -474,5 +476,4 @@ pageextension 50135 "Sales Order Ext1" extends "Sales Order"
         DimPlanRec: Record "Dimension Value";
         "Customer ID": Code[10];
         "Date of Birth": Date;
-
 }

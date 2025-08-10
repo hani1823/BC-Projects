@@ -444,7 +444,7 @@ codeunit 50557 "MiscOperations"
                     // ============== CASES 4A/4B: WE HAVE “OTHER” (INTERNAL) MARKETERS ==============
                     else begin
                         // 4B) NO external marketer but we do have other marketers:
-                        //   "RV10099" = 0.29, "RV10079" = 0.005, "RV10061" = 0.01, leftover=0.445 shared by “other marketers”
+                        //   "RV10099" = 0.2350, "RV10079" = 0.005, "RV10061" = 0.01, leftover=0.50 shared by “other marketers”
                         if (newMarketer = '') then begin
                             // Marketer 1 (Sons)
                             MarketerNOList[1].Init();
@@ -454,7 +454,7 @@ codeunit 50557 "MiscOperations"
                             if vendNameFind.FindFirst() then
                                 MarketerNOList[1].Name := vendNameFind.Name;
                             MarketerNOList[1]."Document No." := salesHeader."No.";
-                            MarketerNOList[1].Percentage := 0.29;
+                            MarketerNOList[1].Percentage := 0.2350;
                             MarketerNOList[1].Insert();
 
                             // Marketer 2 (Abdelwahab)
@@ -479,7 +479,7 @@ codeunit 50557 "MiscOperations"
                             MarketerNOList[3].Percentage := 0.01;
                             MarketerNOList[3].Insert();
 
-                            // “Other” Marketers share 0.445 / counter
+                            // “Other” Marketers share 0.50 / counter
                             for I := 1 to counter do begin
                                 MarketerNOList[3 + I].Init();
                                 MarketerNOList[3 + I]."No." := SelectStr(I, TextLine);
@@ -488,7 +488,7 @@ codeunit 50557 "MiscOperations"
                                 if vendNameFind.FindFirst() then
                                     MarketerNOList[3 + I].Name := vendNameFind.Name;
                                 MarketerNOList[3 + I]."Document No." := salesHeader."No.";
-                                MarketerNOList[3 + I].Percentage := 0.445 / counter;
+                                MarketerNOList[3 + I].Percentage := 0.50 / counter;
                                 MarketerNOList[3 + I].Insert();
                             end;
                         end
@@ -570,7 +570,7 @@ codeunit 50557 "MiscOperations"
                             vendNameFind.SetRange("No.", MarketerNOList[1]."No.");
                             if vendNameFind.FindFirst() then MarketerNOList[1].Name := vendNameFind.Name;
                             MarketerNOList[1]."Document No." := salesHeader."No.";
-                            MarketerNOList[1].Percentage := 0.29;
+                            MarketerNOList[1].Percentage := 0.2350;
                             MarketerNOList[1].Insert();
                             //Creatr Suliman
                             MarketerNOList[2].Init();
@@ -600,7 +600,7 @@ codeunit 50557 "MiscOperations"
                                 vendNameFind.SetRange("No.", MarketerNOList[3 + I]."No.");
                                 if vendNameFind.FindFirst() then MarketerNOList[3 + I].Name := vendNameFind.Name;
                                 MarketerNOList[3 + I]."Document No." := salesHeader."No.";
-                                MarketerNOList[3 + I].Percentage := 0.4450 / counter;
+                                MarketerNOList[3 + I].Percentage := 0.50 / counter;
                                 MarketerNOList[3 + I].Insert();
                             end;
 

@@ -16,8 +16,6 @@ using Microsoft.Utilities;
 using System.Reflection;
 using Microsoft.Foundation.NoSeries;
 using System.Text;
-using System.Environment.Configuration;
-using System.Azure.Identity;
 using Microsoft.EServices.EDocument;
 using Microsoft.API.V2;
 using System.IO;
@@ -71,7 +69,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
 
                     trigger OnValidate()
                     begin
-                        RegisterFieldSet(Rec.FieldNo("External Document No."))
+                        RegisterFieldSet(Rec.FieldNo("External Document No."));
                     end;
                 }
                 field(orderDate; Rec."Document Date")
@@ -619,7 +617,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
     trigger OnAfterGetRecord()
     begin
         SetCalculatedFields();
-        if HasWritePermission then
+        if HasWritePermission and (Rec.Status = Rec.Status::Open) then
             GraphMgtSalesOrderBuffer.RedistributeInvoiceDiscounts(Rec);
     end;
 
@@ -767,6 +765,9 @@ page 70028 "APIV2 - Sales Orders Alinma"
         SalesHeader: Record "Sales Header";
         SalesCalcDiscountByType: Codeunit "Sales - Calc Discount By Type";
     begin
+        if Rec.Status <> Rec.Status::Open then
+            exit;
+
         if not DiscountAmountSet then begin
             GraphMgtSalesOrderBuffer.RedistributeInvoiceDiscounts(Rec);
             exit;
@@ -1091,6 +1092,8 @@ page 70028 "APIV2 - Sales Orders Alinma"
     begin
         //cpt := 0;
         Amount := 0;
+        salesHeader.Reset();
+        salesLine.Reset();
         salesHeader.SetRange("Document Type", Enum::"Sales Document Type"::Order);
         salesHeader.SetRange("No.", SalesOrder_No);
         salesLine.SetRange("Document Type", Enum::"Sales Document Type"::Order);
@@ -1112,6 +1115,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
 
         if not salesHeader.FindFirst() then
             Error('Sales order %1 not found.', SalesOrder_No);
+
         //This is checking for if the customer have a commission or not
         if not salesHeader."With Commission?" then
             exit;
@@ -1166,13 +1170,13 @@ page 70028 "APIV2 - Sales Orders Alinma"
                 end;
             end;
         end;
+
         landRec.SetRange("Instrument number", salesLine."No.");
         if landRec.FindSet() then begin
             landRec.Status := landRec.Status::Sold;
             landRec.Modify();
         end;
         //PayJournal.Insert();
-
     end;
 
     /////
@@ -1290,8 +1294,13 @@ page 70028 "APIV2 - Sales Orders Alinma"
         PI_jsonbjettext: text;
 
     begin
+        salesLine.Reset();
+        salesLine.SetRange("Document Type", Enum::"Sales Document Type"::Order);
+        salesLine.SetRange("Document No.", SalesOrder_No);
+
         if salesLine.FindSet() then begin
             repeat
+                landRec1.Reset();
                 landRec1.SetRange("Instrument number", salesLine."No.");
                 if landRec1.FindFirst() then begin
                     LandCode := landRec1."Land Code"; // Assign the Land Code if found
@@ -1400,7 +1409,7 @@ page 70028 "APIV2 - Sales Orders Alinma"
                         PayJournal[cpt].Init();
 
                         PayJournal[cpt]."Posting Date" := Today;
-                        PayJournal[cpt]."Line No." := 20000 + Random(10000);
+                        PayJournal[cpt]."Line No." := PayJournal2.GetNewLineNo('PAYMENT', 'LANDS');
                         PayJournal[cpt].Validate("Posting Date");
                         PayJournal[cpt]."Journal Template Name" := 'PAYMENT';
                         PayJournal[cpt]."Source Code" := 'PAYMENTJNL';

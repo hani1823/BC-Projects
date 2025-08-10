@@ -229,7 +229,7 @@ page 50131 "Marketer Page"
                 end else begin
                     ResetValues();
                     // Marketer 1 (Sons)
-                    InsertMarketer('RV10099', 0.29, TotalCommissionWithoutVAT);
+                    InsertMarketer('RV10099', 0.2350, TotalCommissionWithoutVAT);
 
                     // Marketer 2 (Supervisor)
                     InsertMarketer('RV10079', 0.005, TotalCommissionWithoutVAT);
@@ -247,7 +247,7 @@ page 50131 "Marketer Page"
                                         (MarketerRec."No." <> 'RV10079') and
                                         (MarketerRec."No." <> 'RV10061') and
                                         (MarketerRec."No." <> OutsideMarketer) then begin
-                                        InsertMarketer(MarketerRec."No.", (0.4450 / Counter), TotalCommissionWithoutVAT);
+                                        InsertMarketer(MarketerRec."No.", (0.50 / Counter), TotalCommissionWithoutVAT);
                                     end;
                                 end;
                             end;
@@ -291,7 +291,7 @@ page 50131 "Marketer Page"
             end else begin
                 ResetValues();
                 // Marketer 1 (Sons)
-                InsertMarketer('RV10099', 0.29, TotalCommissionWithoutVAT);
+                InsertMarketer('RV10099', 0.2350, TotalCommissionWithoutVAT);
 
                 // Marketer 2 (Supervisor)
                 InsertMarketer('RV10079', 0.005, TotalCommissionWithoutVAT);
@@ -309,7 +309,7 @@ page 50131 "Marketer Page"
                                     (MarketerRec."No." <> 'RV10079') and
                                     (MarketerRec."No." <> 'RV10061') and
                                     (MarketerRec."No." <> OutsideMarketer) then begin
-                                    InsertMarketer(MarketerRec."No.", (0.4450 / Counter), TotalCommissionWithoutVAT);
+                                    InsertMarketer(MarketerRec."No.", (0.50 / Counter), TotalCommissionWithoutVAT);
                                 end;
                             end;
                         end;

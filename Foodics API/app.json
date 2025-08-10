@@ -1,0 +1,32 @@
+{
+  "id": "109752af-e1a0-40cd-a950-6fc7a1efa26d",
+  "name": "Foodics Integration",
+  "publisher": "Alinma",
+  "version": "1.0.0.17",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [{"name": "Sustainability", "publisher": "Microsoft", "version": "26.0.30643.32100" , "id": "b3780cd9-f8f8-4a83-a4d5-0c2ad87b28af"}],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "25.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50200
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "14.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
